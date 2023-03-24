@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
@@ -18,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushNamed('/home');
+      Navigator.of(context).pushNamed('/onboarding');
     });
   }
 
@@ -37,7 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
               'icons/tabler_pig-money.svg',
               size: 100,
             ),
+
             SizedBox(height: 10),
+            
             Text(
               'VisiPay',
               style: TextSize.headline1

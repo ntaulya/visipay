@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_constructors, constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/onBoarding.dart';
+import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/splashScreen.dart';
+import 'package:visipay/pages/auth/register.dart';
+
+import 'pages/menu/home.dart';
 
 abstract class IRouter {
   String get initialRoute;
@@ -16,14 +20,16 @@ class VisiPayRouter implements IRouter {
   @override
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // Example
-      // case RouteUrl.ROUTE_NAME:
-      //   return _buildRoute(
-      //       builder: (_) => con=st ROUTE_NAME_PAGE(), settings: settings);
-      case "/home":
-        return _buildRoute(builder: (_) => HomeScreen(), settings: settings);
+      case "/onboarding":
+        return _buildRoute(builder: (_) => OnBoarding(), settings: settings);
       case "/splash":
         return _buildRoute(builder: (_) => SplashScreen(), settings: settings);
+      case "/login":
+        return _buildRoute(builder: (_) => Login(), settings: settings);
+      case "/register":
+        return _buildRoute(builder: (_) => Register(), settings: settings);
+      case "/home":
+        return _buildRoute(builder: (_) => Home(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }
