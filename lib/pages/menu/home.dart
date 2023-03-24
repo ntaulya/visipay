@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
               width: 375.0,
               height: 165.0,
             )
-            Text('Masukkan PIN',style: TextSize.body1.apply(fontWeightDelta: 2)),
+            Text('Total Saldo',style: TextSize.body1.apply(fontWeightDelta: 2)),
           ]
           ));
   }
