@@ -1,31 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:visipay/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  int hexColor(String color) {
-    String newColor = '0xff' + color;
-    newColor = newColor.replaceAll('#', '');
-    int finalColor = int.parse(newColor);
-    return finalColor;
-  }
+  MyApp({super.key});
+  final IRouter _router = VisiPayRouter();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-          color: Color(hexColor('#3E54AC')),
-          child: new Center(
-            child: new Text("VisiPay", style: new TextStyle(color: Colors.white, fontSize: 32.0)),
-          )
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: _router.initialRoute,
+      onGenerateRoute: _router.onGenerateRoute,
+      onUnknownRoute: _router.onUnknownRoute,
     );
   }
 }
