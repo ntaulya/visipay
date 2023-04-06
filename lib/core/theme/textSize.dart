@@ -1,53 +1,38 @@
-import 'package:flutter/material.dart';
-import 'package:visipay/core/theme/palette.dart';
+// ignore_for_file: file_names, non_constant_identifier_names
 
-class TextSize {
-  static TextStyle get headline1 => const TextStyle(
-    fontFamily: "Nunito",
+import 'package:flutter/material.dart';
+
+TextStyle Nunito_51px = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 51.0,
-    color: Palette.textColor,
   );
 
-  static TextStyle get headline2 => const TextStyle(
-    fontFamily: "Nunito",
+TextStyle Nunito_36px = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 36.0,
-    color: Palette.textColor,
   );
 
-  static TextStyle get headline3 => const TextStyle(
-    fontFamily: "Nunito",
+TextStyle Nunito_25px = const TextStyle(
     fontWeight: FontWeight.w400,
-    fontSize: 51.0,
-    color: Palette.textColor,
+    fontSize: 25.0,
   );
 
-  static TextStyle get subtitle1 => const TextStyle(
-    fontFamily: "Nunito",
+TextStyle Nunito_21px = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 21.0,
-    color: Palette.textColor,
   );
 
-  static TextStyle get subtitle2 => const TextStyle(
-    fontFamily: "Nunito",
+TextStyle Nunito_17px = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 17.0,
-    color: Palette.textColor,
   );
 
-  static TextStyle get body1 => const TextStyle(
-    fontFamily: "Nunito",
+TextStyle Nunito_15px = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 15.0,
-    color: Palette.textColor,
   );
 
-  static TextStyle get body2 => const TextStyle(
-    fontFamily: "Nunito",
+TextStyle Nunito_13px = const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 13.0,
-    color: Palette.textColor,
   );
-}

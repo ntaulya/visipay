@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/widgets/button.dart';
@@ -15,12 +16,12 @@ class Register extends StatelessWidget {
         body: Stack(
           children: [
             //vector up
-            Transform.translate(
-              offset: Offset(MediaQuery.of(context).size.width * 0.2, -80),
-              child: SvgPicture.asset(
-                'images/vector.svg',
-              ),
-            ),
+            // Transform.translate(
+            //   offset: Offset(MediaQuery.of(context).size.width * 0.2, -80),
+            //   child: SvgPicture.asset(
+            //     'images/vector.svg',
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -33,13 +34,19 @@ class Register extends StatelessWidget {
                   //text 1
                   Text(
                     'Daftar Akun',
-                    style: TextSize.body1.apply(fontWeightDelta: 3),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
 
                   //text 2
                   Text(
                     'Lengkapi profile untuk melanjutkan',
-                    style: TextSize.body1.apply(fontWeightDelta: 1),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
 
                   SizedBox(height: 8),
@@ -47,7 +54,10 @@ class Register extends StatelessWidget {
                   //nama lengkap
                   Text(
                     'Nama Lengkap',
-                    style: TextSize.body1.apply(fontWeightDelta: 2),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
                   SizedBox(height: 8),
                   TextField(
@@ -62,7 +72,10 @@ class Register extends StatelessWidget {
                   //email
                   Text(
                     'E-Mail',
-                    style: TextSize.body1.apply(fontWeightDelta: 2),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
                   SizedBox(height: 8),
                   TextField(
@@ -77,7 +90,10 @@ class Register extends StatelessWidget {
                   //no hp
                   Text(
                     'No Handphone',
-                    style: TextSize.body1.apply(fontWeightDelta: 2),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
                   SizedBox(height: 8),
                   TextField(
@@ -92,7 +108,10 @@ class Register extends StatelessWidget {
                   //pin transaksi
                   Text(
                     'Masukkan PIN',
-                    style: TextSize.body1.apply(fontWeightDelta: 2),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
                   SizedBox(height: 8),
                   TextField(
@@ -107,7 +126,10 @@ class Register extends StatelessWidget {
                   //no hp
                   Text(
                     'Konfirmasi PIN',
-                    style: TextSize.body1.apply(fontWeightDelta: 2),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
                   SizedBox(height: 8),
                   TextField(
@@ -128,7 +150,7 @@ class Register extends StatelessWidget {
           child: Button(
             "Lanjutkan",
             onTap: () {
-              Navigator.of(context).pushNamed('/register');
+              Navigator.of(context).pushNamed('/home');
             },
           ),
         ));
