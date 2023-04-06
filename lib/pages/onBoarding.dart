@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/widgets/SvgIcon.dart';
 import 'package:visipay/widgets/button.dart';
@@ -36,14 +37,20 @@ class OnBoarding extends StatelessWidget {
                 Text(
                   'Akses Transaksimu Dengan Mudah',
                   style:
-                      TextSize.body1.apply(fontWeightDelta: 3),
+                      GoogleFonts.nunito(
+                        textStyle: Nunito_17px,
+                        fontWeight: FontWeight.normal
+                      ),
                 ),
                 
                 SizedBox(height: 24),
                 
                 Text(
                   'Nikmati berbagai layanan finansial dan kemudahan pembayaran dalam genggaman.',
-                  style: TextSize.body1.apply(fontWeightDelta: 1),
+                  style: GoogleFonts.nunito(
+                    textStyle: Nunito_17px,
+                    fontWeight: FontWeight.normal
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ],

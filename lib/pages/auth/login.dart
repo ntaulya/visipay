@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:visipay/core/theme/palette.dart';
+import 'package:google_fonts/google_fonts.dart';
+  
 import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/widgets/button.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+   Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class Login extends StatelessWidget {
             //   ),
             // ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +36,10 @@ class Login extends StatelessWidget {
                   //text 1
                   Text(
                     'Masuk atau Daftar',
-                    style: TextSize.body1.apply(fontWeightDelta: 3),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
 
                   //container
@@ -46,7 +48,10 @@ class Login extends StatelessWidget {
                   //text 2
                   Text(
                     'Masuk atau Daftar cuma butuh nomor HP aja.',
-                    style: TextSize.body1.apply(fontWeightDelta: 1),
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.normal
+                    ),
                   ),
 
                   SizedBox(height: 16),
@@ -64,7 +69,10 @@ class Login extends StatelessWidget {
                     children: [
                       Text(
                         'Nomor HP nggak aktif atau hilang?',
-                        style: TextSize.body2.apply(fontWeightDelta: 1),
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_17px,
+                          fontWeight: FontWeight.normal
+                        ),
                       ),
                        GestureDetector(
                         onTap: (){
@@ -73,10 +81,12 @@ class Login extends StatelessWidget {
                         },
                          child: Text(
                           'Atur Ulang',
-                          style: TextSize.body2.apply(color: Palette.Info50,fontWeightDelta: 1),
+                          style: GoogleFonts.nunito(
+                            textStyle: Nunito_17px,
+                            fontWeight: FontWeight.normal
+                          ),
                                              ),
-                       ),
-                    ],
+                       )],
                   ),
 
                 ],
@@ -87,8 +97,10 @@ class Login extends StatelessWidget {
         //bottom bar
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(40.0),
-          child: Button("Lanjutkan", onTap: () {
-            Navigator.of(context).pushNamed('/register');
+          child: TextButton(child: Text("Lanjutkan"), onPressed: () {
+
+            // Navigator.of(context).pushNamed('/register');
+          
           },),
         ));
   }

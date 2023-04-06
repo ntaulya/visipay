@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/widgets/container.dart';
@@ -22,7 +23,7 @@ class Button extends GestureDetector {
   }) : super(
           onTap: onTap,
           child: OutlinedBox(
-            backgroundColor: backgroundColor ?? Palette.Primary50,
+            backgroundColor: backgroundColor ?? Primary50,
             // borderColor: borderColor??,
             borderRadius: BorderRadius.circular(borderRadius ?? 100),
             height: height,
@@ -30,9 +31,9 @@ class Button extends GestureDetector {
             padding: padding ??
                 const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             child: ItemButton(
+              textStyle: GoogleFonts.nunito(),
               text: text,
-              color: color ?? Palette.Primary50,
-              textStyle: TextSize.body1.apply(color: color ?? Colors.white),
+              color: color ?? Primary50,
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
             ),

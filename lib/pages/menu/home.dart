@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 
@@ -14,11 +15,14 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
 Container(
-              color: Palette.Primary50,
+              color: Primary50,
               width: 375.0,
               height: 165.0,
             ),
-            Text('Total Saldo',style: TextSize.body1.apply(fontWeightDelta: 2)),
+            Text('Total Saldo',style: GoogleFonts.nunito(
+              textStyle: Nunito_17px,
+              fontWeight: FontWeight.normal
+            )),
           ]
           ));
   }

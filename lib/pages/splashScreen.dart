@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/widgets/SvgIcon.dart';
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       // appBar: AppBar(),
       body: Container(
-        color: Palette.Primary50,
+        color: Primary50,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -41,8 +42,10 @@ class _SplashScreenState extends State<SplashScreen> {
             
             Text(
               'VisiPay',
-              style: TextSize.headline1
-                  .apply(color: Colors.white, fontWeightDelta: 1),
+              style: GoogleFonts.nunito(
+                textStyle: Nunito_17px,
+                fontWeight: FontWeight.normal
+              ),
             ),
           ],
         ),

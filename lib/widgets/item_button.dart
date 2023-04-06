@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/textSize.dart';
 
 // ignore: must_be_immutable
@@ -27,7 +28,9 @@ class ItemButton extends StatelessWidget {
         Flexible(
           child: Text(
             text,
-            style: textStyle ?? TextSize.body1.apply(color: color),
+            style: GoogleFonts.nunito(
+              
+            ),
           ),
         ),
         suffixIcon ?? const SizedBox(),
