@@ -15,12 +15,12 @@ class Register extends StatelessWidget {
         body: Stack(
           children: [
             //vector up
-            Transform.translate(
-              offset: Offset(MediaQuery.of(context).size.width * 0.2, -80),
-              child: SvgPicture.asset(
-                'images/vector.svg',
-              ),
-            ),
+            // Transform.translate(
+            //   offset: Offset(MediaQuery.of(context).size.width * 0.2, -80),
+            //   child: SvgPicture.asset(
+            //     'images/vector.svg',
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -128,7 +128,7 @@ class Register extends StatelessWidget {
           child: Button(
             "Lanjutkan",
             onTap: () {
-              Navigator.of(context).pushNamed('/register');
+              Navigator.of(context).pushNamed('/home');
             },
           ),
         ));

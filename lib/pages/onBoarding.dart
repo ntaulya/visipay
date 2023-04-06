@@ -16,12 +16,12 @@ class OnBoarding extends StatelessWidget {
 
         children: [
           //vector up
-          Transform.translate(
-            offset: Offset(MediaQuery.of(context).size.width*0.2, -80),
-            child: SvgPicture.asset(
-             'images/vector.svg',
-                      ),
-          ),
+          // Transform.translate(
+          //   offset: Offset(MediaQuery.of(context).size.width*0.2, -80),
+          //   child: SvgPicture.asset(
+          //    'images/vector.svg',
+          //             ),
+          // ),
           Padding(
             padding: const EdgeInsets.all(42.0),
             child: Column(
@@ -29,7 +29,7 @@ class OnBoarding extends StatelessWidget {
               children: <Widget>[
                
 
-                Image.asset('images/on-boarding-hero.png'),
+                // Image.asset('images/on-boarding-hero.png'),
 
                 SizedBox(height: 41),
                 

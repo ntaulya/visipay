@@ -13,11 +13,11 @@ class Home extends StatelessWidget {
         body: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
+Container(
               color: Palette.Primary50,
               width: 375.0,
               height: 165.0,
-            )
+            ),
             Text('Total Saldo',style: TextSize.body1.apply(fontWeightDelta: 2)),
           ]
           ));

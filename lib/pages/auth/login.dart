@@ -15,12 +15,12 @@ class Login extends StatelessWidget {
         body: Stack(
           children: [
             //vector up
-            Transform.translate(
-              offset: Offset(MediaQuery.of(context).size.width * 0.2, -80),
-              child: SvgPicture.asset(
-                'images/vector.svg',
-              ),
-            ),
+            // Transform.translate(
+            //   offset: Offset(MediaQuery.of(context).size.width * 0.2, -80),
+            //   child: SvgPicture.asset(
+            //     'images/vector.svg',
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -29,7 +29,7 @@ class Login extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 40),
                   //gambar
-                  Center(child: Image.asset('images/login.png', height: MediaQuery.of(context).size.height * 0.4)),
+                  // Center(child: Image.asset('images/login.png', height: MediaQuery.of(context).size.height * 0.4)),
 
                   //container
                   SizedBox(height: 16),

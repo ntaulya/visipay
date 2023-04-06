@@ -32,10 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SvgIcon.asset(
-              'icons/tabler_pig-money.svg',
-              size: 100,
-            ),
+            // SvgIcon.asset(
+            //   'icons/tabler_pig-money.svg',
+            //   size: 100,
+            // ),
 
             SizedBox(height: 10),
             
