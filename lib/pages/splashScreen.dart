@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushNamed('/onboarding');
+      Navigator.of(context).pushReplacementNamed('/onboarding');
     });
   }
 
@@ -31,24 +31,12 @@ class _SplashScreenState extends State<SplashScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // SvgIcon.asset(
-            //   'icons/tabler_pig-money.svg',
-            //   size: 100,
-            // ),
-
-            SizedBox(height: 10),
-            
-            Text(
-              'VisiPay',
-              style: GoogleFonts.nunito(
-                textStyle: Nunito_17px,
-                fontWeight: FontWeight.normal
-              ),
-            ),
-          ],
-        ),
+            children: [
+              const SizedBox(height: 308,),
+              Image.asset("assets/icon/Logo_VisiPay.png",width: 150,height: 150,),
+              Text("VisiPay", style: GoogleFonts.nunito(textStyle: Nunito_25px,fontWeight: FontWeight.w700,color: Colors.white )),
+            ],
+          ),
       ),
     );
   }

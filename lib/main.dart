@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:visipay/core/theme/palette.dart';
+import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
