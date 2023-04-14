@@ -99,7 +99,7 @@ class Login extends StatelessWidget {
           padding: const EdgeInsets.all(40.0),
           child: TextButton(child: Text("Lanjutkan"), onPressed: () {
 
-            // Navigator.of(context).pushNamed('/register');
+            Navigator.of(context).pushNamed('/home');
           
           },),
         ));
