@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/widgets/card.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -198,72 +199,8 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
-                      width: 189,
-                      height: 150,
-                      child: Card(
-                        shadowColor: Colors.black,
-                        elevation: 1.0,
-                        
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: InkWell(
-                          
-                          onTap: () {
-                            // aksi yang akan dijalankan saat tombol ditekan
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/icon/Mbanking.png",width: 48,height: 48,),
-                              SizedBox(height: 8,),
-                              Text(
-                                'Pulsa & Paket Data',
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 189,
-                      height: 150,
-                      child: Card(
-                        shadowColor: Colors.black,
-                        elevation: 1.0,
-                        
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: InkWell(
-                          
-                          onTap: () {
-                            // aksi yang akan dijalankan saat tombol ditekan
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/icon/PLN Listrik.png",width: 48,height: 48,),
-                              SizedBox(height: 8,),
-                              Text(
-                                'PLN',
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    CardButton(image: "assets/icon/Mbanking.png", text: "Pulsa & Paket Data",),
+                    CardButton(image: "assets/icon/PLN Listrik.png", text: "PLN",),
                   ],
                 ),
               ),
