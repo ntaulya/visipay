@@ -27,15 +27,15 @@ class _pinState extends State<pin> {
       child: Scaffold(
         backgroundColor: Primary50,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.only(top:60),
               child: Text("Masukkan Security Code",
-                  style: Nunito_25px.apply(color: Colors.white)),
+                  style: Nunito_21px.apply(color: Colors.white)),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(32.0),
               child: PinCodeTextField(
                 onCompleted: (String pin) {
                   print(pin);
@@ -47,8 +47,8 @@ class _pinState extends State<pin> {
                 pinTheme: PinTheme(
                     shape: PinCodeFieldShape.circle,
                     borderRadius: BorderRadius.circular(5),
-                    fieldHeight: 50,
-                    fieldWidth: 50,
+                    fieldHeight: 40,
+                    fieldWidth: 40,
                     inactiveColor: Colors.white,
                     inactiveFillColor: Colors.white,
                     activeFillColor: Colors.white,

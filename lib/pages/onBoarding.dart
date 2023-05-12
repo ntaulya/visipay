@@ -59,14 +59,18 @@ class OnBoarding extends StatelessWidget {
                 Button(
                   "Login",
                   backgroundColor: Primary50,
+                  width: 380,
+                  height: 48,
                   
                   onTap: () {
                     Navigator.of(context).pushNamed('/login');
                   },
                 ),
 
+                const SizedBox(height: 15),
+
                 Button("Register",
-                    backgroundColor: Colors.white, color: Primary50, onTap: () {
+                    backgroundColor: Colors.white, color: Primary50,  width: 380, height: 48, onTap: () {
                   Navigator.of(context).pushNamed('/register');
                 }),
               ],
