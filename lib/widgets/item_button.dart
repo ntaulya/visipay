@@ -29,7 +29,7 @@ class ItemButton extends StatelessWidget {
           child: Text(
             text,
             style: GoogleFonts.nunito(
-              
+              color: color
             ),
           ),
         ),

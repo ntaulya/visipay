@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:visipay/pages/onBoarding.dart';
 import 'package:visipay/pages/auth/login.dart';
+import 'package:visipay/pages/pin.dart';
 import 'package:visipay/pages/splashScreen.dart';
 import 'package:visipay/pages/auth/register.dart';
 
@@ -30,6 +31,8 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => Register(), settings: settings);
       case "/home":
         return _buildRoute(builder: (_) => Home(), settings: settings);
+      case "/pin":
+        return _buildRoute(builder: (_) => pin(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }

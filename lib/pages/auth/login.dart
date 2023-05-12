@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-  
+import 'package:visipay/bloc/login/login_bloc.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/widgets/button.dart';
 
-class Login extends StatelessWidget {
-   Login({super.key});
+class Login extends StatefulWidget {
+  Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _pinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,7 @@ class Login extends StatelessWidget {
             //   ),
             // ),
             Padding(
-              padding:  const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +48,7 @@ class Login extends StatelessWidget {
                   Text(
                     'Masuk atau Daftar',
                     style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.bold
-                    ),
+                        textStyle: Nunito_17px, fontWeight: FontWeight.bold),
                   ),
 
                   //container
@@ -49,9 +58,7 @@ class Login extends StatelessWidget {
                   Text(
                     'Masuk atau Daftar cuma butuh nomor HP aja.',
                     style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.normal
-                    ),
+                        textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                   ),
 
                   SizedBox(height: 16),
@@ -61,6 +68,7 @@ class Login extends StatelessWidget {
                       border: OutlineInputBorder(),
                       hintText: '+62 8xx - xxxx - xxxx',
                     ),
+                    controller: _phoneController,
                   ),
 
                   SizedBox(height: 2),
@@ -70,38 +78,52 @@ class Login extends StatelessWidget {
                       Text(
                         'Nomor HP nggak aktif atau hilang?',
                         style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal
-                        ),
+                            textStyle: Nunito_17px,
+                            fontWeight: FontWeight.normal),
                       ),
-                       GestureDetector(
-                        onTap: (){
+                      GestureDetector(
+                        onTap: () {
                           Navigator.of(context).pushNamed('/home');
                           print("tes");
                         },
-                         child: Text(
+                        child: Text(
                           'Atur Ulang',
                           style: GoogleFonts.nunito(
-                            textStyle: Nunito_17px,
-                            fontWeight: FontWeight.normal
-                          ),
-                                             ),
-                       )],
+                              textStyle: Nunito_17px,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      )
+                    ],
                   ),
-
                 ],
               ),
             ),
           ],
         ),
         //bottom bar
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: TextButton(child: Text("Lanjutkan"), onPressed: () {
-
-            Navigator.of(context).pushNamed('/home');
-          
-          },),
+        bottomNavigationBar: BlocProvider(
+          create: (context) => sl<LoginBloc>(),
+          child: BlocBuilder<LoginBloc, LoginState>(
+            builder: (context, state) {
+              if (state is LoginInitial) {
+                Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: Button("Lanjutkan", onTap: () {
+                    context.read<LoginBloc>().add(RegisterFormSubmit(_phoneController.text, _pinController.text));
+                  }),
+                );
+              }
+              return Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: TextButton(
+                  child: Text("Lanjutkan"),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/home');
+                  },
+                ),
+              );
+            },
+          ),
         ));
   }
 }

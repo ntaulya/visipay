@@ -198,68 +198,69 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
-                      width: 189,
-                      height: 150,
-                      child: Card(
-                        shadowColor: Colors.black,
-                        elevation: 1.0,
-                        
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: InkWell(
+                    Expanded(
+                      child: SizedBox(
+                        height: 150,
+                        child: Card(
+                          shadowColor: Colors.black,
+                          elevation: 1.0,
                           
-                          onTap: () {
-                            // aksi yang akan dijalankan saat tombol ditekan
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/icon/Mbanking.png",width: 48,height: 48,),
-                              SizedBox(height: 8,),
-                              Text(
-                                'Pulsa & Paket Data',
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            
+                            onTap: () {
+                              // aksi yang akan dijalankan saat tombol ditekan
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/icon/Mbanking.png",width: 48,height: 48,),
+                                SizedBox(height: 8,),
+                                Text(
+                                  'Pulsa & Paket Data',
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.w600
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 189,
-                      height: 150,
-                      child: Card(
-                        shadowColor: Colors.black,
-                        elevation: 1.0,
-                        
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: InkWell(
+                    Expanded(
+                      child: SizedBox(
+                        height: 150,
+                        child: Card(
+                          shadowColor: Colors.black,
+                          elevation: 1.0,
                           
-                          onTap: () {
-                            // aksi yang akan dijalankan saat tombol ditekan
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/icon/PLN Listrik.png",width: 48,height: 48,),
-                              SizedBox(height: 8,),
-                              Text(
-                                'PLN',
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600
+                          
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            
+                            onTap: () {
+                              // aksi yang akan dijalankan saat tombol ditekan
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/icon/PLN Listrik.png",width: 48,height: 48,),
+                                SizedBox(height: 8,),
+                                Text(
+                                  'PLN',
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.w600
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -275,68 +276,70 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
-                      width: 189,
-                      height: 150,
-                      child: Card(
-                        shadowColor: Colors.black,
-                        elevation: 1.0,
-                        
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: InkWell(
+                    Expanded(
+                      child: SizedBox(
+                        height: 150,
+                        child: Card(
+                          shadowColor: Colors.black,
+                          elevation: 1.0,
                           
-                          onTap: () {
-                            // aksi yang akan dijalankan saat tombol ditekan
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/icon/PDAM.png",width: 48,height: 48,),
-                              SizedBox(height: 8,),
-                              Text(
-                                'Air PDAM',
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600
+                          
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            
+                            onTap: () {
+                              // aksi yang akan dijalankan saat tombol ditekan
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/icon/PDAM.png",width: 48,height: 48,),
+                                SizedBox(height: 8,),
+                                Text(
+                                  'Air PDAM',
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.w600
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 189,
-                      height: 150,
-                      child: Card(
-                        shadowColor: Colors.black,
-                        elevation: 1.0,
-                        
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: InkWell(
+                    Expanded(
+                      child: SizedBox(
+                        height: 150,
+                        child: Card(
+                          shadowColor: Colors.black,
+                          elevation: 1.0,
                           
-                          onTap: () {
-                            // aksi yang akan dijalankan saat tombol ditekan
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/icon/Internet & Tv Kabel.png",width: 48,height: 48,),
-                              SizedBox(height: 8,),
-                              Text(
-                                'Internet & TV',
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600
+                          
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            
+                            onTap: () {
+                              // aksi yang akan dijalankan saat tombol ditekan
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/icon/Internet & Tv Kabel.png",width: 48,height: 48,),
+                                SizedBox(height: 8,),
+                                Text(
+                                  'Internet & TV',
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.w600
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
