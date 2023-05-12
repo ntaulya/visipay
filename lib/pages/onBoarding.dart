@@ -11,60 +11,72 @@ class OnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SafeArea(
+    return SafeArea(
         child: Scaffold(
           body: Container(
-            decoration: const BoxDecoration(image: DecorationImage(
-              image: AssetImage("assets/img/Wallpaper1.png"),
-              fit: BoxFit.cover,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/img/Wallpaper1.png"),
+                fit: BoxFit.cover,
               ),
-              ),
+            ),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 181,),
-              Image.asset("assets/img/On Boarding Hero.png",width: 328,height: 270,),
-                const SizedBox(height: 40,),
-                Text("Akses Transaksinya Dengan Mudah",
-                textAlign: TextAlign.start,
-                style: GoogleFonts.nunito(
-                  textStyle: Nunito_17px, fontWeight: FontWeight.bold, color: Text1),),
-                const SizedBox(height: 24,),
-                Text("Nikmati berbagai layanan finansial dan kemudahan pembayaran dalam genggaman",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunito(
-                  textStyle: Nunito_15px, fontWeight: FontWeight.normal, color: Text1
-                ),),
-                SizedBox(height: 132,),
-                   Container(
-                      width: 380,
-                      height: 48,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)
-                          ),
-                          backgroundColor: Primary50,
-                          
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/login');
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 181,
+                ),
+                Image.asset(
+                  "assets/img/On Boarding Hero.png",
+                  width: 228,
+                  height: 170,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "Akses Transaksinya Dengan Mudah",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.bold,
+                      color: Text1),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  "Nikmati berbagai layanan finansial dan kemudahan pembayaran dalam genggaman",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunito(
+                      textStyle: Nunito_15px,
+                      fontWeight: FontWeight.normal,
+                      color: Text1),
+                ),
+                const Spacer(),
 
-                        },
-                        child: Text("Lanjutkan",
-                        style: GoogleFonts.nunito(
-                          textStyle: Nunito_15px, fontWeight: FontWeight.w500, color: Colors.white
-                        ),),
-                      ),
-                    )
-            ],
-              ),
+                Button(
+                  "Login",
+                  backgroundColor: Primary50,
+                  width: 380,
+                  height: 48,
+                  
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/login');
+                  },
+                ),
+
+                const SizedBox(height: 15),
+
+                Button("Register",
+                    backgroundColor: Colors.white, color: Primary50,  width: 380, height: 48, onTap: () {
+                  Navigator.of(context).pushNamed('/register');
+                }),
+              ],
+            ),
           ),
         ),
-      ),
     );
   }
 }

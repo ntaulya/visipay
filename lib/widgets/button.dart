@@ -10,7 +10,7 @@ class Button extends GestureDetector {
     String text, {
     super.key,
     Color? backgroundColor,
-    // Color borderColor,
+    Color? borderColor,
     Color? color,
     EdgeInsets? padding,
     double? height,
@@ -24,7 +24,7 @@ class Button extends GestureDetector {
           onTap: onTap,
           child: OutlinedBox(
             backgroundColor: backgroundColor ?? Primary50,
-            // borderColor: borderColor??,
+            borderColor: borderColor?? Primary50,
             borderRadius: BorderRadius.circular(borderRadius ?? 100),
             height: height,
             width: width,
@@ -33,7 +33,7 @@ class Button extends GestureDetector {
             child: ItemButton(
               textStyle: GoogleFonts.nunito(),
               text: text,
-              color: color ?? Primary50,
+              color: color ?? Colors.white,
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
             ),
