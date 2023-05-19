@@ -5,7 +5,8 @@ import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/splashScreen.dart';
 import 'package:visipay/pages/auth/register.dart';
-import 'package:visipay/pages/topup/index.dart';
+import 'package:visipay/pages/menu/topup/index.dart';
+import 'package:visipay/pages/menu/topup/virtualaccount.dart';
 
 import 'pages/menu/home.dart';
 
@@ -17,7 +18,7 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/splash";
+  String get initialRoute => "/virtualaccount";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
@@ -36,6 +37,8 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => pin(), settings: settings);
       case "/topup":
         return _buildRoute(builder: (_) => IndexTopUp(), settings: settings);
+      case "/virtualaccount":
+        return _buildRoute(builder: (_) => VirtualAccount(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }
