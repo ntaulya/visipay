@@ -5,7 +5,7 @@ import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/splashScreen.dart';
 import 'package:visipay/pages/auth/register.dart';
 
-import 'pages/menu/home.dart';
+import 'pages/home.dart';
 
 abstract class IRouter {
   String get initialRoute;
