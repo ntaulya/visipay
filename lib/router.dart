@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:visipay/pages/menu/pulsa/pilihpromo.dart';
 import 'package:visipay/pages/onBoarding.dart';
 import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/pin.dart';
@@ -7,6 +8,8 @@ import 'package:visipay/pages/splashScreen.dart';
 import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/topup/index.dart';
 import 'package:visipay/pages/menu/topup/virtualaccount.dart';
+import 'package:visipay/pages/menu/pulsa/pulsa.dart';
+import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 
 import 'pages/menu/home.dart';
 
@@ -18,7 +21,7 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/virtualaccount";
+  String get initialRoute => "/konfirpulsa";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
@@ -38,7 +41,13 @@ class VisiPayRouter implements IRouter {
       case "/topup":
         return _buildRoute(builder: (_) => IndexTopUp(), settings: settings);
       case "/virtualaccount":
-        return _buildRoute(builder: (_) => VirtualAccount(), settings: settings);
+        return _buildRoute(builder: (_) => KonfirPulsa(), settings: settings);
+      case "/pulsa":
+        return _buildRoute(builder: (_) => IndexPulsa(), settings: settings);
+      case "/konfirpulsa":
+        return _buildRoute(builder: (_) => KonfirPulsa(), settings: settings);
+       case "/pilihpromo":
+        return _buildRoute(builder: (_) => PilihPromo(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }
