@@ -5,6 +5,7 @@ import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/widgets/button.dart';
 
 class VirtualAccount extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,7 +55,8 @@ class VirtualAccount extends StatelessWidget {
             Container(
               width: 328,
               height: 92,
-              color: Color(0xffF9F5FF),
+              color: Color(0xffF1F6F9),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -73,15 +75,17 @@ class VirtualAccount extends StatelessWidget {
                   ]),
             ),
             SizedBox(height: 17),
-            Text("Tata Cara Top Up di BCA",
-                style: GoogleFonts.nunito(
-                  textStyle: Nunito_15px,
-                  fontWeight: FontWeight.w700,
-                  color: Text1,
-                )),
+            Text(
+              "Tata Cara Top Up di BCA",
+              style: GoogleFonts.nunito(
+                textStyle: Nunito_15px,
+                fontWeight: FontWeight.w700,
+                color: Text1,
+              ),              
+            ),
             SizedBox(height: 17),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.all(16.0),
               width: 328,
               height: 230,
               color: Color(0xffF9F5FF),
@@ -90,29 +94,32 @@ class VirtualAccount extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                        "1. Masukkan kartu ATM dan pin BCA anda\n 2. Pilih menu transaksi lainnya\n 3. Pilih menu transfer\n 4. Pilih menu ke Rek BCA Virtual Account\n 5. Masukkan kode “12345” dan nomor handphone anda\n 6. Masukkan nominal top up\n 7. Lanjutkan transaksi sampai selesai"),
-                  )
+                      "1. Masukkan kartu ATM dan pin BCA anda\n 2. Pilih menu transaksi lainnya\n 3. Pilih menu transfer\n 4. Pilih menu ke Rek BCA Virtual Account\n 5. Masukkan kode “12345” dan nomor handphone anda\n 6. Masukkan nominal top up\n 7. Lanjutkan transaksi sampai selesai",
+                    ),
+                  ),
                 ],
               ),
             ),
             SizedBox(height: 144),
-
-            Row(
+          ]),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Flexible(
-                  flex:1,
-                  child: Button(
-                    "Cek Status Pembayaran",
-                    backgroundColor: Primary50,
-                    width: 328,
-                    height: 48,
-                  ),
+                Button(
+                  "Cek Status Pembayaran",
+                  backgroundColor: Primary50,
+                  width: 328,
+                  height: 48,
                 ),
               ],
-            )
-          ]
-        )
-      ),
-    ));
+              ),
+          ),
+        ),
+        ))
+      ;
   }
 }
+            

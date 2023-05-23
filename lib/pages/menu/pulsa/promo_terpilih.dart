@@ -5,15 +5,15 @@ import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
-class KonfirPulsa extends StatefulWidget {
-  const KonfirPulsa({super.key});
+class PromoTerpilih extends StatefulWidget {
+  const PromoTerpilih({super.key});
 
   @override
-  State<KonfirPulsa> createState() => _KonfirPulsaState();
+  State<PromoTerpilih> createState() => _PromoTerpilihState();
 }
 
-class _KonfirPulsaState extends State<KonfirPulsa> {
-  final TextEditingController __KonfirPulsaController = TextEditingController();
+class _PromoTerpilihState extends State<PromoTerpilih> {
+  final TextEditingController __PromoTerpilihController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -167,20 +167,20 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                       padding:
                           EdgeInsets.all(8.0), // Menambahkan padding horizontal
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment
-                            .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
+                        mainAxisAlignment: MainAxisAlignment.start, // Membuat child berada di ujung kiri dan ujung kanan
                         children: [
+                          IconButton(
+                            icon: Icon(Icons.discount),
+                            color: Secondary50,
+                            onPressed: () {},
+                          ),
                           Text(
-                            'Lihat Promo Yang Tersedia',
+                            'Voucher Bulan Mei',
                             style: GoogleFonts.nunito(
                               textStyle: Nunito_15px,
                               fontWeight: FontWeight.w700,
-                              color: Primary90,
+                              color: Secondary50,
                             ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.arrow_right_alt_sharp),
-                            onPressed: () {},
                           ),
                         ],
                       ),
@@ -218,7 +218,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          'Rp. 7.000',
+                          'Rp. 0',
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
