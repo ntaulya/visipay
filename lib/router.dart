@@ -8,6 +8,7 @@ import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/promo/deskripsi_promo.dart';
 import 'package:visipay/pages/menu/promo/detail_promo.dart';
 import 'package:visipay/pages/splashScreen.dart';
+import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import 'Pages/Home.dart';
 
 abstract class IRouter {
@@ -18,7 +19,7 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/splash";
+  String get initialRoute => "/pulsa";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
@@ -42,6 +43,8 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => DeskripsiPromo(), settings: settings);
       case "/detailpromo":
         return _buildRoute(builder: (_) => DetailPromo(), settings: settings);
+      case "/pulsa":
+        return _buildRoute(builder: (_) => IndexPulsa(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }
