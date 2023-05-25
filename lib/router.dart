@@ -19,7 +19,7 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/pulsa";
+  String get initialRoute => "/home";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {

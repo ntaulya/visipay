@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
@@ -23,7 +24,10 @@ class _PromoTerpilihState extends State<PromoTerpilih> {
           backgroundColor: Primary50,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => Home(),));
+            },
           ),
           title: Text("Konfirmasi Pembayaran",
               style: GoogleFonts.nunito(

@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/menu/topup/virtual_account.dart';
 import 'package:visipay/widgets/card.dart';
 import '../../core/theme/palette.dart';
 import '../../core/theme/textSize.dart';
@@ -102,8 +103,8 @@ class _TopUpState extends State<TopUp> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      CardButton(image: "assets/img/BCA.png",text: "BCA",route: (_) => Home()),
-                      CardButton(image: "assets/img/BRI.png",text: "BRI",route: (_) => Home()),
+                      CardButton(image: "assets/img/BCA.png",text: "BCA",route: (_) => VirtualAccount()),
+                      CardButton(image: "assets/img/BRI.png",text: "BRI",route: (_) => VirtualAccount()),
                     ],
                   ),
                 ),
@@ -123,11 +124,11 @@ class _TopUpState extends State<TopUp> {
                       child: InkWell(
                         onTap: () {
                           // Navigator.of(context).pushNamed(route!);
-                          Navigator.pushNamed(context, "/home");
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const Home()));
+                          // Navigator.pushNamed(context, "/home");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VirtualAccount()));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

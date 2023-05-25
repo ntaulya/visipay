@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 import 'package:visipay/widgets/button.dart';
 
 class IndexPulsa extends StatefulWidget {
@@ -522,6 +523,11 @@ class _IndexPulsaState extends State<IndexPulsa> {
                                       height: 48,
                                     ),
                                     Button(
+                                      onTap: () {
+                                        Navigator.push(context, 
+                                        MaterialPageRoute(builder: (context) => KonfirPulsa(),)
+                                        );
+                                      },
                                       "Konfirmasi",
                                       backgroundColor: Secondary50,
                                       width: 151,

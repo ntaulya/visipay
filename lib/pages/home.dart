@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/pages/menu/promo/detail_promo.dart';
+import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
 import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import '../core/theme/palette.dart';
 import '../core/theme/textSize.dart';
@@ -386,12 +387,11 @@ class _HomeState extends State<Home> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          // Navigator.of(context).pushNamed(route!);
-                          Navigator.pushNamed(context, "/home");
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const Home()));
+                        //    Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //             builder: (context) => const IndexPulsa()));
+                        // },
                            Navigator.push(
                                 context,
                                 MaterialPageRoute(

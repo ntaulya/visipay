@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
+import 'package:visipay/pages/menu/topup.dart';
 import 'package:visipay/widgets/button.dart';
 
 class VirtualAccount extends StatelessWidget {
@@ -9,13 +11,19 @@ class VirtualAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         home: SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Primary50,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PromoTerpilih()));
+            },
           ),
           title: Text("Top Up",
               style: GoogleFonts.nunito(
