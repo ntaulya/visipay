@@ -22,7 +22,9 @@ class _DetailPromoState extends State<DetailPromo> {
           backgroundColor: Primary50,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/home");
+            },
           ),
           title: Text("Detail Promo",
               style: GoogleFonts.nunito(

@@ -4,6 +4,9 @@ import 'package:visipay/Pages/menu/topup.dart';
 import 'package:visipay/Pages/menu/transaksi/pdam.dart';
 import 'package:visipay/Pages/onBoarding.dart';
 import 'package:visipay/pages/auth/login.dart';
+import 'package:visipay/pages/auth/register.dart';
+import 'package:visipay/pages/menu/promo/deskripsi_promo.dart';
+import 'package:visipay/pages/menu/promo/detail_promo.dart';
 import 'package:visipay/pages/splashScreen.dart';
 import 'Pages/Home.dart';
 
@@ -15,7 +18,7 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/home";
+  String get initialRoute => "/splash";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
@@ -23,6 +26,8 @@ class VisiPayRouter implements IRouter {
     switch (settings.name) {
       case "/onboarding":
         return _buildRoute(builder: (_) => OnBoarding(), settings: settings);
+      case "/register":
+        return _buildRoute(builder: (_) => Register(), settings: settings);
       case "/splash":
         return _buildRoute(builder: (_) => SplashScreen(), settings: settings);
       case "/login":
@@ -33,8 +38,10 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => TopUp(), settings: settings);
       case "/pdam":
         return _buildRoute(builder: (_) => Pdam(), settings: settings);
-      // case "/pdam":
-      //   return _buildRoute(builder: (_) => Pdam(), settings: settings);
+      case "/deskripsipromo":
+        return _buildRoute(builder: (_) => DeskripsiPromo(), settings: settings);
+      case "/detailpromo":
+        return _buildRoute(builder: (_) => DetailPromo(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }

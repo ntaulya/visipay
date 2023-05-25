@@ -25,11 +25,14 @@ class _TopUpState extends State<TopUp> {
           appBar: AppBar(
             backgroundColor: Primary50,
             leading: 
-              IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
-                },),
+              Semantics(
+                label: "Kembali",
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                  },),
+              ),
                 
             
             title: Text("Top Up",

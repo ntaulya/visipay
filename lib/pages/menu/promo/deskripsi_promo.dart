@@ -23,7 +23,9 @@ class _DeskripsiPromoState extends State<DeskripsiPromo> {
           backgroundColor: Primary50,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/detailpromo");
+            },
           ),
           title: Text("Deskripsi Promo",
               style: GoogleFonts.nunito(
