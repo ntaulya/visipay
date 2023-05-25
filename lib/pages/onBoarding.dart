@@ -54,7 +54,7 @@ class OnBoarding extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                       color: Text1),
                 ),
-                const Spacer(),
+                SizedBox(height: 120,),
 
                 Button(
                   "Login",
