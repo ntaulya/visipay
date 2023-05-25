@@ -13,7 +13,7 @@ class CardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 189,
+      width: 180,
       height: 150,
       child: Card(
         shadowColor: Colors.black,

@@ -45,276 +45,279 @@ class _IndexPulsaState extends State<IndexPulsa> {
               ),
             ),
           ),
+
           SizedBox(height: 16),
-          DefaultTabController(
-            length: 2,
-            child: Column(children: [
-              TabBar(
-                tabs: [
-                  Tab(
-                    child:
-                        Text('ISI PULSA', style: TextStyle(color: Primary50)),
-                  ),
-                  Tab(
-                    child: Text('PAKET DATA', style: TextStyle(color: Text2)),
-                  ),
-                ],
-              ),
-            ]),
-          ),
-          SizedBox(height: 12),
-          Card(
-              child: Column(
-            children: [
-              ListTile(
-                onTap: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Container(
-                          height: 380,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 32.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Informasi Pelanggan',
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w700,
-                                      color: Text1,
-                                    )),
-                                SizedBox(height: 18),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('No Ponsel',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w500,
-                                          color: Text1,
-                                        )),
-                                    Text('0895330683880',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w600,
-                                          color: Text1,
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: 12),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Voucher Tri',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w500,
-                                          color: Text1,
-                                        )),
-                                    Text('Rp. 5.000',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w600,
-                                          color: Text1,
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: 18),
-                                Row(
-                                  children: [
-                                    Text('Detail Pembayaran',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_17px,
-                                          fontWeight: FontWeight.w700,
-                                          color: Text1,
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: 18),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Harga Voucher',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w500,
-                                          color: Text1,
-                                        )),
-                                    Text('Rp. 5.000',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w600,
-                                          color: Text1,
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: 12),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Biaya Transaksi',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w500,
-                                          color: Text1,
-                                        )),
-                                    Text('Rp. 2.000',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w600,
-                                          color: Text1,
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: 12),
-                                Divider(
-                                  color: Color(0xff3A3541), // Warna garis
-                                  thickness: 1.0, // Ketebalan garis
-                                ),
-                                SizedBox(height: 14),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Total Pembayaran',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w700,
-                                          color: Text1,
-                                        )),
-                                    Text('Rp. 7.000',
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w700,
-                                          color: Text1,
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: 14),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Button(
-                                      "Ubah",
-                                      backgroundColor: Primary50,
-                                      width: 151,
-                                      height: 48,
-                                    ),
-                                    Button(
-                                      "Konfirmasi",
-                                      backgroundColor: Secondary50,
-                                      width: 151,
-                                      height: 48,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      });
-                },
-                title: Text('Rp. 5.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.w700,
-                      color: Text1,
-                    )),
-                subtitle: Text('Total : Rp. 6.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_15px,
-                      fontWeight: FontWeight.w500,
-                      color: Text1,
-                    )),
-              ),
-            ],
-          )),
-          SizedBox(height: 12),
-          Card(
-              child: Column(
-            children: [
-              ListTile(
-                title: Text('Rp. 10.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.w700,
-                      color: Text1,
-                    )),
-                subtitle: Text('Total : Rp. 11.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_15px,
-                      fontWeight: FontWeight.w500,
-                      color: Text1,
-                    )),
-              ),
-            ],
-          )),
-          SizedBox(height: 12),
-          Card(
-              child: Column(
-            children: [
-              ListTile(
-                title: Text('Rp. 15.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.w700,
-                      color: Text1,
-                    )),
-                subtitle: Text('Total : Rp. 16.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_15px,
-                      fontWeight: FontWeight.w500,
-                      color: Text1,
-                    )),
-              ),
-            ],
-          )),
-          SizedBox(height: 12),
-          Card(
-              child: Column(
-            children: [
-              ListTile(
-                title: Text('Rp. 20.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.w700,
-                      color: Text1,
-                    )),
-                subtitle: Text('Total : Rp. 21.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_15px,
-                      fontWeight: FontWeight.w500,
-                      color: Text1,
-                    )),
-              ),
-            ],
-          )),
-          SizedBox(height: 12),
-          Card(
-              child: Column(
-            children: [
-              ListTile(
-                title: Text('Rp. 25.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_17px,
-                      fontWeight: FontWeight.w700,
-                      color: Text1,
-                    )),
-                subtitle: Text('Total : Rp. 26.000',
-                    style: GoogleFonts.nunito(
-                      textStyle: Nunito_15px,
-                      fontWeight: FontWeight.w500,
-                      color: Text1,
-                    )),
-              ),
-            ],
-          ))
+          // DefaultTabController(
+          //   length: 2,
+          //   child: Column(children: [
+          //     TabBar(
+          //       tabs: [
+          //         Tab(
+          //           child:
+          //               Text('ISI PULSA', style: TextStyle(color: Primary50)),
+          //         ),
+          //         Tab(
+          //           child: Text('PAKET DATA', style: TextStyle(color: Text2)),
+          //         ),
+          //       ],
+          //     ),
+          //   ]),
+          // ),
+          // SizedBox(height: 12),
+          // Card(
+          //     child: Column(
+          //   children: [
+          //     ListTile(
+          //       onTap: () {
+          //         showModalBottomSheet(
+          //             context: context,
+          //             builder: (BuildContext context) {
+          //               return Container(
+          //                 height: 380,
+          //                 child: Container(
+          //                   padding: EdgeInsets.symmetric(
+          //                       horizontal: 16.0, vertical: 32.0),
+          //                   child: Column(
+          //                     crossAxisAlignment: CrossAxisAlignment.start,
+          //                     children: [
+          //                       Text('Informasi Pelanggan',
+          //                           style: GoogleFonts.nunito(
+          //                             textStyle: Nunito_17px,
+          //                             fontWeight: FontWeight.w700,
+          //                             color: Text1,
+          //                           )),
+          //                       SizedBox(height: 18),
+          //                       Row(
+          //                         mainAxisAlignment:
+          //                             MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Text('No Ponsel',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w500,
+          //                                 color: Text1,
+          //                               )),
+          //                           Text('0895330683880',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w600,
+          //                                 color: Text1,
+          //                               )),
+          //                         ],
+          //                       ),
+          //                       SizedBox(height: 12),
+          //                       Row(
+          //                         mainAxisAlignment:
+          //                             MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Text('Voucher Tri',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w500,
+          //                                 color: Text1,
+          //                               )),
+          //                           Text('Rp. 5.000',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w600,
+          //                                 color: Text1,
+          //                               )),
+          //                         ],
+          //                       ),
+          //                       SizedBox(height: 18),
+          //                       Row(
+          //                         children: [
+          //                           Text('Detail Pembayaran',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_17px,
+          //                                 fontWeight: FontWeight.w700,
+          //                                 color: Text1,
+          //                               )),
+          //                         ],
+          //                       ),
+          //                       SizedBox(height: 18),
+          //                       Row(
+          //                         mainAxisAlignment:
+          //                             MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Text('Harga Voucher',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w500,
+          //                                 color: Text1,
+          //                               )),
+          //                           Text('Rp. 5.000',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w600,
+          //                                 color: Text1,
+          //                               )),
+          //                         ],
+          //                       ),
+          //                       SizedBox(height: 12),
+          //                       Row(
+          //                         mainAxisAlignment:
+          //                             MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Text('Biaya Transaksi',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w500,
+          //                                 color: Text1,
+          //                               )),
+          //                           Text('Rp. 2.000',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w600,
+          //                                 color: Text1,
+          //                               )),
+          //                         ],
+          //                       ),
+          //                       SizedBox(height: 12),
+          //                       Divider(
+          //                         color: Color(0xff3A3541), // Warna garis
+          //                         thickness: 1.0, // Ketebalan garis
+          //                       ),
+          //                       SizedBox(height: 14),
+          //                       Row(
+          //                         mainAxisAlignment:
+          //                             MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Text('Total Pembayaran',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w700,
+          //                                 color: Text1,
+          //                               )),
+          //                           Text('Rp. 7.000',
+          //                               style: GoogleFonts.nunito(
+          //                                 textStyle: Nunito_15px,
+          //                                 fontWeight: FontWeight.w700,
+          //                                 color: Text1,
+          //                               )),
+          //                         ],
+          //                       ),
+          //                       SizedBox(height: 14),
+          //                       Row(
+          //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                         children: [
+          //                           Button(
+          //                             "Ubah",
+          //                             backgroundColor: Primary50,
+          //                             width: 151,
+          //                             height: 48,
+          //                           ),
+          //                           Button(
+          //                             "Konfirmasi",
+          //                             backgroundColor: Secondary50,
+          //                             width: 151,
+          //                             height: 48,
+          //                           ),
+          //                         ],
+          //                       )
+          //                     ],
+          //                   ),
+          //                 ),
+          //               );
+          //             });
+          //       },
+          //       title: Text('Rp. 5.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_17px,
+          //             fontWeight: FontWeight.w700,
+          //             color: Text1,
+          //           )),
+          //       subtitle: Text('Total : Rp. 6.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_15px,
+          //             fontWeight: FontWeight.w500,
+          //             color: Text1,
+          //           )),
+          //     ),
+          //   ],
+          // )),
+          // SizedBox(height: 12),
+          // Card(
+          //     child: Column(
+          //   children: [
+          //     ListTile(
+          //       title: Text('Rp. 10.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_17px,
+          //             fontWeight: FontWeight.w700,
+          //             color: Text1,
+          //           )),
+          //       subtitle: Text('Total : Rp. 11.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_15px,
+          //             fontWeight: FontWeight.w500,
+          //             color: Text1,
+          //           )),
+          //     ),
+          //   ],
+          // )),
+          // SizedBox(height: 12),
+          // Card(
+          //     child: Column(
+          //   children: [
+          //     ListTile(
+          //       title: Text('Rp. 15.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_17px,
+          //             fontWeight: FontWeight.w700,
+          //             color: Text1,
+          //           )),
+          //       subtitle: Text('Total : Rp. 16.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_15px,
+          //             fontWeight: FontWeight.w500,
+          //             color: Text1,
+          //           )),
+          //     ),
+          //   ],
+          // )),
+          // SizedBox(height: 12),
+          // Card(
+          //     child: Column(
+          //   children: [
+          //     ListTile(
+          //       title: Text('Rp. 20.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_17px,
+          //             fontWeight: FontWeight.w700,
+          //             color: Text1,
+          //           )),
+          //       subtitle: Text('Total : Rp. 21.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_15px,
+          //             fontWeight: FontWeight.w500,
+          //             color: Text1,
+          //           )),
+          //     ),
+          //   ],
+          // )),
+          // SizedBox(height: 12),
+          // Card(
+          //     child: Column(
+          //   children: [
+          //     ListTile(
+          //       title: Text('Rp. 25.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_17px,
+          //             fontWeight: FontWeight.w700,
+          //             color: Text1,
+          //           )),
+          //       subtitle: Text('Total : Rp. 26.000',
+          //           style: GoogleFonts.nunito(
+          //             textStyle: Nunito_15px,
+          //             fontWeight: FontWeight.w500,
+          //             color: Text1,
+          //           )),
+          //     ),
+          //   ],
+          // )),
+
+          
         ]),
       ),
     ));

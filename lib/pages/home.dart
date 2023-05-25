@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/pages/menu/promo/detail_promo.dart';
+import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import '../core/theme/palette.dart';
 import '../core/theme/textSize.dart';
 import 'onBoarding.dart';
@@ -118,7 +120,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SizedBox(
-                        width: 189,
+                        width: 180,
                         height: 130,
                         child: Card(
                           shadowColor: Colors.black,
@@ -154,7 +156,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                        width: 189,
+                        width: 180,
                         height: 130,
                         child: Card(
                           shadowColor: Colors.black,
@@ -214,7 +216,7 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Home()));
+                                  builder: (context) => const DetailPromo()));
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
@@ -353,7 +355,7 @@ class _HomeState extends State<Home> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CardButton(
                           image: "assets/icon/PLN Listrik.png",
@@ -390,6 +392,10 @@ class _HomeState extends State<Home> {
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) => const Home()));
+                           Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const IndexPulsa()));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

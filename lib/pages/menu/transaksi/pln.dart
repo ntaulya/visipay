@@ -217,7 +217,7 @@ class _PlnState extends State<Pln> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(
-                          width: 189,
+                          width: 180,
                           height: 130,
                           child: Card(
                             shadowColor: Colors.black,
@@ -254,7 +254,7 @@ class _PlnState extends State<Pln> {
                           ),
                         ),
                         SizedBox(
-                          width: 189,
+                          width: 180,
                           height: 130,
                           child: Card(
                             shadowColor: Colors.black,
@@ -298,7 +298,7 @@ class _PlnState extends State<Pln> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(
-                          width: 189,
+                          width: 180,
                           height: 130,
                           child: Card(
                             shadowColor: Colors.black,
@@ -335,7 +335,7 @@ class _PlnState extends State<Pln> {
                           ),
                         ),
                         SizedBox(
-                          width: 189,
+                          width: 180,
                           height: 130,
                           child: Card(
                             shadowColor: Colors.black,
@@ -380,7 +380,7 @@ class _PlnState extends State<Pln> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(
-                          width: 189,
+                          width: 180,
                           height: 130,
                           child: Card(
                             shadowColor: Colors.black,
@@ -417,7 +417,7 @@ class _PlnState extends State<Pln> {
                           ),
                         ),
                         SizedBox(
-                          width: 189,
+                          width: 180,
                           height: 130,
                           child: Card(
                             shadowColor: Colors.black,
