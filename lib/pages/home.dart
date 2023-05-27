@@ -64,10 +64,10 @@ class _HomeState extends State<Home> {
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                const Icon(
-                                  Icons.visibility_off_outlined,
-                                  color: Colors.white,
-                                )
+                                // const Icon(
+                                //   Icons.visibility_off_outlined,
+                                //   color: Colors.white,
+                                // )
                               ],
                             )
                           ],
