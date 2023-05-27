@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:visipay/pages/menu/promo/detail_promo.dart';
+import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
 import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import '../core/theme/palette.dart';
 import '../core/theme/textSize.dart';
 import 'onBoarding.dart';
-import 'menu/transaksi/pdam.dart';
-import 'menu/transaksi/pln.dart';
-import 'menu/transaksi/pulsa&paket.dart';
-import 'menu/riwayat.dart';
-import 'menu/topup.dart';
-import 'menu/riwayat.dart';
+import 'menu/pdam/pdam.dart';
+import 'menu/pln/pln.dart';
+import 'menu/pulsa/pulsa&paket.dart';
+import 'menu/riwayat/riwayat.dart';
+import 'menu/topup/topup.dart';
+import 'menu/riwayat/riwayat.dart';
 import 'package:visipay/widgets/card.dart';
 
 class Home extends StatefulWidget {
@@ -217,7 +217,7 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const DetailPromo()));
+                                  builder: (context) => const DaftarPromo()));
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),

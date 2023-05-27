@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 
-class DetailPromo extends StatefulWidget {
-  const DetailPromo({super.key});
+class DaftarPromo extends StatefulWidget {
+  const DaftarPromo({super.key});
 
   @override
-  State<DetailPromo> createState() => _DetailPromoState();
+  State<DaftarPromo> createState() => _DaftarPromoState();
 }
 
-class _DetailPromoState extends State<DetailPromo> {
-  final TextEditingController __DetailPromoController = TextEditingController();
+class _DaftarPromoState extends State<DaftarPromo> {
+  final TextEditingController __DaftarPromoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SafeArea(
           child: Scaffold(
         appBar: AppBar(
@@ -26,7 +28,7 @@ class _DetailPromoState extends State<DetailPromo> {
               Navigator.pushNamed(context, "/home");
             },
           ),
-          title: Text("Detail Promo",
+          title: Text("Daftar Promo",
               style: GoogleFonts.nunito(
                 textStyle: Nunito_21px,
                 fontWeight: FontWeight.w700,
@@ -52,12 +54,14 @@ class _DetailPromoState extends State<DetailPromo> {
                                 children: [
                                   IconButton(
                                     icon: Icon(Icons.discount),
-                                    onPressed: (
-                                      
-                                    ) {},
+                                    onPressed: () {
+                                      Navigator.push(context, 
+                                      MaterialPageRoute(builder: (context) => DetailPromo(),)
+                                      );
+                                    },
                                   ),
                                   Text(
-                                    'Cashback 5%',
+                                    'Cashback 50%',
                                     style: GoogleFonts.nunito(
                                       textStyle: Nunito_15px,
                                       fontWeight: FontWeight.w500,

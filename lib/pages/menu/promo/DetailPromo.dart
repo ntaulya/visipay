@@ -3,20 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 
-class DeskripsiPromo extends StatefulWidget {
-  const DeskripsiPromo({super.key});
+class DetailPromo extends StatefulWidget {
+  const DetailPromo({super.key});
 
   @override
-  State<DeskripsiPromo> createState() => _DeskripsiPromoState();
+  State<DetailPromo> createState() => _DetailPromoState();
 }
 
-class _DeskripsiPromoState extends State<DeskripsiPromo> {
-  final TextEditingController __DeskripsiPromoController =
+class _DetailPromoState extends State<DetailPromo> {
+  final TextEditingController __DetailPromoController =
       TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SafeArea(
           child: Scaffold(
         appBar: AppBar(
@@ -24,10 +25,10 @@ class _DeskripsiPromoState extends State<DeskripsiPromo> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pushNamed(context, "/detailpromo");
+              Navigator.pushNamed(context, "/daftarpromo");
             },
           ),
-          title: Text("Deskripsi Promo",
+          title: Text("Detail Promo",
               style: GoogleFonts.nunito(
                 textStyle: Nunito_21px,
                 fontWeight: FontWeight.w700,

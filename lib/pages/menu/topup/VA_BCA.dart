@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
-import 'package:visipay/pages/menu/topup.dart';
+import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/widgets/button.dart';
 
 class VirtualAccount extends StatelessWidget {
@@ -117,6 +117,7 @@ class VirtualAccount extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Button(
+                  
                   "Cek Status Pembayaran",
                   backgroundColor: Primary50,
                   width: 328,

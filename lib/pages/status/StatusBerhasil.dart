@@ -38,6 +38,6 @@ class _StatusState extends State<Status> {
       ),
       )
       )
-      );;
+      );
   }
 }
