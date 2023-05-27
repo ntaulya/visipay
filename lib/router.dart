@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors, constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:visipay/Pages/menu/topup.dart';
-import 'package:visipay/Pages/menu/transaksi/pdam.dart';
 import 'package:visipay/Pages/onBoarding.dart';
 import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/register.dart';
+import 'package:visipay/pages/menu/pdam/pdam.dart';
 import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
+import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
+import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/pages/splashScreen.dart';
-import 'package:visipay/pages/menu/pulsa/pulsa.dart';
+// import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/pages/status/StatusGagal.dart';
 import 'Pages/Home.dart';
@@ -46,7 +46,7 @@ class VisiPayRouter implements IRouter {
       case "/detailpromo":
         return _buildRoute(builder: (_) => DetailPromo(), settings: settings);
       case "/pulsa":
-        return _buildRoute(builder: (_) => IndexPulsa(), settings: settings);
+        return _buildRoute(builder: (_) => PulsaPaket(), settings: settings);
       case "/berhasil":
         return _buildRoute(builder: (_) => Status(), settings: settings);
       case "/gagal":

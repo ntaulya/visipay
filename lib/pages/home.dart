@@ -1,20 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
-import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
-import 'package:visipay/pages/menu/pulsa/pulsa.dart';
+import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
+// import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import '../core/theme/palette.dart';
 import '../core/theme/textSize.dart';
-import 'onBoarding.dart';
 import 'menu/pdam/pdam.dart';
 import 'menu/pln/pln.dart';
-import 'menu/pulsa/pulsa&paket.dart';
-import 'menu/riwayat/riwayat.dart';
-import 'menu/topup/topup.dart';
 import 'menu/riwayat/riwayat.dart';
 import 'package:visipay/widgets/card.dart';
 
@@ -38,7 +32,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   // margin: EdgeInsets.only(top: 70),
                   height: 108,
                   color: Primary50,
@@ -48,37 +42,35 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Total Saldo",
-                                style: GoogleFonts.nunito(
-                                    textStyle: Nunito_17px,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Rp 21054380",
-                                    style: GoogleFonts.nunito(
-                                        textStyle: Nunito_25px,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Icon(
-                                    Icons.visibility_off_outlined,
-                                    color: Colors.white,
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Total Saldo",
+                              style: GoogleFonts.nunito(
+                                  textStyle: Nunito_17px,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Rp 21054380",
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_25px,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                const Icon(
+                                  Icons.visibility_off_outlined,
+                                  color: Colors.white,
+                                )
+                              ],
+                            )
+                          ],
                         ),
                         // TextButton(
                         // child: Text("Halaman Profil",
@@ -93,7 +85,7 @@ class _HomeState extends State<Home> {
                         Semantics(
                           label: "Profil",
                           child: IconButton(
-                            icon: Icon(Icons.account_circle_rounded),
+                            icon: const Icon(Icons.account_circle_rounded),
                             color: Colors.white, // warna ikon
                             iconSize: 48, // ukuran ikon
                             
@@ -111,12 +103,12 @@ class _HomeState extends State<Home> {
                   ),
                 ),
           
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
           
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -141,7 +133,7 @@ class _HomeState extends State<Home> {
                                   width: 48,
                                   height: 48,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
@@ -181,7 +173,7 @@ class _HomeState extends State<Home> {
                                   width: 48,
                                   height: 48,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
@@ -201,7 +193,7 @@ class _HomeState extends State<Home> {
                 ),
           
                 Container(
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
                   child: SizedBox(
                     // width: 380,
                     height: 76,
@@ -220,7 +212,7 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const DaftarPromo()));
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -247,7 +239,7 @@ class _HomeState extends State<Home> {
                 ),
           
                 Container(
-                  padding: EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -274,7 +266,7 @@ class _HomeState extends State<Home> {
                 ),
           
                 Container(
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
                   child: SizedBox(
                     // width: 380,
                     height: 76,
@@ -293,7 +285,7 @@ class _HomeState extends State<Home> {
                                   builder: (context) => const Riwayat()));
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -304,7 +296,7 @@ class _HomeState extends State<Home> {
                             width: 34,
                             height: 34,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Column(
@@ -344,7 +336,7 @@ class _HomeState extends State<Home> {
                 ),
           
                 Container(
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 4,bottom: 4),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4,bottom: 4),
                   child: Text(
                     "Pilihan Transaksi",
                     textAlign: TextAlign.left,
@@ -354,18 +346,18 @@ class _HomeState extends State<Home> {
                 ),
           
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CardButton(
                           image: "assets/icon/PLN Listrik.png",
                           text: "PLN",
-                          route: (_) => Pln()),
+                          route: (_) => const Pln()),
                       CardButton(
                         image: "assets/icon/PDAM.png",
                         text: "PDAM",
-                        route: (_) => Pdam(),
+                        route: (_) => const Pdam(),
                       ),
                     ],
                   ),
@@ -374,7 +366,7 @@ class _HomeState extends State<Home> {
                 // SizedBox(height: 8,),
           
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: SizedBox(
                     // width: 380,
                     height: 150,
@@ -395,7 +387,7 @@ class _HomeState extends State<Home> {
                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const IndexPulsa()));
+                                    builder: (context) => const PulsaPaket()));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -405,7 +397,7 @@ class _HomeState extends State<Home> {
                               width: 48,
                               height: 48,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 8,
                             ),
                             Text(

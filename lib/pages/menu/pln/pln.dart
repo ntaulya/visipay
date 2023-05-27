@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/widgets/cardToken.dart';
 
 
 
@@ -216,248 +217,25 @@ class _PlnState extends State<Pln> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(
-                          width: 180,
-                          height: 130,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/topup");
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("20K",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_25px,
-                                    fontWeight: FontWeight.w700,
-                                    color: Text1
-                                  ),),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Harga Rp22.500",
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 180,
-                          height: 130,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Home()));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("50K",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_25px,
-                                    fontWeight: FontWeight.w700
-                                  ),),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Harga Rp52.500",
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        CardToken(harga: 22500, heading: "20K",),
+                        CardToken(harga: 52500, heading: "50K",),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(
-                          width: 180,
-                          height: 130,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/topup");
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("100k",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_25px,
-                                    fontWeight: FontWeight.w700,
-                                    color: Text1
-                                  ),),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Harga Rp102.500",
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 180,
-                          height: 130,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                // Navigator.of(context).pushNamed(route!);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Home()));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("200K",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_25px,
-                                    fontWeight: FontWeight.w700
-                                  ),),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Harga Rp202.500",
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        CardToken(harga: 102500, heading: "100K",),
+                        CardToken(harga: 202500, heading: "200K",),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(
-                          width: 180,
-                          height: 130,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/topup");
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("500k",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_25px,
-                                    fontWeight: FontWeight.w700,
-                                    color: Text1
-                                  ),),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Harga Rp502.500",
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_15px,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 180,
-                          height: 130,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Home()));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("1000K",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_25px,
-                                    fontWeight: FontWeight.w700
-                                  ),),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Harga Rp1.002.500",
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        CardToken(harga: 502500, heading: "500K",),
+                        CardToken(harga: 1002500, heading: "1000K",),
                       ],
                     ),
-                  ],
+                                     ],
                 ),
               ),
           
