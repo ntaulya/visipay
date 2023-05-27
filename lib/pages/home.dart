@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
+import 'package:visipay/pages/menu/topup/topup.dart';
 // import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import '../core/theme/palette.dart';
 import '../core/theme/textSize.dart';
@@ -72,16 +73,7 @@ class _HomeState extends State<Home> {
                             )
                           ],
                         ),
-                        // TextButton(
-                        // child: Text("Halaman Profil",
-                        // style: GoogleFonts.nunito(
-                        //   textStyle: Nunito_15px,
-                        //   fontWeight: FontWeight.w500,
-                        //   color: Secondary50
-                        // ),),
-                        // onPressed: () {
-                        //       Navigator.pushNamed(context, "/home");
-                        // },),
+
                         Semantics(
                           label: "Profil",
                           child: IconButton(
@@ -123,7 +115,10 @@ class _HomeState extends State<Home> {
                           ),
                           child: InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, "/topup");
+                              // Navigator.pushNamed(context, "/topup");
+                              Navigator.push(context, 
+                              MaterialPageRoute(builder: (context) => TopUp(),)
+                              );
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
