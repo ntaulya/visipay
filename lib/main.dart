@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/pln/pln.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
+import 'package:visipay/pages/menu/riwayat/riwayat.dart';
 import 'package:visipay/router.dart';
 import 'injection_container/di.dart' as di;
 

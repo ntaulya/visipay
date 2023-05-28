@@ -106,13 +106,6 @@ class _RiwayatState extends State<Riwayat> {
                     )
                   ],
                 ),
-                Text(
-                    "Beli Lagi",
-                    style: GoogleFonts.nunito(
-                        textStyle: Nunito_15px,
-                        fontWeight: FontWeight.bold,
-                        color: Primary50),
-                  )
                 ],
                 ),
                   ),
@@ -168,13 +161,6 @@ class _RiwayatState extends State<Riwayat> {
                     )
                   ],
                 ),
-                Text(
-                    "Beli Lagi",
-                    style: GoogleFonts.nunito(
-                        textStyle: Nunito_15px,
-                        fontWeight: FontWeight.bold,
-                        color: Primary50),
-                  )
                 ],
                 ),
                   ),

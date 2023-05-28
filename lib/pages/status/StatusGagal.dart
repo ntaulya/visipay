@@ -30,8 +30,8 @@ class _StatusGagalState extends State<StatusGagal> {
             children: [
               const SizedBox(height: 308,),
               // Image.asset("assets/img/Completed_successfully.png",width: 313,height: 313,),
-              Image.asset("assets/img/Payment_failed.png",width: 313,height: 313,),
-              Text("Payment Berhasil", style: GoogleFonts.nunito(textStyle: Nunito_25px,fontWeight: FontWeight.w600,color: Text1 )),
+              Image.asset("assets/img/Payment failed.png",width: 313,height: 313,),
+              Text("Transaksi Gagal", style: GoogleFonts.nunito(textStyle: Nunito_25px,fontWeight: FontWeight.w600,color: Text1 )),
             ],
           ),
         ),

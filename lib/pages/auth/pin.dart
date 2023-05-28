@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/status/StatusBerhasil.dart';
+import 'package:visipay/pages/status/StatusGagal.dart';
 import 'package:visipay/widgets/SvgIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,16 +31,19 @@ class _pinState extends State<pin> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top:60),
-              child: Text("Masukkan Security Code",
-                  style: Nunito_21px.apply(color: Colors.white)),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.only(top:60),
+            //   child: Text("Masukkan Security Code",
+            //       style: Nunito_21px.apply(color: Colors.white)),
+            // ),
+            SizedBox(height: 60,),
             Padding(
               padding: const EdgeInsets.all(32.0),
               child: PinCodeTextField(
                 onCompleted: (String pin) {
                   print(pin);
+                  Navigator.pushReplacement(context, 
+                  MaterialPageRoute(builder: (context) => StatusGagal(),));
                 },
                 appContext: context,
                 length: 6,

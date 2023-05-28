@@ -29,9 +29,9 @@ class _StatusState extends State<Status> {
           child: Column(
             children: [
               const SizedBox(height: 308,),
-              Image.asset("assets/img/Completed_successfully.png",width: 313,height: 313,),
+              Image.asset("assets/img/Completed successfully.png",width: 313,height: 313,),
               // Image.asset("assets/img/Payment_failed.png",width: 313,height: 313,),
-              Text("Payment Berhasil", style: GoogleFonts.nunito(textStyle: Nunito_25px,fontWeight: FontWeight.w600,color: Text1 )),
+              Text("Transaksi Berhasil", style: GoogleFonts.nunito(textStyle: Nunito_25px,fontWeight: FontWeight.w600,color: Text1 )),
             ],
           ),
         ),
