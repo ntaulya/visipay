@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/auth/login.dart';
+import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/widgets/SvgIcon.dart';
 import 'package:visipay/widgets/button.dart';
 
@@ -63,7 +65,10 @@ class OnBoarding extends StatelessWidget {
                   height: 48,
                   
                   onTap: () {
-                    Navigator.of(context).pushNamed('/login');
+                    // Navigator.of(context).pushNamed('/login');
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => Login(),)
+                    );
                   },
                 ),
 
@@ -71,7 +76,10 @@ class OnBoarding extends StatelessWidget {
 
                 Button("Register",
                     backgroundColor: Colors.white, color: Primary50,  width: 380, height: 48, onTap: () {
-                  Navigator.of(context).pushNamed('/register');
+                  // Navigator.of(context).pushNamed('/register');
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => Register(),)
+                  );
                 }),
               ],
             ),

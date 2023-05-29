@@ -163,6 +163,7 @@ class _RegisterState extends State<Register> {
               } else if (state is RegisterSuccess) {
                 Timer(Duration.zero, () { 
                   Navigator.of(context).pushNamed('/home');
+                  
                 });
                 return Container();
               }

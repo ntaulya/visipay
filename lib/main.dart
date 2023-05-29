@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/pln/pln.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: Login(),
       debugShowCheckedModeBanner: false,
       // initialRoute: _router.initialRoute,
       // onGenerateRoute: _router.onGenerateRoute,

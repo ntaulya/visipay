@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 
 class DetailPromo extends StatefulWidget {
   const DetailPromo({super.key});
@@ -26,6 +27,9 @@ class _DetailPromoState extends State<DetailPromo> {
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pushNamed(context, "/daftarpromo");
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => DaftarPromo(),)
+              );
             },
           ),
           title: Text("Detail Promo",

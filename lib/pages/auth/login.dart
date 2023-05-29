@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/login/login_bloc.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 
 class Login extends StatefulWidget {
@@ -73,28 +74,31 @@ class _LoginState extends State<Login> {
 
                   SizedBox(height: 2),
 
-                  Row(
-                    children: [
-                      Text(
-                        'Nomor HP nggak aktif atau hilang?',
-                        style: GoogleFonts.nunito(
-                            textStyle: Nunito_17px,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed('/home');
-                          print("tes");
-                        },
-                        child: Text(
-                          'Atur Ulang',
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_17px,
-                              fontWeight: FontWeight.normal),
-                        ),
-                      )
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Text(
+                  //       'Nomor HP nggak aktif atau hilang?',
+                  //       style: GoogleFonts.nunito(
+                  //           textStyle: Nunito_17px,
+                  //           fontWeight: FontWeight.normal),
+                  //     ),
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         Navigator.of(context).pushNamed('/home');
+                  //         print("tes");
+                  //         Navigator.push(context, 
+                  //         MaterialPageRoute(builder: (context) => Home(),)
+                  //         );
+                  //       },
+                  //       child: Text(
+                  //         'Atur Ulang',
+                  //         style: GoogleFonts.nunito(
+                  //             textStyle: Nunito_17px,
+                  //             fontWeight: FontWeight.normal),
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -118,7 +122,10 @@ class _LoginState extends State<Login> {
                 child: TextButton(
                   child: Text("Lanjutkan"),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/home');
+                    // Navigator.of(context).pushNamed('/home');
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => Home(),)
+                    );
                   },
                 ),
               );
