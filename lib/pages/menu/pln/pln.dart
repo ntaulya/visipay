@@ -219,11 +219,11 @@ class _PlnState extends State<Pln> {
                         children: const [
                           CardToken(
                             harga: 22500,
-                            heading: "20K",
+                            heading: "Token 20000",
                           ),
                           CardToken(
                             harga: 52500,
-                            heading: "50K",
+                            heading: "Token 50000",
                           ),
                         ],
                       ),
@@ -232,11 +232,11 @@ class _PlnState extends State<Pln> {
                         children: const [
                           CardToken(
                             harga: 102500,
-                            heading: "100K",
+                            heading: "Token 100000",
                           ),
                           CardToken(
                             harga: 202500,
-                            heading: "200K",
+                            heading: "Token 200000",
                           ),
                         ],
                       ),
@@ -245,11 +245,11 @@ class _PlnState extends State<Pln> {
                         children: const [
                           CardToken(
                             harga: 502500,
-                            heading: "500K",
+                            heading: "Token 500000",
                           ),
                           CardToken(
                             harga: 1002500,
-                            heading: "1000K",
+                            heading: "Token 1000000",
                           ),
                         ],
                       ),
