@@ -80,6 +80,7 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 8),
                   TextField(
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Masukkan No Handphone',
@@ -99,6 +100,7 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 8),
     
                   TextField(
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Masukkan E-Mail',
@@ -116,6 +118,7 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 8),
                   TextField(
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Masukkan PIN Transaksi',
@@ -133,6 +136,7 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 8),
                   TextField(
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Konfirmasi PIN Anda',
@@ -187,7 +191,7 @@ class _RegisterState extends State<Register> {
           bottomNavigationBar: Container(
             padding: EdgeInsets.only(left: 16, right: 16, bottom: 30),
                       // width: 380,
-                      height: 80,
+                      height: 78,
                       child: TextButton(
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
