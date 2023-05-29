@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/login/login_bloc.dart';
+import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
@@ -117,17 +118,41 @@ class _LoginState extends State<Login> {
                   }),
                 );
               }
+              // return Padding(
+              //   padding: const EdgeInsets.all(40.0),
+              //   child: TextButton(
+              //     child: Text("Lanjutkan"),
+              //     onPressed: () {
+              //       // Navigator.of(context).pushNamed('/home');
+              //       Navigator.push(context, 
+              //       MaterialPageRoute(builder: (context) => Home(),)
+              //       );
+              //     },
+              //   ),
+              // );
               return Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: TextButton(
-                  child: Text("Lanjutkan"),
-                  onPressed: () {
-                    // Navigator.of(context).pushNamed('/home');
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => Home(),)
-                    );
-                  },
-                ),
+                padding: const EdgeInsets.only(left: 16,right: 16, bottom: 40),
+                child: Container(
+                      // width: 380,
+                      height: 48,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          backgroundColor: Primary50,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/home");
+                        },
+                        child: Text(
+                          "Lanjutkan",
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_15px,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
               );
             },
           ),
