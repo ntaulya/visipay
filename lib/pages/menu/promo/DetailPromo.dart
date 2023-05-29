@@ -26,7 +26,7 @@ class _DetailPromoState extends State<DetailPromo> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pushNamed(context, "/daftarpromo");
+              // Navigator.pushNamed(context, "/daftarpromo");
               Navigator.push(context, 
               MaterialPageRoute(builder: (context) => DaftarPromo(),)
               );

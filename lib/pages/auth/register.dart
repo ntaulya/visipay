@@ -7,6 +7,7 @@ import 'package:visipay/bloc/register/register_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 
 class Register extends StatefulWidget {
@@ -162,7 +163,11 @@ class _RegisterState extends State<Register> {
                 );
               } else if (state is RegisterSuccess) {
                 Timer(Duration.zero, () { 
-                  Navigator.of(context).pushNamed('/home');
+                  // Navigator.of(context).pushNamed('/home');
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: 
+                  (context) => Home(),)
+                  );
                   
                 });
                 return Container();

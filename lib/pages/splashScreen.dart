@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/onBoarding.dart';
 import 'package:visipay/widgets/SvgIcon.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed('/onboarding');
+      // Navigator.of(context).pushReplacementNamed('/onboarding');
+      Navigator.push(context, 
+      MaterialPageRoute(builder: (context) => OnBoarding(),)
+      );
     });
   }
 
