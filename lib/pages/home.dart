@@ -6,6 +6,7 @@ import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
 import 'package:visipay/pages/menu/topup/topup.dart';
+import 'package:visipay/pages/menu/profile.dart';
 // import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import '../core/theme/palette.dart';
 import '../core/theme/textSize.dart';
@@ -86,7 +87,7 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Home()));
+                                    builder: (context) => Profile()));
                               // aksi yang akan dijalankan saat tombol di tekan
                             },
                           ),
@@ -106,7 +107,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SizedBox(
-                        width: 180,
+                        width: 170,
                         height: 130,
                         child: Card(
                           shadowColor: Colors.black,
@@ -342,7 +343,7 @@ class _HomeState extends State<Home> {
                 ),
           
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
