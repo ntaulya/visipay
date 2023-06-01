@@ -5,6 +5,7 @@ import 'package:visipay/bloc/login/login_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 
@@ -67,6 +68,12 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 16),
     
                     TextField(
+                      onSubmitted: (value) {
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => pin(),)
+                        );
+                      },
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: '+62 8xx - xxxx - xxxx',
@@ -144,7 +151,7 @@ class _LoginState extends State<Login> {
                           ),
                           onPressed: () {
                             Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => Home(),)
+                            MaterialPageRoute(builder: (context) => pin(),)
                             );
                           },
                           child: Text(

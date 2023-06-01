@@ -3,7 +3,7 @@ import 'package:visipay/Pages/onBoarding.dart';
 import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/pdam/pdam.dart';
-import 'package:visipay/pages/menu/profile.dart';
+// import 'package:visipay/pages/menu/profile.dart';
 import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
@@ -52,8 +52,8 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => Status(), settings: settings);
       case "/gagal":
         return _buildRoute(builder: (_) => StatusGagal(), settings: settings);
-      case "/profile":
-        return _buildRoute(builder: (_) => Profile(), settings: settings);
+      // case "/profile":
+      //   return _buildRoute(builder: (_) => Profile(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }
