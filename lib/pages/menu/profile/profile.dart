@@ -5,7 +5,7 @@ import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
 
-import '../../widgets/button.dart';
+import '../../../widgets/button.dart';
 
 class Profile extends StatelessWidget {
   @override
