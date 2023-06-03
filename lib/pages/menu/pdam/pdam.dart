@@ -22,13 +22,16 @@ class _PdamState extends State<Pdam> {
             child: Scaffold(
           appBar: AppBar(
             backgroundColor: Primary50,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Home()));
-              },
-            ),
+            leading: Semantics(
+                label: "Kembali",
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const Home()));
+                  },
+                ),
+              ),
             title: Text(
               "PDAM",
               style: GoogleFonts.nunito(
