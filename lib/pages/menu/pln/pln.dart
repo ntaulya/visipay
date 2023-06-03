@@ -13,6 +13,15 @@ class Pln extends StatefulWidget {
 }
 
 class _PlnState extends State<Pln> {
+
+  String inputNumber = "";
+
+  void onFieldSubmitted(String value) {
+    setState(() {
+      inputNumber = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,6 +55,7 @@ class _PlnState extends State<Pln> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: TextFormField(
+                    onFieldSubmitted: onFieldSubmitted,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       // prefixText: "Rp. ",
@@ -146,116 +156,124 @@ class _PlnState extends State<Pln> {
                     ),
                   ),
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 8, right: 8),
-                    color: Primary50,
-                    height: 117,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                
+                inputNumber != "" ?
+                Column(
+                  children: [
+                    Container(
+                      padding:
+                          const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        color: Primary50,
+                        height: 117,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "Nama Pelanggan",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_13px,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Nama Pelanggan",
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_13px,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  "Pelanggan",
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_21px,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  "123456789",
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_13px,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "John Smith",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_21px,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "123456789",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_13px,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Tarif / Daya",
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_13px,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  "R1 / 000001300VA",
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_17px,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Tarif / Daya",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_13px,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "R1 / 000001300VA",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_17px,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          CardToken(
-                            harga: 22500,
-                            heading: "Token 20000",
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: const [
+                              CardToken(
+                                harga: 22500,
+                                heading: "Token 20000",
+                              ),
+                              CardToken(
+                                harga: 52500,
+                                heading: "Token 50000",
+                              ),
+                            ],
                           ),
-                          CardToken(
-                            harga: 52500,
-                            heading: "Token 50000",
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: const [
+                              CardToken(
+                                harga: 102500,
+                                heading: "Token 100000",
+                              ),
+                              CardToken(
+                                harga: 202500,
+                                heading: "Token 200000",
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: const [
+                              CardToken(
+                                harga: 502500,
+                                heading: "Token 500000",
+                              ),
+                              CardToken(
+                                harga: 1002500,
+                                heading: "Token 1000000",
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          CardToken(
-                            harga: 102500,
-                            heading: "Token 100000",
-                          ),
-                          CardToken(
-                            harga: 202500,
-                            heading: "Token 200000",
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          CardToken(
-                            harga: 502500,
-                            heading: "Token 500000",
-                          ),
-                          CardToken(
-                            harga: 1002500,
-                            heading: "Token 1000000",
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  ],
+                ) :
+                SizedBox()
+
               ],
             ),
           ),
