@@ -12,6 +12,7 @@ import 'package:visipay/pages/splashScreen.dart';
 // import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/pages/status/StatusGagal.dart';
+import 'package:visipay/pages/menu/topup/VA_BNI.dart';
 import 'Pages/Home.dart';
 
 abstract class IRouter {
@@ -54,6 +55,8 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => StatusGagal(), settings: settings);
       // case "/profile":
       //   return _buildRoute(builder: (_) => Profile(), settings: settings);
+      case "/vabni":
+        return _buildRoute(builder: (_) => VirtualAccountBNI(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }

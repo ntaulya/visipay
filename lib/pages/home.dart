@@ -215,13 +215,15 @@ class _HomeState extends State<Home> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  // SizedBox(width: 16,),
-                                  // Image.asset("assets/icon/Top up.png",width: 48,height: 48,),
+                                  Icon(Icons.discount,color: Primary50,),
+
+                                  SizedBox(width: 12),
+                                  
                                   Text(
-                                    "Lihat 5 Voucher tersedia",
+                                    "Promo Tersedia",
                                     style: GoogleFonts.nunito(
-                                      textStyle: Nunito_15px,
-                                      fontWeight: FontWeight.w600,
+                                      textStyle: Nunito_17px,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ],
