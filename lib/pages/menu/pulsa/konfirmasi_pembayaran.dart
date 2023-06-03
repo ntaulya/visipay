@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
@@ -53,7 +54,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           .start, // Mengatur child berada di sebelah kiri
                       children: [
                         Text(
-                          'Telkomsel',
+                          'Tagihan Pembayaran',
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_17px,
                             fontWeight: FontWeight.w700,
@@ -61,7 +62,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          '081377618232',
+                          'Rp 100000',
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
@@ -70,14 +71,14 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                         ),
                       ],
                     ),
-                    Text(
-                      'Rp. 5.000',
-                      style: GoogleFonts.nunito(
-                        textStyle: Nunito_15px,
-                        fontWeight: FontWeight.w500,
-                        color: Text1,
-                      ),
-                    ),
+                    // Text(
+                    //   'Rp 100000',
+                    //   style: GoogleFonts.nunito(
+                    //     textStyle: Nunito_15px,
+                    //     fontWeight: FontWeight.w500,
+                    //     color: Text1,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -121,7 +122,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          'Saldo: Rp. 21.054.380',
+                          'Saldo: Rp 1075000',
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w300,
@@ -221,7 +222,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          'Rp. 7.000',
+                          'Rp 100000',
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
@@ -235,6 +236,13 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                       backgroundColor: Secondary50,
                       width: 123,
                       height: 48,
+                      onTap: () {
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: 
+                        (context) => Status(),
+                        )
+                        );
+                      },
                     ),
                   ],
                 ),

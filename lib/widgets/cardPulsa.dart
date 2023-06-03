@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 import 'package:visipay/widgets/button.dart';
 
 class CardPulsa extends StatefulWidget {
@@ -162,7 +163,7 @@ class _CardPulsaState extends State<CardPulsa> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Home(),
+                                    builder: (context) => KonfirPulsa(),
                                   ));
                             },
                             "Konfirmasi",

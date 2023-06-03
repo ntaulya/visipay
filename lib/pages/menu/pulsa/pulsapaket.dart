@@ -19,7 +19,7 @@ class PulsaPaket extends StatefulWidget {
 
 class _PulsaPaketState extends State<PulsaPaket> {
 
-  String? inputNumber;
+  String inputNumber = "";
 
   void onFieldSubmitted(String value) {
     setState(() {
