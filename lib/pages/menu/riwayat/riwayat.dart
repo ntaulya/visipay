@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/menu/riwayat/DetailRiwayat.dart';
 import '../../../core/theme/palette.dart';
 import '../../../core/theme/textSize.dart';
 
@@ -68,7 +69,7 @@ class _RiwayatState extends State<Riwayat> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Home()));
+                            builder: (context) => const DetailRiwayat()));
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16),

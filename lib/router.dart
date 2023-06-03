@@ -7,12 +7,14 @@ import 'package:visipay/pages/menu/pdam/pdam.dart';
 import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
+import 'package:visipay/pages/menu/riwayat/DetailRiwayat.dart';
 import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/pages/splashScreen.dart';
 // import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/pages/status/StatusGagal.dart';
 import 'package:visipay/pages/menu/topup/VA_BNI.dart';
+import 'package:visipay/pages/menu/riwayat/DetailRiwayat.dart';
 import 'Pages/Home.dart';
 
 abstract class IRouter {
@@ -57,6 +59,8 @@ class VisiPayRouter implements IRouter {
       //   return _buildRoute(builder: (_) => Profile(), settings: settings);
       case "/vabni":
         return _buildRoute(builder: (_) => VirtualAccountBNI(), settings: settings);
+      case "/detailriwayat":
+        return _buildRoute(builder: (_) => DetailRiwayat(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }
