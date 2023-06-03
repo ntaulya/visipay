@@ -23,14 +23,17 @@ class _DetailPromoState extends State<DetailPromo> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Primary50,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              // Navigator.pushNamed(context, "/daftarpromo");
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => DaftarPromo(),)
-              );
-            },
+          leading: Semantics(
+            label: "Kembali",
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                // Navigator.pushNamed(context, "/daftarpromo");
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => DaftarPromo(),)
+                );
+              },
+            ),
           ),
           title: Text("Detail Promo",
               style: GoogleFonts.nunito(
@@ -61,7 +64,7 @@ class _DetailPromoState extends State<DetailPromo> {
                                     onPressed: () {},
                                   ),
                                   Text(
-                                    'Promo Cashback 5%',
+                                    'Promo Cashback 50%',
                                     style: GoogleFonts.nunito(
                                       textStyle: Nunito_21px,
                                       fontWeight: FontWeight.w500,
@@ -71,7 +74,7 @@ class _DetailPromoState extends State<DetailPromo> {
                                 ],
                               ),
                               Text(
-                                'Dapatkan cashback 5% ketika menggunakan Debit BCA untuk berbelanja setiap hari. Hanya berlaku di jam 15.00 - 23.00 WIB!',
+                                'Dapatkan cashback 50% untuk pembayaran pulsa minimal 100000. Hanya berlaku sampai 15.20',
                                 style: GoogleFonts.nunito(
                                   textStyle: Nunito_17px,
                                   fontWeight: FontWeight.w300,

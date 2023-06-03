@@ -23,16 +23,19 @@ class _DaftarPromoState extends State<DaftarPromo> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Primary50,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              // Navigator.pushNamed(context, "/home");
-              Navigator.push(context, 
-              MaterialPageRoute(builder: 
-              (context) => Home(),
-              )
-              );
-            },
+          leading: Semantics(
+            label: "Kembali",
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                // Navigator.pushNamed(context, "/home");
+                Navigator.push(context, 
+                MaterialPageRoute(builder: 
+                (context) => Home(),
+                )
+                );
+              },
+            ),
           ),
           title: Text("Daftar Promo",
               style: GoogleFonts.nunito(
@@ -43,135 +46,190 @@ class _DaftarPromoState extends State<DaftarPromo> {
         ),
         body: Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 6,),
+
             Container(
-              child: Column(
-                children: [
-                  Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 2),
+                  child: SizedBox(
+                    // width: 380,
+                    height: 76,
+                    child: Card(
+                      shadowColor: Colors.black,
+                      elevation: 1.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          // Navigator.of(context).pushNamed(route!);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const DetailPromo()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
+                          Icon(Icons.discount),
+                          
+                          const SizedBox(
+                            width: 8,
+                          ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  IconButton(
-                                    icon: Icon(Icons.discount),
-                                    onPressed: () {
-                                      Navigator.push(context, 
-                                      MaterialPageRoute(builder: (context) => DetailPromo(),)
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    'Cashback 50%',
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_15px,
-                                      fontWeight: FontWeight.w500,
-                                      color: Text1,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                "Cashback 50% pembelian token listrik",
+                                style: GoogleFonts.nunito(
+                                  textStyle: Nunito_15px,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Text(
-                                'Promo hanya berlaku di jam 15.00 - 23.00 WIB',
+                                "Berlaku hanya hari ini sampai 15.20",
                                 style: GoogleFonts.nunito(
                                     textStyle: Nunito_13px,
-                                    fontWeight: FontWeight.w300,
-                                    color: Text1),
-                              ),
+                                    fontWeight: FontWeight.normal),
+                              )
                             ],
-                          ),
+                          )
                         ],
+                      ),
+
+                    ],
+                  ),
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Card(
-                    
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
+            Container(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 2),
+                  child: SizedBox(
+                    // width: 380,
+                    height: 76,
+                    child: Card(
+                      shadowColor: Colors.black,
+                      elevation: 1.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          // Navigator.of(context).pushNamed(route!);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const DetailPromo()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
+                          Icon(Icons.discount),
+                          
+                          const SizedBox(
+                            width: 8,
+                          ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  IconButton(
-                                    icon: Icon(Icons.discount),
-                                    onPressed: () {},
-                                  ),
-                                  Text(
-                                    'Cashback 5%',
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_15px,
-                                      fontWeight: FontWeight.w500,
-                                      color: Text1,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                "Cashback 50% pembelian pulsa",
+                                style: GoogleFonts.nunito(
+                                  textStyle: Nunito_15px,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Text(
-                                'Promo hanya berlaku di jam 15.00 - 23.00 WIB',
+                                "Berlaku hanya hari ini sampai 15.20",
                                 style: GoogleFonts.nunito(
                                     textStyle: Nunito_13px,
-                                    fontWeight: FontWeight.w300,
-                                    color: Text1),
-                              ),
+                                    fontWeight: FontWeight.normal),
+                              )
                             ],
-                          ),
+                          )
                         ],
+                      ),
+
+                    ],
+                  ),
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Card(
-                    
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
+            Container(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 2),
+                  child: SizedBox(
+                    // width: 380,
+                    height: 76,
+                    child: Card(
+                      shadowColor: Colors.black,
+                      elevation: 1.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          // Navigator.of(context).pushNamed(route!);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const DetailPromo()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
+                          Icon(Icons.discount),
+                          
+                          const SizedBox(
+                            width: 8,
+                          ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  IconButton(
-                                    icon: Icon(Icons.discount),
-                                    onPressed: () {},
-                                  ),
-                                  Text(
-                                    'Cashback 5%',
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_15px,
-                                      fontWeight: FontWeight.w500,
-                                      color: Text1,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                "Cashback 50% pembayaran PDAM",
+                                style: GoogleFonts.nunito(
+                                  textStyle: Nunito_15px,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Text(
-                                'Promo hanya berlaku di jam 15.00 - 23.00 WIB',
+                                "Berlaku hanya hari ini sampai 15.20",
                                 style: GoogleFonts.nunito(
                                     textStyle: Nunito_13px,
-                                    fontWeight: FontWeight.w300,
-                                    color: Text1),
-                              ),
+                                    fontWeight: FontWeight.normal),
+                              )
                             ],
-                          ),
+                          )
                         ],
+                      ),
+
+                    ],
+                  ),
+                        ),
                       ),
                     ),
                   ),
-                ],
-              ),
-            )
+                ),
+
+
           ],
         ),
       )),

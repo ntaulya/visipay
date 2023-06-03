@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
 import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/widgets/button.dart';
@@ -16,14 +17,17 @@ class VirtualAccount extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Primary50,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PromoTerpilih()));
-            },
+          leading: Semantics(
+            label: "Kembali",
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
+              },
+            ),
           ),
           title: Text("Top Up",
               style: GoogleFonts.nunito(
@@ -117,8 +121,13 @@ class VirtualAccount extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Button(
+                  onTap: () {
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => Home(),)
+                    );
+                  },
                   
-                  "Cek Status Pembayaran",
+                  "Cek Saldo",
                   backgroundColor: Primary50,
                   width: 328,
                   height: 48,

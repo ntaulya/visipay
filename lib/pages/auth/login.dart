@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
     
                     //text 1
                     Text(
-                      'Masuk atau Daftar',
+                      'Masuk',
                       style: GoogleFonts.nunito(
                           textStyle: Nunito_17px, fontWeight: FontWeight.bold),
                     ),
@@ -60,7 +60,7 @@ class _LoginState extends State<Login> {
     
                     //text 2
                     Text(
-                      'Masuk atau Daftar cuma butuh nomor HP aja.',
+                      'Masuk cuma butuh nomor HP aja.',
                       style: GoogleFonts.nunito(
                           textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),

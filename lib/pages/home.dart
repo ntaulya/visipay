@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                             Row(
                               children: [
                                 Text(
-                                  "Rp 21054380",
+                                  "Rp 1075000",
                                   style: GoogleFonts.nunito(
                                       textStyle: Nunito_25px,
                                       fontWeight: FontWeight.w700,
@@ -383,7 +383,7 @@ class _HomeState extends State<Home> {
                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const PulsaPaket()));
+                                    builder: (context) =>  PulsaPaket()));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

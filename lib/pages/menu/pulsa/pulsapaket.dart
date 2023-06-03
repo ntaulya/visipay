@@ -10,13 +10,22 @@ import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/cardPulsa.dart';
 
 class PulsaPaket extends StatefulWidget {
-  const PulsaPaket({super.key});
+  // String? inputNumber;
+  PulsaPaket({super.key});
 
   @override
   State<PulsaPaket> createState() => _PulsaPaketState();
 }
 
 class _PulsaPaketState extends State<PulsaPaket> {
+
+  String? inputNumber;
+
+  void onFieldSubmitted(String value) {
+    setState(() {
+      inputNumber = value;
+    });
+  }
   final TextEditingController __PulsaPaketController = TextEditingController();
 
   @override
@@ -29,15 +38,18 @@ class _PulsaPaketState extends State<PulsaPaket> {
             child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Primary50,
-                leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Home(),
-                        ));
-                  },
+                leading: Semantics(
+                  label: "Kembali",
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ));
+                    },
+                  ),
                 ),
                 title: Text("Pulsa & Paket Data",
                     style: GoogleFonts.nunito(
@@ -51,6 +63,7 @@ class _PulsaPaketState extends State<PulsaPaket> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                     child: TextFormField(
+                      onFieldSubmitted: onFieldSubmitted,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         // prefixText: "Rp ",
@@ -85,6 +98,7 @@ class _PulsaPaketState extends State<PulsaPaket> {
                   Expanded(
                     child: TabBarView(
                       children: [
+                        inputNumber != "" ? 
                         SingleChildScrollView(
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -100,9 +114,29 @@ class _PulsaPaketState extends State<PulsaPaket> {
                               ],
                             ),
                           ),
-                        ),
+                        )
+                         : Center(child: Text("Input Nomor Telfon"))
+                        // if (widget.inputNumber != null)){
+                        //   SingleChildScrollView(
+                        //   child: Container(
+                        //     padding: EdgeInsets.symmetric(horizontal: 16),
+                        //     child: Column(
+                        //       children: [
+                        //         CardPulsa(harga: 5000),
+                        //         CardPulsa(harga: 10000),
+                        //         CardPulsa(harga: 25000),
+                        //         CardPulsa(harga: 50000),
+                        //         CardPulsa(harga: 75000),
+                        //         CardPulsa(harga: 100000),
+                        //         CardPulsa(harga: 150000),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // )
+                        // }
+                        ,
                         Center(
-                          child: Text("It's rainy here"),
+                          child: Text("Paket Data Tidak Tersedia"),
                         ),
                       ],
                     ),
