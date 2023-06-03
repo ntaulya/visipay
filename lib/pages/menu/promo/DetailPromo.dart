@@ -12,8 +12,7 @@ class DetailPromo extends StatefulWidget {
 }
 
 class _DetailPromoState extends State<DetailPromo> {
-  final TextEditingController __DetailPromoController =
-      TextEditingController();
+  final TextEditingController __DetailPromoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,11 @@ class _DetailPromoState extends State<DetailPromo> {
               icon: Icon(Icons.arrow_back),
               onPressed: () {
                 // Navigator.pushNamed(context, "/daftarpromo");
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => DaftarPromo(),)
-                );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DaftarPromo(),
+                    ));
               },
             ),
           ),
@@ -59,16 +60,26 @@ class _DetailPromoState extends State<DetailPromo> {
                             children: [
                               Row(
                                 children: [
-                                  IconButton(
-                                    icon: Icon(Icons.discount),
-                                    onPressed: () {},
-                                  ),
-                                  Text(
-                                    'Promo Cashback 50%',
-                                    style: GoogleFonts.nunito(
-                                      textStyle: Nunito_21px,
-                                      fontWeight: FontWeight.w500,
-                                      color: Text1,
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Semantics(
+                                          label: "Icon Promo",
+                                          child: Icon(
+                                            Icons.discount,
+                                          ),
+                                        ),
+                                        SizedBox(width: 12),
+                                        Text(
+                                          'Promo Cashback 50%',
+                                          style: GoogleFonts.nunito(
+                                            textStyle: Nunito_21px,
+                                            fontWeight: FontWeight.w500,
+                                            color: Text1,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],

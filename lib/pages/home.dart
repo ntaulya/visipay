@@ -74,19 +74,18 @@ class _HomeState extends State<Home> {
                             )
                           ],
                         ),
-
                         Semantics(
                           label: "Profil",
                           child: IconButton(
                             icon: const Icon(Icons.account_circle_rounded),
                             color: Colors.white, // warna ikon
                             iconSize: 48, // ukuran ikon
-                            
+
                             onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Profile()));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Profile()));
                               // aksi yang akan dijalankan saat tombol di tekan
                             },
                           ),
@@ -95,11 +94,11 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-          
+
                 const SizedBox(
                   height: 8,
                 ),
-          
+
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
@@ -117,9 +116,11 @@ class _HomeState extends State<Home> {
                           child: InkWell(
                             onTap: () {
                               // Navigator.pushNamed(context, "/topup");
-                              Navigator.push(context, 
-                              MaterialPageRoute(builder: (context) => TopUp(),)
-                              );
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TopUp(),
+                                  ));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -187,9 +188,10 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-          
+
                 Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+                  padding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 8, bottom: 16),
                   child: SizedBox(
                     // width: 380,
                     height: 76,
@@ -215,10 +217,6 @@ class _HomeState extends State<Home> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Icon(Icons.discount,color: Primary50,),
-
-                                  SizedBox(width: 12),
-                                  
                                   Text(
                                     "Promo Tersedia",
                                     style: GoogleFonts.nunito(
@@ -228,43 +226,34 @@ class _HomeState extends State<Home> {
                                   ),
                                 ],
                               ),
-                            ],
+                            ]
                           ),
                         ),
-                      ),
-                    ),
+                    )
                   ),
-                ),
-          
+                )),
+
                 Container(
                   padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      Semantics(
+                      header: true,
+                      child: Text(
                         "Transaksi Terakhir",
                         style: GoogleFonts.nunito(
                             textStyle: Nunito_21px,
                             fontWeight: FontWeight.bold,
                             color: Text1),
-                  
-                      ),
-                      // TextButton(
-                      //   child: Text("Selengkapnya",
-                      //   style: GoogleFonts.nunito(
-                      //     textStyle: Nunito_15px,
-                      //     fontWeight: FontWeight.w500,
-                      //     color: Secondary50
-                      //   ),),
-                      //   onPressed: () {
-          
-                      //   },)
+                      )),
                     ],
                   ),
                 ),
-          
+
                 Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                  padding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 4, bottom: 4),
                   child: SizedBox(
                     // width: 380,
                     height: 76,
@@ -285,64 +274,76 @@ class _HomeState extends State<Home> {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Image.asset(
-                            "assets/icon/History.png",
-                            width: 34,
-                            height: 34,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Membeli PLN Listrik",
-                                style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/icon/History.png",
+                                    width: 34,
+                                    height: 34,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Membeli PLN Listrik",
+                                        style: GoogleFonts.nunito(
+                                          textStyle: Nunito_15px,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        "09 Maret 2021, 22.10",
+                                        style: GoogleFonts.nunito(
+                                            textStyle: Nunito_13px,
+                                            fontWeight: FontWeight.normal),
+                                      )
+                                    ],
+                                  )
+                                ],
                               ),
                               Text(
-                                "09 Maret 2021, 22.10",
+                                "Beli Lagi",
                                 style: GoogleFonts.nunito(
-                                    textStyle: Nunito_13px,
-                                    fontWeight: FontWeight.normal),
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.bold,
+                                    color: Primary50),
                               )
                             ],
-                          )
-                        ],
-                      ),
-                      Text(
-                          "Beli Lagi",
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_15px,
-                              fontWeight: FontWeight.bold,
-                              color: Primary50),
-                        )
-                    ],
-                  ),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-          
+
                 Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4,bottom: 4),
-                  child: Text(
-                    "Pilihan Transaksi",
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.nunito(
-                        textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                  child: Column(
+                    children: [
+                      Semantics(
+                        header: true,
+                        child: Text(
+                          "Pilihan Transaksi",
+                          style: GoogleFonts.nunito(
+                            textStyle: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: Text1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-          
+
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
@@ -360,9 +361,9 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-          
+
                 // SizedBox(height: 8,),
-          
+
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: SizedBox(
@@ -377,15 +378,15 @@ class _HomeState extends State<Home> {
                       ),
                       child: InkWell(
                         onTap: () {
-                        //    Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //             builder: (context) => const IndexPulsa()));
-                        // },
-                           Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  PulsaPaket()));
+                          //    Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => const IndexPulsa()));
+                          // },
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PulsaPaket()));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
