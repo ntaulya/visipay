@@ -79,86 +79,6 @@ class _PlnState extends State<Pln> {
                 const SizedBox(
                   height: 16,
                 ),
-                Container(
-                  // color: Colors.green,
-                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
-                  child: Text(
-                    "Transaksi Terakhir",
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.nunito(
-                        textStyle: Nunito_21px, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
-                  child: SizedBox(
-                    // width: 380,
-                    height: 76,
-                    child: Card(
-                      shadowColor: Colors.black,
-                      elevation: 1.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Home()));
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/icon/History.png",
-                                    width: 34,
-                                    height: 34,
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "PLN Listrik",
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        "09 Maret 2021, 22.10",
-                                        style: GoogleFonts.nunito(
-                                            textStyle: Nunito_13px,
-                                            fontWeight: FontWeight.normal),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Text(
-                                "Beli Lagi",
-                                style: GoogleFonts.nunito(
-                                    textStyle: Nunito_15px,
-                                    fontWeight: FontWeight.bold,
-                                    color: Primary50),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 
                 inputNumber != "" ?
                 Column(
@@ -275,7 +195,92 @@ class _PlnState extends State<Pln> {
                     ),
                   ],
                 ) :
-                SizedBox()
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                  // color: Colors.green,
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+                  child: Text(
+                    "Transaksi Terakhir",
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.nunito(
+                        textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                  child: SizedBox(
+                    // width: 380,
+                    height: 76,
+                    child: Card(
+                      shadowColor: Colors.black,
+                      elevation: 1.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Home()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/icon/History.png",
+                                    width: 34,
+                                    height: 34,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "PLN Listrik",
+                                        style: GoogleFonts.nunito(
+                                          textStyle: Nunito_15px,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        "09 Maret 2021, 22.10",
+                                        style: GoogleFonts.nunito(
+                                            textStyle: Nunito_13px,
+                                            fontWeight: FontWeight.normal),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Text(
+                                "Beli Lagi",
+                                style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.bold,
+                                    color: Primary50),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                  ],
+                )
 
               ],
             ),
