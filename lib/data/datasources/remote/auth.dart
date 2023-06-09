@@ -18,7 +18,7 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
       String phone, String security_code) async {
     var response = await ApiRequest(
       method: API_METHODS.POST,
-      path: "/user/login",
+      path: "/api/user/login",
       payloadJson: {"phone": phone, "security_code": security_code},
     );
     if (response.asRight().statusCode == 200) {
@@ -39,7 +39,7 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
       String phone, String name, String email, String security_code) async {
     var response = await ApiRequest(
       method: API_METHODS.POST,
-      path: "/api/user/login",
+      path: "/api/user/register",
       payloadJson: {
         "name": name,
         "email": email,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visipay/Pages/onBoarding.dart';
+import 'package:visipay/core/constant/routes.dart';
 import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/pdam/pdam.dart';
@@ -25,7 +26,7 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/home";
+  String get initialRoute => "/splash";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
@@ -39,7 +40,7 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => SplashScreen(), settings: settings);
       case "/login":
         return _buildRoute(builder: (_) => Login(), settings: settings);
-      case "/home":
+      case RouteUrl.Home:
         return _buildRoute(builder: (_) => Home(), settings: settings);
       case "/topup":
         return _buildRoute(builder: (_) => TopUp(), settings: settings);

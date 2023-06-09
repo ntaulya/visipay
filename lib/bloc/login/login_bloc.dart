@@ -10,7 +10,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   LoginBloc ({required this.data}) : super(LoginInitial()) {
     on<LoginEvent>((event, emit) async {
-      if (event is RegisterFormSubmit) {
+      if (event is LoginFormSubmit) {
         emit(LoginLoading());
         final failureOrUser = await data.login(event.phone, event.security_code);
         emit(failureOrUser.fold((l) => LoginError(l), (r) => LoginSuccess()));

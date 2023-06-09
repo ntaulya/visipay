@@ -122,7 +122,7 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Button("Lanjutkan", onTap: () {
-                      context.read<LoginBloc>().add(RegisterFormSubmit(_phoneController.text, _pinController.text));
+                      context.read<LoginBloc>().add(LoginFormSubmit(_phoneController.text, _pinController.text));
                     }),
                   );
                 }

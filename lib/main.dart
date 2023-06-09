@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      // home: SplashScreen(),
       debugShowCheckedModeBanner: false,
-      // initialRoute: _router.initialRoute,
-      // onGenerateRoute: _router.onGenerateRoute,
-      // onUnknownRoute: _router.onUnknownRoute,
+      initialRoute: _router.initialRoute,
+      onGenerateRoute: _router.onGenerateRoute,
+      onUnknownRoute: _router.onUnknownRoute,
     );
   }
 }
