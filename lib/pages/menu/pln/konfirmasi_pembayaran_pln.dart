@@ -3,20 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/menu/pln/pln.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
 
-class KonfirPulsa extends StatefulWidget {
-  const KonfirPulsa({super.key});
+class KonfirPln extends StatefulWidget {
+  const KonfirPln({super.key});
 
   @override
-  State<KonfirPulsa> createState() => _KonfirPulsaState();
+  State<KonfirPln> createState() => _KonfirPlnState();
 }
 
-class _KonfirPulsaState extends State<KonfirPulsa> {
-  final TextEditingController __KonfirPulsaController = TextEditingController();
+class _KonfirPlnState extends State<KonfirPln> {
+  final TextEditingController __KonfirPlnController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +26,14 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
         appBar: AppBar(
           backgroundColor: Primary50,
           leading: Semantics(
-            label: "Kembali ke halaman pulsa",
+            label: "Kembali ke halaman pln",
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PulsaPaket(),
+                      builder: (context) => Pln(),
                     ));
               },
             ),
@@ -70,7 +71,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          'Rp 100000',
+                          'Rp 50000',
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,

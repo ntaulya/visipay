@@ -23,7 +23,7 @@ class _DetailPromoState extends State<DetailPromo> {
         appBar: AppBar(
           backgroundColor: Primary50,
           leading: Semantics(
-            label: "Kembali ke daftar promos",
+            label: "Kembali ke daftar promo",
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {

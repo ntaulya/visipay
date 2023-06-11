@@ -25,13 +25,19 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Primary50,
-            leading: IconButton(
+            leading: Semantics(
+            label: "Kembali ke riwayat",
+            child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Riwayat()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Riwayat(),
+                    ));
               },
             ),
+          ),
             title: Text(
               "Detail Riwayat Transaksi",
               style: GoogleFonts.nunito(

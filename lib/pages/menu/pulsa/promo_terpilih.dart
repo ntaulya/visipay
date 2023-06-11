@@ -5,6 +5,7 @@ import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
+import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
 
 class PromoTerpilih extends StatefulWidget {
   const PromoTerpilih({super.key});
@@ -22,12 +23,18 @@ class _PromoTerpilihState extends State<PromoTerpilih> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Primary50,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => Home(),));
-            },
+          leading: Semantics(
+            label: "Kembali ke halaman pulsa",
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PulsaPaket(),
+                    ));
+              },
+            ),
           ),
           title: Text("Konfirmasi Pembayaran",
               style: GoogleFonts.nunito(

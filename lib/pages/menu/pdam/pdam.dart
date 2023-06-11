@@ -29,236 +29,174 @@ class _PdamState extends State<Pdam> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-                                          height: 430,
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16.0,
-                                                vertical: 32.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Informasi Pelanggan',
-                                                    style: GoogleFonts.nunito(
-                                                      textStyle: Nunito_17px,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      color: Text1,
-                                                    )),
-                                                SizedBox(height: 18),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text('ID Pelanggan',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Text1,
-                                                        )),
-                                                    Text('123456789',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 12),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text('Nama Pelanggan',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Text1,
-                                                        )),
-                                                    Text('Ilham Ilyas',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 12),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text('Periode',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Text1,
-                                                        )),
-                                                    Text('Juni 2023',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 18),
-                                                Row(
-                                                  children: [
-                                                    Text('Detail Pembayaran',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_17px,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 18),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text('Harga Voucer',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Text1,
-                                                        )),
-                                                    Text("Rp 100000",
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 12),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text('Biaya Transaksi',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Text1,
-                                                        )),
-                                                    Text('Rp 2500',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 12),
-                                                Divider(
-                                                  color: Color(
-                                                      0xff3A3541), // Warna garis
-                                                  thickness:
-                                                      1.0, // Ketebalan garis
-                                                ),
-                                                SizedBox(height: 14),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text('Total Pembayaran',
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          color: Text1,
-                                                        )),
-                                                    Text("Rp 100000",
-                                                        style:
-                                                            GoogleFonts.nunito(
-                                                          textStyle:
-                                                              Nunito_15px,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          color: Text1,
-                                                        )),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 14),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Button(
-                                                      onTap: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      "Ubah",
-                                                      backgroundColor:
-                                                          Primary50,
-                                                      width: 151,
-                                                      height: 48,
-                                                    ),
-                                                    Button(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  KonfirPulsa(),
-                                                            ));
-                                                      },
-                                                      "Konfirmasi",
-                                                      backgroundColor:
-                                                          Secondary50,
-                                                      width: 151,
-                                                      height: 48,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        );
+          height: 430,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Informasi Pelanggan',
+                    style: GoogleFonts.nunito(
+                      textStyle: Nunito_17px,
+                      fontWeight: FontWeight.w700,
+                      color: Text1,
+                    )),
+                SizedBox(height: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('ID Pelanggan',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w500,
+                          color: Text1,
+                        )),
+                    Text('123456789',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w600,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Nama Pelanggan',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w500,
+                          color: Text1,
+                        )),
+                    Text('Ilham Ilyas',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w600,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Periode',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w500,
+                          color: Text1,
+                        )),
+                    Text('Juni 2023',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w600,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 18),
+                Row(
+                  children: [
+                    Text('Detail Pembayaran',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_17px,
+                          fontWeight: FontWeight.w700,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Harga Voucher',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w500,
+                          color: Text1,
+                        )),
+                    Text("Rp 100000",
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w600,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Biaya Transaksi',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w500,
+                          color: Text1,
+                        )),
+                    Text('Rp 2500',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w600,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 12),
+                Divider(
+                  color: Color(0xff3A3541), // Warna garis
+                  thickness: 1.0, // Ketebalan garis
+                ),
+                SizedBox(height: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Total Pembayaran',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w700,
+                          color: Text1,
+                        )),
+                    Text("Rp 100000",
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w700,
+                          color: Text1,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Button(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      "Ubah",
+                      backgroundColor: Primary50,
+                      width: 151,
+                      height: 48,
+                    ),
+                    Button(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => KonfirPulsa(),
+                            ));
+                      },
+                      "Konfirmasi",
+                      backgroundColor: Secondary50,
+                      width: 151,
+                      height: 48,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
       },
     );
   }

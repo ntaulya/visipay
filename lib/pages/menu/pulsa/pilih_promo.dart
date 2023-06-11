@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 import 'package:visipay/widgets/button.dart';
 
 class PilihPromo extends StatefulWidget {
@@ -21,9 +22,18 @@ class _PilihPromoState extends State<PilihPromo> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Primary50,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+          leading: Semantics(
+            label: "Kembali ke halaman konfirmasi",
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => KonfirPulsa(),
+                    ));
+              },
+            ),
           ),
           title: Text("Pilih Promo",
               style: GoogleFonts.nunito(

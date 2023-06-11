@@ -25,13 +25,19 @@ class _RiwayatState extends State<Riwayat> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Primary50,
-            leading: IconButton(
+            leading: Semantics(
+            label: "Kembali ke beranda",
+            child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Home()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ));
               },
             ),
+          ),
             title: Text(
               "Riwayat",
               style: GoogleFonts.nunito(
