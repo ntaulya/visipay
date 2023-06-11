@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
 
                 Container(
                   padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 8, bottom: 16),
+                      left: 16, right: 16, top: 8, bottom: 4),
                   child: SizedBox(
                     // width: 380,
                     height: 76,

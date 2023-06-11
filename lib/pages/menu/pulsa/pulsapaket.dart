@@ -59,6 +59,8 @@ class _PulsaPaketState extends State<PulsaPaket> {
                     )),
               ),
               body: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -81,6 +83,88 @@ class _PulsaPaketState extends State<PulsaPaket> {
                       ),
                     ),
                   ),
+
+                  Container(
+                  // color: Colors.green,
+                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+                  child: Text(
+                    "Transaksi Terakhir",
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.nunito(
+                        textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                  child: SizedBox(
+                    // width: 380,
+                    height: 76,
+                    child: Card(
+                      shadowColor: Colors.black,
+                      elevation: 1.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Home()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/icon/History.png",
+                                    width: 34,
+                                    height: 34,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Pulsa Telkomsel",
+                                        style: GoogleFonts.nunito(
+                                          textStyle: Nunito_15px,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Rp 100000",
+                                        style: GoogleFonts.nunito(
+                                            textStyle: Nunito_13px,
+                                            fontWeight: FontWeight.normal),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Text(
+                                "Beli Lagi",
+                                style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.bold,
+                                    color: Primary50),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
                   TabBar(
                     padding: EdgeInsets.only(bottom: 8),
                     indicatorColor: Primary50,

@@ -125,7 +125,7 @@ class _TopUpState extends State<TopUp> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushReplacement(context, 
+                          Navigator.push(context, 
                           MaterialPageRoute(builder: (context) => VirtualAccountBNI(),)
                           );
                         },
