@@ -40,33 +40,36 @@ class _pinState extends State<pin> {
             // SizedBox(height: 60,),
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: PinCodeTextField(
-                onCompleted: (String pin) {
-                  print(pin);
-                  Navigator.pushReplacement(context, 
-                  MaterialPageRoute(builder: (context) => Home(),));
-                },
-                appContext: context,
-                length: 6,
-                obscureText: false,
-                animationType: AnimationType.fade,
-                pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.circle,
-                    borderRadius: BorderRadius.circular(5),
-                    fieldHeight: 40,
-                    fieldWidth: 40,
-                    inactiveColor: Colors.white,
-                    inactiveFillColor: Colors.white,
-                    activeFillColor: Colors.white,
-                    borderWidth: 0,
-                    selectedFillColor: Colors.white,
-                    activeColor: Colors.white,
-                    errorBorderColor: Colors.white),
-                animationDuration: Duration(milliseconds: 300),
-                enableActiveFill: true,
-                controller: _pinController,
-                onChanged: (String pin) {},
-                keyboardType: TextInputType.number,
+              child: Semantics(
+                label: "Kotak Edit",
+                child: PinCodeTextField(
+                  onCompleted: (String pin) {
+                    print(pin);
+                    Navigator.pushReplacement(context, 
+                    MaterialPageRoute(builder: (context) => Home(),));
+                  },
+                  appContext: context,
+                  length: 6,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  pinTheme: PinTheme(
+                      shape: PinCodeFieldShape.circle,
+                      borderRadius: BorderRadius.circular(5),
+                      fieldHeight: 40,
+                      fieldWidth: 40,
+                      inactiveColor: Colors.white,
+                      inactiveFillColor: Colors.white,
+                      activeFillColor: Colors.white,
+                      borderWidth: 0,
+                      selectedFillColor: Colors.white,
+                      activeColor: Colors.white,
+                      errorBorderColor: Colors.white),
+                  animationDuration: Duration(milliseconds: 300),
+                  enableActiveFill: true,
+                  controller: _pinController,
+                  onChanged: (String pin) {},
+                  keyboardType: TextInputType.number,
+                ),
               ),
             )
           ],
