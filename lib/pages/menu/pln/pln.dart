@@ -31,7 +31,7 @@ class _PlnState extends State<Pln> {
           appBar: AppBar(
             backgroundColor: Primary50,
             leading: Semantics(
-                label: "Kembali",
+                label: "kembali ke beranda",
                 child: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/onBoarding.dart';
 
 import '../../../widgets/button.dart';
 
@@ -115,19 +116,33 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                 Button(
-                  "Edit Profile",
-                  backgroundColor: Secondary50,
-                  width: 286,
-                  height: 45,
-                ),
-            
-                SizedBox(height: 8),
-                Button(
-                  "Log Out",
-                  backgroundColor: Color(0xffD66161),
-                  width: 286,
-                  height: 45,
-                ),
+                "Edit Profile",
+                backgroundColor: Primary50,
+                // width: 380,
+                height: 48,
+
+                onTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => Home(),
+                  //     ));
+                },
+              ),
+              const SizedBox(height: 15),
+              Button("Log Out ",
+                  backgroundColor: Colors.red[400],
+                  color: Colors.white,
+                  borderColor: Colors.red[400],
+                  // width: 380,
+                  height: 48, onTap: () {
+                // Navigator.of(context).pushNamed('/register');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OnBoarding(),
+                    ));
+              }),
               ]),
             )));
   }
