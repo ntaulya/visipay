@@ -200,7 +200,7 @@ class _RegisterState extends State<Register> {
                         ),
                         onPressed: () {
                           // Navigator.pushNamed(context, "/home");
-                          Navigator.push(context, 
+                          Navigator.pushReplacement(context, 
                           MaterialPageRoute(builder: 
                           (context) => Home(),
                           )
