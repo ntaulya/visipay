@@ -24,7 +24,7 @@ class _DaftarPromoState extends State<DaftarPromo> {
         appBar: AppBar(
           backgroundColor: Primary50,
           leading: Semantics(
-            label: "Kembali",
+            label: "Kembali ke beranda",
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
