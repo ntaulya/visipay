@@ -56,10 +56,47 @@ class OnBoarding extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                     color: Text1),
               ),
-              SizedBox(
-                height: 40,
-              ),
-              Button(
+              // SizedBox(
+              //   height: 40,
+              // ),
+              // Button(
+              //   "Login",
+              //   backgroundColor: Primary50,
+              //   // width: 380,
+              //   height: 48,
+
+              //   onTap: () {
+              //     // Navigator.of(context).pushNamed('/login');
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => Login(),
+              //         ));
+              //   },
+              // ),
+              // const SizedBox(height: 15),
+              // Button("Register",
+              //     backgroundColor: Colors.white,
+              //     color: Primary50,
+              //     // width: 380,
+              //     height: 48, onTap: () {
+              //   // Navigator.of(context).pushNamed('/register');
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => Register(),
+              //       ));
+              // }),
+            ],
+          ),
+        ),
+        bottomNavigationBar: Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 32 ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                Button(
                 "Login",
                 backgroundColor: Primary50,
                 // width: 380,
@@ -87,9 +124,8 @@ class OnBoarding extends StatelessWidget {
                       builder: (context) => Register(),
                     ));
               }),
-            ],
-          ),
-        ),
+              ]),
+            )
       ),
     );
   }
