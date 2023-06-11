@@ -23,7 +23,7 @@ class CardButton extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: route));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: route));
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

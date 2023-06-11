@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/topup/VA_BCA.dart';
+import 'package:visipay/pages/menu/topup/VA_BNI.dart';
 import 'package:visipay/pages/menu/topup/VA_BRI.dart';
 import 'package:visipay/widgets/card.dart';
 import '../../../core/theme/palette.dart';
@@ -124,12 +125,9 @@ class _TopUpState extends State<TopUp> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          // Navigator.of(context).pushNamed(route!);
-                          // Navigator.pushNamed(context, "/home");
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => VirtualAccount()));
+                          Navigator.pushReplacement(context, 
+                          MaterialPageRoute(builder: (context) => VirtualAccountBNI(),)
+                          );
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

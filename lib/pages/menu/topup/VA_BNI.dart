@@ -47,7 +47,7 @@ class VirtualAccountBNI extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("BCA",
+                    Text("BNI",
                         style: GoogleFonts.nunito(
                           textStyle: Nunito_17px,
                           fontWeight: FontWeight.w700,
