@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:printing/printing.dart';
+// import 'package:printing/printing.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/riwayat/riwayat.dart';
 import 'package:visipay/widgets/button.dart';
 import '../../../core/theme/palette.dart';
 import '../../../core/theme/textSize.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+// import 'package:pdf/pdf.dart';
+// import 'package:pdf/widgets.dart' as pw;
 
 class DetailRiwayat extends StatefulWidget {
   const DetailRiwayat({super.key});

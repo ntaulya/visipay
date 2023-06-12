@@ -24,14 +24,14 @@ class _PromoTerpilihState extends State<PromoTerpilih> {
         appBar: AppBar(
           backgroundColor: Primary50,
           leading: Semantics(
-            label: "Kembali ke halaman pulsa",
+            label: "Kembali",
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PulsaPaket(),
+                      builder: (context) => Home(),
                     ));
               },
             ),
