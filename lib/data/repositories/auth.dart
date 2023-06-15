@@ -7,6 +7,7 @@ import 'package:visipay/data/model/user.dart';
 abstract class AuthRepositories {
   Future<Either<String, User>> login(String phone, String security_code);
   Future<Either<String, User>> register(String phone,String name, String email, String security_code);
+  Future<Either<String, User>> finduser(String phone);
 }
 
 class AuthRepositoriesImpl extends AuthRepositories{
@@ -34,6 +35,11 @@ class AuthRepositoriesImpl extends AuthRepositories{
     } else {
       return Left(remote.asLeft());
     }
+  }
+  
+  @override
+  Future<Either<String, User>> finduser(String phone) async {
+    return remoteDatasources.finduser(phone);
   }
 
 }

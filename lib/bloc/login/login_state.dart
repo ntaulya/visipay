@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'login_bloc.dart';
 
 @immutable
@@ -14,3 +15,8 @@ class LoginError extends LoginState {
 }
 
 class LoginSuccess extends LoginState {}
+
+class userfound extends LoginState {
+  final String phone;
+  userfound(this.phone);
+}

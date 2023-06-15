@@ -9,3 +9,9 @@ class LoginFormSubmit extends LoginEvent{
 
   LoginFormSubmit(this.phone, this.security_code);
 }
+
+class finduser extends LoginEvent{
+  final String phone;
+
+  finduser(this.phone);
+}

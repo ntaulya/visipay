@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +20,6 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _pinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,11 +69,7 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 16),
     
                     TextField(
-                      onSubmitted: (value) {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => pin(),)
-                        );
-                      },
+                      
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -119,51 +116,30 @@ class _LoginState extends State<Login> {
             child: BlocBuilder<LoginBloc, LoginState>(
               builder: (context, state) {
                 if (state is LoginInitial) {
-                  Padding(
+                  return Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Button("Lanjutkan", onTap: () {
-                      context.read<LoginBloc>().add(LoginFormSubmit(_phoneController.text, _pinController.text));
+                      context.read<LoginBloc>().add(finduser(_phoneController.text));
+                    }),
+                  );
+                } else if(state is userfound){
+                  Timer(Duration.zero, () { 
+                    Navigator.of(context).pushNamed("/pin",arguments: {"phone":_phoneController.text});
+                  });
+                  return Container();
+                } else if (state is LoginError){
+                  print("error");
+                  return Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    child: Button("Lanjutkan", onTap: () {
+                      context.read<LoginBloc>().add(finduser(_phoneController.text));
                     }),
                   );
                 }
-                // return Padding(
-                //   padding: const EdgeInsets.all(40.0),
-                //   child: TextButton(
-                //     child: Text("Lanjutkan"),
-                //     onPressed: () {
-                //       // Navigator.of(context).pushNamed('/home');
-                //       Navigator.push(context, 
-                //       MaterialPageRoute(builder: (context) => Home(),)
-                //       );
-                //     },
-                //   ),
-                // );
                 return Padding(
-                  padding: const EdgeInsets.only(left: 16,right: 16, bottom: 40),
-                  child: Container(
-                        // width: 380,
-                        height: 48,
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100)),
-                            backgroundColor: Primary50,
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => pin(),)
-                            );
-                          },
-                          child: Text(
-                            "Lanjutkan",
-                            style: GoogleFonts.nunito(
-                                textStyle: Nunito_15px,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
-                );
+                    padding: const EdgeInsets.all(40.0),
+                    child: Button("Lanjutkan",backgroundColor: Primary50.withOpacity(0.5),),
+                  );
               },
             ),
           )),

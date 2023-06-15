@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:visipay/Pages/onBoarding.dart';
 import 'package:visipay/core/constant/routes.dart';
 import 'package:visipay/pages/auth/login.dart';
+import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/pdam/pdam.dart';
+import 'package:visipay/pages/menu/profile/edit_profile.dart';
 // import 'package:visipay/pages/menu/profile.dart';
 import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
@@ -40,6 +42,9 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => SplashScreen(), settings: settings);
       case "/login":
         return _buildRoute(builder: (_) => Login(), settings: settings);
+      case "/pin":
+        Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        return _buildRoute(builder: (_) => Pin(phone: args['phone']), settings: settings);
       case RouteUrl.Home:
         return _buildRoute(builder: (_) => Home(), settings: settings);
       case "/topup":
@@ -62,6 +67,8 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => VirtualAccountBNI(), settings: settings);
       case "/detailriwayat":
         return _buildRoute(builder: (_) => DetailRiwayat(), settings: settings);
+      case "/editprofile":
+        return _buildRoute(builder: (_) => EditProfile(), settings: settings);
       default:
         return onUnknownRoute(settings);
     }

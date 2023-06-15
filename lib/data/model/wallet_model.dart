@@ -11,7 +11,7 @@ class WalletModel extends Wallet {
   factory WalletModel.fromJson(Map<String, dynamic> json) {
     return WalletModel(
       user_id: json['user_id'],
-      balance: json['balance'],
+      balance: (json['balance'] as int).toDouble(),
     );
   }
 }

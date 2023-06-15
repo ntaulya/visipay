@@ -1,27 +1,24 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:visipay/core/theme/palette.dart';
-import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/pages/home.dart';
-import 'package:visipay/pages/status/StatusBerhasil.dart';
-import 'package:visipay/pages/status/StatusGagal.dart';
-import 'package:visipay/widgets/SvgIcon.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:visipay/core/theme/palette.dart';
-import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/widgets/SvgIcon.dart';
-import 'package:visipay/widgets/button.dart';
 
-class pin extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:visipay/bloc/login/login_bloc.dart';
+import 'package:visipay/core/theme/palette.dart';
+import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/pages/home.dart';
+
+class Pin extends StatefulWidget {
+  final String phone;
+
+  const Pin({super.key, required this.phone});
+
   @override
-  State<pin> createState() => _pinState();
+  State<Pin> createState() => _PinState();
 }
 
-class _pinState extends State<pin> {
+class _PinState extends State<Pin> {
   final TextEditingController _pinController = TextEditingController();
 
   @override
@@ -40,11 +37,15 @@ class _pinState extends State<pin> {
             // SizedBox(height: 60,),
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: PinCodeTextField(
+              child: BlocProvider(
+                create: (context) => sl<LoginBloc>(),
+                child: BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    print(state);
+                    if(state is LoginInitial){
+                      return PinCodeTextField(
                 onCompleted: (String pin) {
-                  print(pin);
-                  Navigator.pushReplacement(context, 
-                  MaterialPageRoute(builder: (context) => Home(),));
+                  context.read<LoginBloc>().add(LoginFormSubmit(widget.phone, pin));
                 },
                 appContext: context,
                 length: 6,
@@ -67,6 +68,68 @@ class _pinState extends State<pin> {
                 controller: _pinController,
                 onChanged: (String pin) {},
                 keyboardType: TextInputType.number,
+              );
+                    } else if (state is LoginSuccess) {
+                      Timer(Duration.zero, () { 
+                        Navigator.of(context).pushNamed("/home");
+                      });
+                      return Container();
+                    } else if (state is LoginError){
+                      return PinCodeTextField(
+                onCompleted: (String pin) {
+                  context.read<LoginBloc>().add(LoginFormSubmit(widget.phone, pin));
+                },
+                appContext: context,
+                length: 6,
+                obscureText: false,
+                animationType: AnimationType.fade,
+                pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.circle,
+                    borderRadius: BorderRadius.circular(5),
+                    fieldHeight: 40,
+                    fieldWidth: 40,
+                    inactiveColor: Colors.white,
+                    inactiveFillColor: Colors.white,
+                    activeFillColor: Colors.white,
+                    borderWidth: 0,
+                    selectedFillColor: Colors.white,
+                    activeColor: Colors.white,
+                    errorBorderColor: Colors.white),
+                animationDuration: Duration(milliseconds: 300),
+                enableActiveFill: true,
+                controller: _pinController,
+                onChanged: (String pin) {},
+                keyboardType: TextInputType.number,
+              );
+                    }
+                    return PinCodeTextField(
+                onCompleted: (String pin) {
+                  context.read<LoginBloc>().add(LoginFormSubmit(widget.phone, pin));
+                },
+                appContext: context,
+                length: 6,
+                obscureText: false,
+                animationType: AnimationType.fade,
+                pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.circle,
+                    borderRadius: BorderRadius.circular(5),
+                    fieldHeight: 40,
+                    fieldWidth: 40,
+                    inactiveColor: Colors.white,
+                    inactiveFillColor: Colors.white,
+                    activeFillColor: Colors.white,
+                    borderWidth: 0,
+                    selectedFillColor: Colors.white,
+                    activeColor: Colors.white,
+                    errorBorderColor: Colors.white),
+                animationDuration: Duration(milliseconds: 300),
+                enableActiveFill: true,
+                controller: _pinController,
+                onChanged: (String pin) {},
+                keyboardType: TextInputType.number,
+              );
+                  },
+                ),
               ),
             )
           ],
