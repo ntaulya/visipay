@@ -6,6 +6,7 @@ class Wallet_Transaction {
   String notes;
   TransactionType transaction_type;
   TransactionStatus transaction_status;
+  
 
   Wallet_Transaction({
     required this.user_id,
