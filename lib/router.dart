@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:visipay/Pages/onBoarding.dart';
+import 'package:visipay/bloc/page_navigation/page_navigation_bloc.dart';
 import 'package:visipay/core/constant/routes.dart';
+import 'package:visipay/core/helper/jwt.dart';
 import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/auth/register.dart';
@@ -19,6 +22,7 @@ import 'package:visipay/pages/status/StatusGagal.dart';
 import 'package:visipay/pages/menu/topup/VA_BNI.dart';
 import 'package:visipay/pages/menu/riwayat/DetailRiwayat.dart';
 import 'Pages/Home.dart';
+import 'injection_container/di.dart' as di;
 
 abstract class IRouter {
   String get initialRoute;
@@ -28,12 +32,28 @@ abstract class IRouter {
 
 class VisiPayRouter implements IRouter {
   @override
-  String get initialRoute => "/splash";
+  String get initialRoute => "/";
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
     // print(settings.name);
     switch (settings.name) {
+      case "/":
+        return _buildRoute(
+            builder: (_) => FutureBuilder(
+                  initialData: () {
+                    return getJWT();
+                  },
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      if (snapshot.data != null) {
+                        return Home();
+                      }
+                    }
+                    return OnBoarding();
+                  },
+                ),
+            settings: settings);
       case "/onboarding":
         return _buildRoute(builder: (_) => OnBoarding(), settings: settings);
       case "/register":
@@ -54,8 +74,8 @@ class VisiPayRouter implements IRouter {
       case "/daftarpromo":
         return _buildRoute(builder: (_) => DaftarPromo(), settings: settings);
       case "/detailpromo":
-      Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
-        return _buildRoute(builder: (_) => DetailPromo(id: args['id'],), settings: settings);
+        Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        return _buildRoute(builder: (_) => DetailPromo(id: args['id']), settings: settings);
       case "/pulsa":
         return _buildRoute(builder: (_) => PulsaPaket(), settings: settings);
       case "/berhasil":
@@ -89,8 +109,7 @@ class VisiPayRouter implements IRouter {
   }
 
   Route<dynamic> _buildRoute(
-      {required Widget Function(BuildContext) builder,
-      required RouteSettings settings}) {
+      {required Widget Function(BuildContext) builder, required RouteSettings settings}) {
     return MaterialPageRoute(settings: settings, builder: builder);
   }
 }

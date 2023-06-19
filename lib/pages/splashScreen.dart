@@ -20,9 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       // Navigator.of(context).pushReplacementNamed('/onboarding');
-      Navigator.push(context, 
-      MaterialPageRoute(builder: (context) => OnBoarding(),)
-      );
+      Navigator.pushNamed(context, "/");
     });
   }
 
@@ -35,12 +33,20 @@ class _SplashScreenState extends State<SplashScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
-            children: [
-              const SizedBox(height: 308,),
-              Image.asset("assets/icon/Logo_VisiPay.png",width: 150,height: 150,),
-              Text("VisiPay", style: GoogleFonts.nunito(textStyle: Nunito_25px,fontWeight: FontWeight.w700,color: Colors.white )),
-            ],
-          ),
+          children: [
+            const SizedBox(
+              height: 308,
+            ),
+            Image.asset(
+              "assets/icon/Logo_VisiPay.png",
+              width: 150,
+              height: 150,
+            ),
+            Text("VisiPay",
+                style: GoogleFonts.nunito(
+                    textStyle: Nunito_25px, fontWeight: FontWeight.w700, color: Colors.white)),
+          ],
+        ),
       ),
     );
   }

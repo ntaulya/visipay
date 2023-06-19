@@ -8,8 +8,7 @@ abstract class PromoRepositories {
   Future<Either<String, Promo>> getPromobyID(String id);
 }
 
-
-class PromoRepositoriesImpl extends PromoRepositories{
+class PromoRepositoriesImpl extends PromoRepositories {
   final PromoRemoteDatasources remoteDatasources;
 
   PromoRepositoriesImpl({required this.remoteDatasources});
@@ -18,10 +17,9 @@ class PromoRepositoriesImpl extends PromoRepositories{
   Future<Either<String, List<Promo>>> getPromoList() async {
     return remoteDatasources.getPromoList();
   }
-  
+
   @override
   Future<Either<String, Promo>> getPromobyID(String id) {
-    throw UnimplementedError();
+    return remoteDatasources.getPromobyID(id);
   }
-  
 }

@@ -3,6 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
 import 'package:visipay/core/constant/api.dart';
 
+import 'jwt.dart';
+
 // ignore: constant_identifier_names, camel_case_types
 enum API_METHODS { GET, POST, PUT, PATCH, DELETE }
 
@@ -15,19 +17,12 @@ Future<Either<String, Response>> ApiRequest({
   Map<String, dynamic>? payloadQparams,
   List<String>? payloadUrlParams,
 }) async {
-  // String csrfToken = "";
-  // String csrfToken = await updateCSRFToken(null);
-  // var session = await UserSessionLocalDatasourceImpl().readUserSession();
-  
-  String jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYTlmOWRiNDUtMmVmOS00MDcyLWFiMDEtNGYzZmRkYzc2Y2I2IiwibmFtZSI6IlN5YXJpaWYgQWJkIiwiZW1haWwiOiJzeWFyaWkxZkBtYWlsLmNvbSIsInBob25lIjoiNjI4MjE0MDAwMjg1MSJ9LCJpYXQiOjE2ODY4MDU2ODEsImV4cCI6MTY4Njk3ODQ4MX0.-IDGX0z5BPs3vxZViv8m3hya5spUe-0N88sKlROuZrA";
-  // if (session.isRight()) {
-  //   jwt = session.asRight().access_token;
-  // }
-  // ApiUrl.JWT = jwt;
+  var session = await getJWT();
+
+  String jwt = session ?? "";
 
   Map<String, String>? headers = {
     "Content-Type": "application/json",
-    // "X-CSRF-Token": csrfToken,
     "Authorization": "Bearer $jwt"
   };
 
@@ -55,6 +50,7 @@ Future<Either<String, Response>> ApiRequest({
     res = await get(
       uriParse,
       headers: headers,
+      
     );
   } else if (method == API_METHODS.POST) {
     res = await post(

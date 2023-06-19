@@ -63,17 +63,16 @@ class _DetailPromoState extends State<DetailPromo> {
                       children: [
                         Expanded(
                             child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                               BlocProvider(
-                                  create: (context) => sl<PromoBloc>()
-                                    ..add(PromoDetailInisiate(widget.id)),
+                                  create: (context) =>
+                                      sl<PromoBloc>()..add(PromoDetailInisiate(widget.id)),
                                   child: BlocBuilder<PromoBloc, PromoState>(
                                     builder: (context, state) {
                                       print(state);
                                       if (state is PromoLoadedID) {
-                                        return Row(
+                                        return Column(
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.all(8.0),
@@ -90,8 +89,7 @@ class _DetailPromoState extends State<DetailPromo> {
                                                     state.promo.name,
                                                     style: GoogleFonts.nunito(
                                                       textStyle: Nunito_21px,
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                                      fontWeight: FontWeight.w500,
                                                       color: Text1,
                                                     ),
                                                   ),
@@ -107,28 +105,6 @@ class _DetailPromoState extends State<DetailPromo> {
                                               ),
                                             ),
                                             SizedBox(height: 16),
-                                            Wrap(
-                                              alignment:
-                                                  WrapAlignment.spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Promo dapat digunakan untuk transaksi',
-                                                  style: GoogleFonts.nunito(
-                                                    textStyle: Nunito_17px,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Text1,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '1. Pulsa Telkomsel\n2. Pulsa Indosat\n3. Paket Data Telkomsel\n4. Paket Data Indosat',
-                                                  style: GoogleFonts.nunito(
-                                                    textStyle: Nunito_17px,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Text1,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
                                           ],
                                         );
                                       } else {

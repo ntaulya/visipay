@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/get_profile/get_profile_bloc.dart';
+import 'package:visipay/core/helper/jwt.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
@@ -34,27 +35,23 @@ class _EditProfileState extends State<EditProfile> {
                 child: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Home()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
                   },
                 ),
               ),
               title: Text(
                 "Edit Profile",
                 style: GoogleFonts.nunito(
-                    textStyle: Nunito_21px,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
             body: Container(
               padding: EdgeInsetsDirectional.symmetric(horizontal: 16),
               child: BlocProvider(
-                create: (context) =>
-                    sl<GetProfileBloc>()..add(GetProfileInisiate()),
+                create: (context) => sl<GetProfileBloc>()..add(GetProfileInisiate()),
                 child: BlocBuilder<GetProfileBloc, GetProfileState>(
                   builder: (context, state) {
-                    blocContext=context;
+                    blocContext = context;
                     if (state is GetProfileLoaded) {
                       _nameController.text = state.user.name;
                       _phoneController.text = state.user.phone;
@@ -132,16 +129,18 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Button("Save",
-                        backgroundColor: Secondary50,
-                        width: 286,
-                        height: 45, onTap: () {
-                      blocContext.read<GetProfileBloc>().add(EditProfileInisiate(
-                          _nameController.text, _emailController.text));
+                    Button("Save", backgroundColor: Secondary50, width: 286, height: 45, onTap: () {
+                      blocContext
+                          .read<GetProfileBloc>()
+                          .add(EditProfileInisiate(_nameController.text, _emailController.text));
                     }),
                     SizedBox(height: 8),
                     Button(
                       "Log Out",
+                      onTap: () async {
+                        await saveJWT("");
+                        Navigator.of(context).pushNamed('onboarding');
+                      },
                       backgroundColor: Color(0xffD66161),
                       width: 286,
                       height: 45,

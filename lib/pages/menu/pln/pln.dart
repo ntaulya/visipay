@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/bloc/produk/produk_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/cardToken.dart';
 
@@ -13,13 +16,16 @@ class Pln extends StatefulWidget {
 }
 
 class _PlnState extends State<Pln> {
-
   String inputNumber = "";
+  late BuildContext blocContext;
 
   void onFieldSubmitted(String value) {
     setState(() {
       inputNumber = value;
     });
+    blocContext
+        .read<ProdukBloc>()
+        .add(GetProdukListInisiate(code: "", category: "PLN", idPelanggan: value));
   }
 
   @override
@@ -31,254 +37,215 @@ class _PlnState extends State<Pln> {
           appBar: AppBar(
             backgroundColor: Primary50,
             leading: Semantics(
-                label: "Kembali",
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Home()));
-                  },
-                ),
+              label: "Kembali",
+              child: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                },
               ),
+            ),
             title: Text(
               "PLN",
               style: GoogleFonts.nunito(
-                  textStyle: Nunito_21px,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 24,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    onFieldSubmitted: onFieldSubmitted,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      // prefixText: "Rp. ",
-                      labelText: 'Nomor Pelanggan',
-                      hintText: 'Contoh 123456789xxx',
-                      // prefixIcon: Icon(Icons.person),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Primary30),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextFormField(
+                  onFieldSubmitted: onFieldSubmitted,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    // prefixText: "Rp. ",
+                    labelText: 'Nomor Pelanggan',
+                    hintText: 'Contoh 123456789xxx',
+                    // prefixIcon: Icon(Icons.person),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Primary30),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Container(
+                // color: Colors.green,
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+                child: Text(
+                  "Transaksi Terakhir",
+                  textAlign: TextAlign.left,
+                  style: GoogleFonts.nunito(textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                 ),
-                Container(
-                  // color: Colors.green,
-                  padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
-                  child: Text(
-                    "Transaksi Terakhir",
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.nunito(
-                        textStyle: Nunito_21px, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
-                  child: SizedBox(
-                    // width: 380,
-                    height: 76,
-                    child: Card(
-                      shadowColor: Colors.black,
-                      elevation: 1.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Home()));
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/icon/History.png",
-                                    width: 34,
-                                    height: 34,
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "PLN Listrik",
-                                        style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        "09 Maret 2021, 22.10",
-                                        style: GoogleFonts.nunito(
-                                            textStyle: Nunito_13px,
-                                            fontWeight: FontWeight.normal),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Text(
-                                "Beli Lagi",
-                                style: GoogleFonts.nunito(
-                                    textStyle: Nunito_15px,
-                                    fontWeight: FontWeight.bold,
-                                    color: Primary50),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                child: SizedBox(
+                  // width: 380,
+                  height: 76,
+                  child: Card(
+                    shadowColor: Colors.black,
+                    elevation: 1.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ),
-                ),
-                
-                inputNumber != "" ?
-                Column(
-                  children: [
-                    Container(
-                      padding:
-                          const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const Home()));
+                      },
                       child: Container(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        color: Primary50,
-                        height: 117,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            Row(
                               children: [
-                                Text(
-                                  "Nama Pelanggan",
-                                  style: GoogleFonts.nunito(
-                                      textStyle: Nunito_13px,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white),
+                                Image.asset(
+                                  "assets/icon/History.png",
+                                  width: 34,
+                                  height: 34,
                                 ),
-                                Text(
-                                  "Pelanggan",
-                                  style: GoogleFonts.nunito(
-                                      textStyle: Nunito_21px,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
+                                const SizedBox(
+                                  width: 8,
                                 ),
-                                Text(
-                                  "123456789",
-                                  style: GoogleFonts.nunito(
-                                      textStyle: Nunito_13px,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white),
-                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "PLN Listrik",
+                                      style: GoogleFonts.nunito(
+                                        textStyle: Nunito_15px,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "09 Maret 2021, 22.10",
+                                      style: GoogleFonts.nunito(
+                                          textStyle: Nunito_13px, fontWeight: FontWeight.normal),
+                                    )
+                                  ],
+                                )
                               ],
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Tarif / Daya",
-                                  style: GoogleFonts.nunito(
-                                      textStyle: Nunito_13px,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white),
-                                ),
-                                Text(
-                                  "R1 / 000001300VA",
-                                  style: GoogleFonts.nunito(
-                                      textStyle: Nunito_17px,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white),
-                                ),
-                              ],
-                            ),
+                            Text(
+                              "Beli Lagi",
+                              style: GoogleFonts.nunito(
+                                  textStyle: Nunito_15px,
+                                  fontWeight: FontWeight.bold,
+                                  color: Primary50),
+                            )
                           ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const [
-                              CardToken(
-                                harga: 22500,
-                                heading: "Token 20000",
-                              ),
-                              CardToken(
-                                harga: 52500,
-                                heading: "Token 50000",
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const [
-                              CardToken(
-                                harga: 102500,
-                                heading: "Token 100000",
-                              ),
-                              CardToken(
-                                harga: 202500,
-                                heading: "Token 200000",
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const [
-                              CardToken(
-                                harga: 502500,
-                                heading: "Token 500000",
-                              ),
-                              CardToken(
-                                harga: 1002500,
-                                heading: "Token 1000000",
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                color: Primary50,
+                height: 117,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Nama Pelanggan",
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_13px,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          "Pelanggan",
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_21px,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          "123456789",
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_13px,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Tarif / Daya",
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_13px,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          "R1 / 000001300VA",
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_17px,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                        ),
+                      ],
                     ),
                   ],
-                ) :
-                SizedBox()
-
-              ],
-            ),
+                ),
+              ),
+              Expanded(
+                child: BlocProvider(
+                  create: (context) => sl<ProdukBloc>()..add(initProduk()),
+                  child: BlocBuilder<ProdukBloc, ProdukState>(
+                    builder: (context, state) {
+                      blocContext = context;
+                      if (state is ProdukListLoaded) {
+                        return GridView.builder(
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CardToken(
+                                  harga: state.produk[index].price,
+                                  heading: "Token ${state.produk[index].price}",
+                                ),
+                              ],
+                            );
+                          },
+                          itemCount: state.produk.length,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 8.0,
+                              mainAxisSpacing: 8.0,
+                              mainAxisExtent: 160),
+                        );
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                ),
+              )
+            ],
           ),
         )));
   }

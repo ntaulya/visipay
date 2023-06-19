@@ -27,13 +27,11 @@ class PromoRemoteDatasourcesImpl extends PromoRemoteDatasources {
       return Future.value(Left(''));
     }
   }
-  
+
   @override
   Future<Either<String, Promo>> getPromobyID(String id) async {
-    var response = await ApiRequest(
-      method: API_METHODS.GET,
-      path: "/api/promo?id",
-    );
+    var response =
+        await ApiRequest(method: API_METHODS.GET, path: "/api/promo", payloadQparams: {"id": id});
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {
       var body = json.decode(response.asRight().body)['data'];
