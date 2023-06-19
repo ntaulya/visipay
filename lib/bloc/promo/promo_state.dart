@@ -11,6 +11,12 @@ class PromoLoaded extends PromoState {
   PromoLoaded(this.promo);
 }
 
+class PromoLoadedID extends PromoState {
+  final Promo promo;
+
+  PromoLoadedID(this.promo);
+}
+
 class PromoError extends PromoState {
   final String error_message;
 

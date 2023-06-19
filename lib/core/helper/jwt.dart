@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 Future<Map<String, dynamic>> getClaims(String token) async {
   final parts = token.split('.');
   if (parts.length != 3) {
@@ -32,4 +34,14 @@ String _decodeBase64(String str) {
   }
 
   return utf8.decode(base64Url.decode(output));
+}
+
+Future<void> saveJWT(String jwt) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('jwt', jwt);
+}
+
+Future<String?> getJWT(String jwt) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString('jwt');
 }

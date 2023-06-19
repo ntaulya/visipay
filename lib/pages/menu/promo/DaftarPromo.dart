@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +7,6 @@ import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
-import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 
 class DaftarPromo extends StatefulWidget {
   const DaftarPromo({super.key});
@@ -50,7 +50,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
             SizedBox(height: 6),
             Expanded(
               child: BlocProvider(
-                  create: (context) => sl<PromoBloc>()..add(PromoInisiate()),
+                  create: (context) =>
+                      sl<PromoBloc>()..add(PromoListInisiate()),
                   child: BlocBuilder<PromoBloc, PromoState>(
                       builder: (context, state) {
                     print(state);
@@ -64,7 +65,9 @@ class _DaftarPromoState extends State<DaftarPromo> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).pushNamed("/detailpromo",arguments: {"id":state.promo[index].id});
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(16),
                                   child: Row(
@@ -90,7 +93,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
                                               overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.nunito(
                                                   textStyle: Nunito_13px,
-                                                  fontWeight: FontWeight.normal),
+                                                  fontWeight:
+                                                      FontWeight.normal),
                                             )
                                           ],
                                         ),

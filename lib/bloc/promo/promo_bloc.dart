@@ -11,11 +11,17 @@ class PromoBloc extends Bloc<PromoEvent, PromoState> {
 
   PromoBloc ({required this.data}) : super(PromoLoading()) { //nampilin data pertama kali
     on<PromoEvent>((event, emit) async {
-      if (event is PromoInisiate) {
+      if (event is PromoListInisiate) {
         emit(PromoLoading());
         final failureOrUser = await data.getPromoList();
         
         emit(failureOrUser.fold((err_message) => PromoError(err_message), (Promo) => PromoLoaded(Promo)));
+      }
+      if (event is PromoDetailInisiate) {
+        emit(PromoLoading());
+        final failureOrUser = await data.getPromobyID(event.id);
+        
+        emit(failureOrUser.fold((err_message) => PromoError(err_message), (Promo) => PromoLoadedID(Promo)));
       }
     });
   }

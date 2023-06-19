@@ -18,6 +18,7 @@ Future<Either<String, Response>> ApiRequest({
   // String csrfToken = "";
   // String csrfToken = await updateCSRFToken(null);
   // var session = await UserSessionLocalDatasourceImpl().readUserSession();
+  
   String jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYTlmOWRiNDUtMmVmOS00MDcyLWFiMDEtNGYzZmRkYzc2Y2I2IiwibmFtZSI6IlN5YXJpaWYgQWJkIiwiZW1haWwiOiJzeWFyaWkxZkBtYWlsLmNvbSIsInBob25lIjoiNjI4MjE0MDAwMjg1MSJ9LCJpYXQiOjE2ODY4MDU2ODEsImV4cCI6MTY4Njk3ODQ4MX0.-IDGX0z5BPs3vxZViv8m3hya5spUe-0N88sKlROuZrA";
   // if (session.isRight()) {
   //   jwt = session.asRight().access_token;

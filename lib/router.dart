@@ -54,7 +54,8 @@ class VisiPayRouter implements IRouter {
       case "/daftarpromo":
         return _buildRoute(builder: (_) => DaftarPromo(), settings: settings);
       case "/detailpromo":
-        return _buildRoute(builder: (_) => DetailPromo(), settings: settings);
+      Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        return _buildRoute(builder: (_) => DetailPromo(id: args['id'],), settings: settings);
       case "/pulsa":
         return _buildRoute(builder: (_) => PulsaPaket(), settings: settings);
       case "/berhasil":

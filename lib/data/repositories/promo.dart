@@ -21,7 +21,6 @@ class PromoRepositoriesImpl extends PromoRepositories{
   
   @override
   Future<Either<String, Promo>> getPromobyID(String id) {
-    // TODO: implement getPromobyID
     throw UnimplementedError();
   }
   

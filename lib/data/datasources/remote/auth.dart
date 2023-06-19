@@ -55,8 +55,8 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
     if (response.asRight().statusCode == 200) {
       var body = json.decode(response.asRight().body);
       if ((body['message'] as String).toLowerCase().contains('register')) {
-        var data = UserSessionModel.fromJson(body['data']);
-        print("masuk");
+        var data = UserSessionModel.fromJson(body);
+        
         return Future.value(Right(data));
       } else {
         return Future.value(Left(''));

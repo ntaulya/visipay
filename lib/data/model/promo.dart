@@ -1,6 +1,5 @@
-
-
 class Promo {
+  String id;
   String name;
   String description;
   double discount;
@@ -8,6 +7,7 @@ class Promo {
   DateTime expired_at;
   
   Promo({
+    required this.id,
     required this.name,
     required this.description,
     required this.discount,

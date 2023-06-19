@@ -29,8 +29,18 @@ class PromoRemoteDatasourcesImpl extends PromoRemoteDatasources {
   }
   
   @override
-  Future<Either<String, Promo>> getPromobyID(String id) {
-    // TODO: implement getPromobyID
-    throw UnimplementedError();
+  Future<Either<String, Promo>> getPromobyID(String id) async {
+    var response = await ApiRequest(
+      method: API_METHODS.GET,
+      path: "/api/promo?id",
+    );
+    print(response.asRight().body);
+    if (response.asRight().statusCode == 200) {
+      var body = json.decode(response.asRight().body)['data'];
+      var data = PromoModel.fromJson(body);
+      return Future.value(Right(data));
+    } else {
+      return Future.value(Left(''));
+    }
   }
 }
