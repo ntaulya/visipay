@@ -45,31 +45,30 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 40),
                     //gambar
                     // Center(child: Image.asset('images/login.png', height: MediaQuery.of(context).size.height * 0.4)),
-    
+
                     //container
                     SizedBox(height: 16),
-    
+
                     //text 1
                     Text(
                       'Masuk',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px, fontWeight: FontWeight.bold),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.bold),
                     ),
-    
+
                     //container
                     SizedBox(height: 8),
-    
+
                     //text 2
                     Text(
                       'Masuk cuma butuh nomor HP aja.',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
-    
+
                     SizedBox(height: 16),
-    
+
                     TextField(
-                      
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -77,9 +76,9 @@ class _LoginState extends State<Login> {
                       ),
                       controller: _phoneController,
                     ),
-    
+
                     SizedBox(height: 2),
-    
+
                     // Row(
                     //   children: [
                     //     Text(
@@ -92,7 +91,7 @@ class _LoginState extends State<Login> {
                     //       onTap: () {
                     //         Navigator.of(context).pushNamed('/home');
                     //         print("tes");
-                    //         Navigator.push(context, 
+                    //         Navigator.push(context,
                     //         MaterialPageRoute(builder: (context) => Home(),)
                     //         );
                     //       },
@@ -122,12 +121,13 @@ class _LoginState extends State<Login> {
                       context.read<LoginBloc>().add(finduser(_phoneController.text));
                     }),
                   );
-                } else if(state is userfound){
-                  Timer(Duration.zero, () { 
-                    Navigator.of(context).pushNamed("/pin",arguments: {"phone":_phoneController.text});
+                } else if (state is userfound) {
+                  Timer(Duration.zero, () {
+                    Navigator.of(context)
+                        .pushNamed("/pin", arguments: {"phone": _phoneController.text});
                   });
                   return Container();
-                } else if (state is LoginError){
+                } else if (state is LoginError) {
                   print("error");
                   return Padding(
                     padding: const EdgeInsets.all(40.0),
@@ -137,9 +137,12 @@ class _LoginState extends State<Login> {
                   );
                 }
                 return Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    child: Button("Lanjutkan",backgroundColor: Primary50.withOpacity(0.5),),
-                  );
+                  padding: const EdgeInsets.all(40.0),
+                  child: Button(
+                    "Lanjutkan",
+                    backgroundColor: Primary50.withOpacity(0.5),
+                  ),
+                );
               },
             ),
           )),

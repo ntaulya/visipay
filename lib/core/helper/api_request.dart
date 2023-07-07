@@ -19,7 +19,7 @@ Future<Either<String, Response>> ApiRequest({
 }) async {
   var session = await getJWT();
 
-  String jwt = session ?? "";
+  String jwt = session ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYTlmOWRiNDUtMmVmOS00MDcyLWFiMDEtNGYzZmRkYzc2Y2I2IiwibmFtZSI6IlN5YXJpaWYiLCJlbWFpbCI6ImFiZHVycmFtYW4xNDY3QGdtYWlsLmNvbSIsInBob25lIjoiNjI4MjE0MDAwMjg1MSJ9LCJpYXQiOjE2ODg3NDA1MDgsImV4cCI6MTY4ODkxMzMwOH0.NV_DIrla4UNozwhlpil14_DsegIpOjRKO9fK780AnSA";
 
   Map<String, String>? headers = {
     "Content-Type": "application/json",
