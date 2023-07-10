@@ -43,7 +43,7 @@ Future<void> saveJWT(String jwt) async {
 
 Future<String?> getJWT() async {
   final prefs = await SharedPreferences.getInstance();
-  var jwt = prefs.getString('jwt') ?? "" ?? "";
+  var jwt = prefs.getString('jwt') ?? "";
   if (jwt.isNotEmpty) {
     return jwt;
   } else {
