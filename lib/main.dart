@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:visipay/router.dart';
 import 'injection_container/di.dart' as di;
 
 void main() async {
   await di.init();
+  await initializeDateFormatting();
   runApp(MyApp());
 }
 

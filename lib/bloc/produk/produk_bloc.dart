@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:visipay/core/helper/jwt.dart';
 import 'package:visipay/data/model/produk.dart';
 import 'package:visipay/data/repositories/auth.dart';
 
@@ -14,9 +15,12 @@ class ProdukBloc extends Bloc<ProdukEvent, ProdukState> {
     on<ProdukEvent>((event, emit) async {
       if (event is GetProdukListInisiate) {
         emit(ProdukLoading());
-        final failureOrUser =
-            await data.getProdukList(event.code, event.category, event.idPelanggan);
-        emit(failureOrUser.fold((l) => ProdukError(l), (r) => ProdukListLoaded(r)));
+        final failureOrUser = await data.getProdukList(
+            event.code, event.category, event.idPelanggan);
+        final jwt = await getJWT();
+        final claims = await getClaims(jwt ?? '');
+        emit(failureOrUser.fold(
+            (l) => ProdukError(l), (r) => ProdukListLoaded(r,claims["user"]["name"])));
       }
       if (event is initProduk) {
         emit(ProdukLoading());

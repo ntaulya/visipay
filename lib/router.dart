@@ -4,6 +4,7 @@ import 'package:visipay/Pages/onBoarding.dart';
 import 'package:visipay/bloc/page_navigation/page_navigation_bloc.dart';
 import 'package:visipay/core/constant/routes.dart';
 import 'package:visipay/core/helper/jwt.dart';
+import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/auth/login.dart';
 import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/auth/register.dart';
@@ -40,19 +41,18 @@ class VisiPayRouter implements IRouter {
     switch (settings.name) {
       case "/":
         return _buildRoute(
-            builder: (_) => FutureBuilder(
-                  initialData: () {
-                    return getJWT();
-                  },
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data != null) {
-                        return Home();
-                      }
-                    }
+            builder: (_) => BlocProvider(
+              create: (context) => sl<PageNavigationBloc>()..add(PageNavigationAuthentication()),
+              child: BlocBuilder<PageNavigationBloc, PageNavigationState>(
+                builder: (context, state) {
+                  if (state is PageNavigationSuccess) {
+                    return Home();
+                  } else {
                     return OnBoarding();
-                  },
-                ),
+                  }
+                },
+              ),
+            ),
             settings: settings);
       case "/onboarding":
         return _buildRoute(builder: (_) => OnBoarding(), settings: settings);
@@ -79,15 +79,15 @@ class VisiPayRouter implements IRouter {
       case "/pulsa":
         return _buildRoute(builder: (_) => PulsaPaket(), settings: settings);
       case "/berhasil":
-        return _buildRoute(builder: (_) => Status(), settings: settings);
+        return _buildRoute(builder: (_) => StatusBerhasil(), settings: settings);
       case "/gagal":
         return _buildRoute(builder: (_) => StatusGagal(), settings: settings);
       // case "/profile":
       //   return _buildRoute(builder: (_) => Profile(), settings: settings);
       case "/vabni":
         return _buildRoute(builder: (_) => VirtualAccountBNI(), settings: settings);
-      case "/detailriwayat":
-        return _buildRoute(builder: (_) => DetailRiwayat(), settings: settings);
+      // case "/detailriwayat":
+      //   return _buildRoute(builder: (_) => DetailRiwayat(), settings: settings);
       case "/editprofile":
         return _buildRoute(builder: (_) => EditProfile(), settings: settings);
       default:

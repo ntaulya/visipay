@@ -7,6 +7,7 @@ import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/cardToken.dart';
+import 'package:visipay/widgets/container.dart';
 
 class Pln extends StatefulWidget {
   const Pln({super.key});
@@ -18,14 +19,14 @@ class Pln extends StatefulWidget {
 class _PlnState extends State<Pln> {
   String inputNumber = "";
   late BuildContext blocContext;
+  final TextEditingController idpelangganController = TextEditingController();
 
   void onFieldSubmitted(String value) {
     setState(() {
       inputNumber = value;
     });
-    blocContext
-        .read<ProdukBloc>()
-        .add(GetProdukListInisiate(code: "", category: "PLN", idPelanggan: value));
+    blocContext.read<ProdukBloc>().add(
+        GetProdukListInisiate(code: "", category: "PLN", idPelanggan: value));
   }
 
   @override
@@ -41,25 +42,27 @@ class _PlnState extends State<Pln> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Home()));
                 },
               ),
             ),
             title: Text(
               "PLN",
               style: GoogleFonts.nunito(
-                  textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
+                  textStyle: Nunito_21px,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 24,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: TextFormField(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 24),
+                TextFormField(
+                  controller: idpelangganController,
                   onFieldSubmitted: onFieldSubmitted,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -77,22 +80,14 @@ class _PlnState extends State<Pln> {
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                // color: Colors.green,
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
-                child: Text(
+                const SizedBox(height: 16),
+                Text(
                   "Transaksi Terakhir",
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.nunito(textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.nunito(
+                      textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
-                child: SizedBox(
+                SizedBox(
                   // width: 380,
                   height: 76,
                   child: Card(
@@ -104,7 +99,9 @@ class _PlnState extends State<Pln> {
                     child: InkWell(
                       onTap: () {
                         Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => const Home()));
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -135,7 +132,8 @@ class _PlnState extends State<Pln> {
                                     Text(
                                       "09 Maret 2021, 22.10",
                                       style: GoogleFonts.nunito(
-                                          textStyle: Nunito_13px, fontWeight: FontWeight.normal),
+                                          textStyle: Nunito_13px,
+                                          fontWeight: FontWeight.normal),
                                     )
                                   ],
                                 )
@@ -154,98 +152,107 @@ class _PlnState extends State<Pln> {
                     ),
                   ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 8, right: 8),
-                color: Primary50,
-                height: 117,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Nama Pelanggan",
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_13px,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          "Pelanggan",
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_21px,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          "123456789",
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_13px,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Tarif / Daya",
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_13px,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          "R1 / 000001300VA",
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_17px,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: BlocProvider(
+                BlocProvider(
                   create: (context) => sl<ProdukBloc>()..add(initProduk()),
                   child: BlocBuilder<ProdukBloc, ProdukState>(
                     builder: (context, state) {
                       blocContext = context;
                       if (state is ProdukListLoaded) {
-                        return GridView.builder(
-                          itemBuilder: (context, index) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CardToken(
-                                  harga: state.produk[index].price,
-                                  heading: "Token ${state.produk[index].price}",
+                        return Expanded(
+                          child: Column(
+                            children: [
+                              OutlinedBox(
+                                padding: const EdgeInsets.all(16),
+                                backgroundColor: Primary50,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Nama Pelanggan",
+                                          style: GoogleFonts.nunito(
+                                              textStyle: Nunito_13px,
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          state.name,
+                                          style: GoogleFonts.nunito(
+                                              textStyle: Nunito_21px,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          idpelangganController.text,
+                                          style: GoogleFonts.nunito(
+                                              textStyle: Nunito_13px,
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "",
+                                          style: GoogleFonts.nunito(
+                                              textStyle: Nunito_13px,
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          "",
+                                          style: GoogleFonts.nunito(
+                                              textStyle: Nunito_17px,
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            );
-                          },
-                          itemCount: state.produk.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0,
-                              mainAxisExtent: 160),
+                              ),
+                              GridView.builder(
+                                // physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return CardToken(
+                                    harga: state.produk[index].price,
+                                    heading:
+                                        "Token ${state.produk[index].price}",
+                                        idpelanggan: idpelangganController.text,
+                                        name: state.name, product_id: state.produk[index].id, notes: 'Pembayaran '+state.produk[index].name,
+                                  );
+                                },
+                                itemCount: state.produk.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 8.0,
+                                        mainAxisSpacing: 8.0,
+                                        mainAxisExtent: 160),
+                              ),
+                            ],
+                          ),
                         );
                       } else {
                         return Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         )));
   }

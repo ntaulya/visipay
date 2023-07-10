@@ -8,14 +8,14 @@ import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
 
-class Status extends StatefulWidget {
-  const Status({super.key});
+class StatusBerhasil extends StatefulWidget {
+  const StatusBerhasil({super.key});
 
   @override
-  State<Status> createState() => _StatusState();
+  State<StatusBerhasil> createState() => _StatusBerhasilState();
 }
 
-class _StatusState extends State<Status> {
+class _StatusBerhasilState extends State<StatusBerhasil> {
   @override
   void initState() {
     // TODO: implement initState

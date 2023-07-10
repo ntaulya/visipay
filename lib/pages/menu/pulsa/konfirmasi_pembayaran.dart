@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/bloc/get_wallet/get_wallet_bloc.dart';
+import 'package:visipay/bloc/pembayaran/pembayaran_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/data/model/promo.dart';
+import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
+import 'package:visipay/pages/menu/pulsa/pilih_promo.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
-class KonfirPulsa extends StatefulWidget {
-  const KonfirPulsa({super.key});
+class KonfirPembayaran extends StatefulWidget {
+  const KonfirPembayaran({super.key, required this.harga, required this.product_id, required this.notes});
+  final int harga;
+  final String notes;
+  final String product_id;
 
   @override
-  State<KonfirPulsa> createState() => _KonfirPulsaState();
+  State<KonfirPembayaran> createState() => _KonfirPembayaranState();
 }
 
-class _KonfirPulsaState extends State<KonfirPulsa> {
-  final TextEditingController __KonfirPulsaController = TextEditingController();
+class _KonfirPembayaranState extends State<KonfirPembayaran> {
+  final TextEditingController __KonfirPembayaranController =
+      TextEditingController();
+  Promo? selectedPromo;
+  double discount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +39,11 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Home(),
+                  ));
             },
           ),
           title: Text("Konfirmasi Pembayaran",
@@ -62,7 +79,7 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          'Rp 100000',
+                          widget.harga.toString(),
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
@@ -121,14 +138,27 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                             color: Text1,
                           ),
                         ),
-                        Text(
-                          'Saldo: Rp 1075000',
-                          style: GoogleFonts.nunito(
-                            textStyle: Nunito_15px,
-                            fontWeight: FontWeight.w300,
-                            color: Color(0xffC20025),
+                        BlocProvider(
+                          create: (context) =>
+                              sl<GetWalletBloc>()..add(GetWalletInisiate()),
+                          child: BlocBuilder<GetWalletBloc, GetWalletState>(
+                            builder: (context, state) {
+                              print(state);
+                              if (state is GetWalletLoaded) {
+                                return Text(
+                                  state.wallet.balance.toString(),
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_17px,
+                                      fontWeight: FontWeight.w600,
+                                      color: Primary70),
+                                );
+                              } else if (state is GetWalletError) {
+                                return Text(state.error_message);
+                              }
+                              return Text("Loading...");
+                            },
                           ),
-                        ),
+                        )
                       ],
                     ),
                     Text(
@@ -162,38 +192,83 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
               ],
             ),
             SizedBox(height: 8),
-            Card(
-              color: Color(0xffF1F6F9),
-              child: Column(
-                children: [
-                  OutlinedBox(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.all(8.0), // Menambahkan padding horizontal
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment
-                            .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
-                        children: [
-                          Text(
-                            'Lihat Promo Yang Tersedia',
-                            style: GoogleFonts.nunito(
-                              textStyle: Nunito_15px,
-                              fontWeight: FontWeight.w700,
-                              color: Primary90,
+            selectedPromo == null
+                ? Card(
+                    color: Color(0xffF1F6F9),
+                    child: Column(
+                      children: [
+                        OutlinedBox(
+                          child: Padding(
+                            padding: EdgeInsets.all(
+                                8.0), // Menambahkan padding horizontal
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment
+                                  .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
+                              children: [
+                                Text(
+                                  'Lihat Promo Yang Tersedia',
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.w700,
+                                    color: Primary90,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_right_alt_sharp),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PilihPromo(
+                                            harga: widget.harga,
+                                          ),
+                                        )).then((value) {
+                                      print(value);
+                                      setState(() {
+                                        selectedPromo = value;
+                                      });
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ),
-                          IconButton(
-                            icon: Icon(Icons.arrow_right_alt_sharp),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20.0),
+                  )
+                : Card(
+                    color: Color(0xffF1F6F9),
+                    child: Column(
+                      children: [
+                        OutlinedBox(
+                          child: Padding(
+                            padding: EdgeInsets.all(
+                                8.0), // Menambahkan padding horizontal
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment
+                                  .start, // Membuat child berada di ujung kiri dan ujung kanan
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.discount),
+                                  color: Secondary50,
+                                  onPressed: () {},
+                                ),
+                                Text(
+                                  selectedPromo!.name,
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_15px,
+                                    fontWeight: FontWeight.w700,
+                                    color: Secondary50,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
           ]),
         ),
         bottomNavigationBar: Column(
@@ -222,7 +297,13 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                           ),
                         ),
                         Text(
-                          'Rp 100000',
+                          'Rp' +
+                              (widget.harga -
+                                      (selectedPromo == null
+                                          ? 0
+                                          : widget.harga *
+                                              selectedPromo!.discount))
+                                  .toString(),
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
@@ -231,19 +312,51 @@ class _KonfirPulsaState extends State<KonfirPulsa> {
                         ),
                       ],
                     ),
-                    Button(
-                      "Bayar",
-                      backgroundColor: Secondary50,
-                      width: 123,
-                      height: 48,
-                      onTap: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: 
-                        (context) => Status(),
-                        )
-                        );
-                      },
-                    ),
+                    BlocProvider(
+                        create: (context) => sl<PembayaranBloc>(),
+                        child: BlocBuilder<PembayaranBloc, PembayaranState>(
+                            builder: (context, state) {
+                          print(state);
+                          if (state is PembayaranInitial) {
+                            return Button(
+                              "Bayar",
+                              backgroundColor: Primary50,
+                              width: 123,
+                              height: 48,
+                              onTap: () {
+                                context.read<PembayaranBloc>().add(
+                                    PembayaranInisiate(
+                                        product_id: widget.product_id,
+                                        promo_id: selectedPromo==null?"":selectedPromo!.id,
+                                        notes: widget.notes));
+                              },
+                            );
+                          } else if(state is PembayaranSuccess){
+                            Future.microtask(() => Navigator.of(context).push(MaterialPageRoute(builder: (_)=>StatusBerhasil())));
+                            return Container();
+                          } else if (state is PembayaranError) {
+                            return Button(
+                              "Bayar",
+                              backgroundColor: Primary50,
+                              width: 123,
+                              height: 48,
+                              onTap: () {
+                                context.read<PembayaranBloc>().add(
+                                    PembayaranInisiate(
+                                        product_id: widget.product_id,
+                                        promo_id: selectedPromo==null?"":selectedPromo!.id,
+                                        notes: widget.notes));
+                              },
+                            );
+                          } else {
+                            return Button(
+                              "Bayar",
+                              backgroundColor: Primary50.withOpacity(0.5),
+                              width: 123,
+                              height: 48,
+                            );
+                          }
+                        }))
                   ],
                 ),
               ),

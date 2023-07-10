@@ -1,5 +1,3 @@
-import 'package:visipay/data/model/user.dart';
-import 'package:visipay/data/model/wallet_model.dart';
 import 'package:visipay/data/model/wallet_transaction.dart';
 
 class Wallet_Transaction_Model extends Wallet_Transaction {

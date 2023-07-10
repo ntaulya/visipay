@@ -6,7 +6,8 @@ class ProdukLoading extends ProdukState {}
 
 class ProdukListLoaded extends ProdukState {
   final List<Produk> produk;
-  ProdukListLoaded(this.produk);
+  final String name;
+  ProdukListLoaded(this.produk, this.name);
 }
 
 class ProdukDetailLoaded extends ProdukState {

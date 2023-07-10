@@ -10,7 +10,9 @@ import 'package:visipay/widgets/button.dart';
 
 class CardPulsa extends StatefulWidget {
   final int harga;
-  const CardPulsa({required this.harga});
+  final String product_id;
+  final String notes;
+  const CardPulsa({required this.harga, required this.product_id, required this.notes});
 
   @override
   State<CardPulsa> createState() => _CardPulsaState();
@@ -163,7 +165,7 @@ class _CardPulsaState extends State<CardPulsa> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => KonfirPulsa(),
+                                    builder: (context) => KonfirPembayaran(harga: widget.harga + 2500, product_id: widget.product_id, notes: widget.notes),
                                   ));
                             },
                             "Konfirmasi",

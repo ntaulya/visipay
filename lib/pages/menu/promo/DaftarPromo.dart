@@ -47,7 +47,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
         ),
         body: BlocProvider(
             create: (context) => sl<PromoBloc>()..add(PromoListInisiate()),
-            child: BlocBuilder<PromoBloc, PromoState>(builder: (context, state) {
+            child:
+                BlocBuilder<PromoBloc, PromoState>(builder: (context, state) {
               print(state);
               if (state is PromoLoaded) {
                 return ListView.separated(
@@ -55,7 +56,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => DetailPromo(id: state.promo[index].id)));
+                              builder: (_) =>
+                                  DetailPromo(id: state.promo[index].id)));
                         },
                         child: Card(
                           shadowColor: Colors.black,
@@ -72,7 +74,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         state.promo[index].name,
@@ -85,7 +88,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
                                         state.promo[index].description,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.nunito(
-                                            textStyle: Nunito_13px, fontWeight: FontWeight.normal),
+                                            textStyle: Nunito_13px,
+                                            fontWeight: FontWeight.normal),
                                       )
                                     ],
                                   ),
@@ -96,7 +100,8 @@ class _DaftarPromoState extends State<DaftarPromo> {
                         ),
                       );
                     },
-                    separatorBuilder: (context, index) => const SizedBox(height: 8),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 8),
                     itemCount: state.promo.length);
               }
               return Center(child: CircularProgressIndicator());
