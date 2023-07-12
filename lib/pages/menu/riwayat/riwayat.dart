@@ -68,14 +68,14 @@ class _RiwayatState extends State<Riwayat> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 16, vertical: 7),
                                 child: Center(
-                                  child: Text(
-                                    DateFormat('dd/MM/yyyy', 'id_ID').format(state.riwayat[index].createdAt),
-                                    style: GoogleFonts.nunito(
-                                        textStyle: Nunito_17px,
-                                        fontWeight: FontWeight.bold,
-                                        color: Text1),
-                                  )
-                                ),
+                                    child: Text(
+                                  DateFormat('dd/MM/yyyy', 'id_ID')
+                                      .format(state.riwayat[index].createdAt),
+                                  style: GoogleFonts.nunito(
+                                      textStyle: Nunito_17px,
+                                      fontWeight: FontWeight.bold,
+                                      color: Text1),
+                                )),
                               ),
                               Container(
                                   height: 76,
@@ -114,7 +114,8 @@ class _RiwayatState extends State<Riwayat> {
                                                     children: [
                                                       Text(
                                                         state.riwayat[index]
-                                                            .notes ?? '',
+                                                                .notes ??
+                                                            '',
                                                         style:
                                                             GoogleFonts.nunito(
                                                           textStyle:

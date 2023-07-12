@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/riwayat/riwayat_bloc.dart';
 import 'package:visipay/data/model/riwayat.dart';
 import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/widgets/button.dart';
 import '../../../core/theme/palette.dart';
 import '../../../core/theme/textSize.dart';
 
@@ -33,7 +33,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.of(context).pop();
-              },
+                },
               ),
               title: Text(
                 "Detail Riwayat Transaksi",
@@ -64,37 +64,163 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                         ..add(RiwayatDetailInisiate(widget.id)),
                                       child: BlocBuilder<RiwayatBloc,
                                               RiwayatState>(
-                                          
                                           builder: (context, state) {
-                                          print(state);
-                                          if (state is RiwayatLoadedID) {
-                                            return Column(
-                                              children: [
-                                                Image.asset(
-                                                  "assets/icon/PLN Listrik.png",
-                                                  width: 34,
-                                                  height: 34,
-                                                ),
-                                                Row(
+                                        print(state);
+                                        if (state is RiwayatLoadedID) {
+                                          return Column(
+                                            children: [
+                                              Center(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    Text(
-                                                      state.riwayat.notes!,
-                                                      style: GoogleFonts.nunito(
-                                                        textStyle: TextStyle(
-                                                            fontSize: 17,
-                                                            fontWeight:
-                                                                FontWeight.bold),
-                                                      ),
+                                                    Image.asset(
+                                                      "assets/icon/PLN Listrik.png",
+                                                      width: 34,
+                                                      height: 34,
+                                                    ),
+                                                    SizedBox(height: 12),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          state.riwayat.notes!,
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            textStyle:
+                                                                TextStyle(
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
-                                                )
-                                              ],
-                                            );
-                                          } else {
-                                            return Container();
-                                          }
-                                          }
-                                      ))
+                                                ),
+                                              ),
+                                              SizedBox(height: 20),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text("ID Transaksi",
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text('Jumlah',
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text('Total Transaksi',
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text('Status',
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Text1,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        Text(state.riwayat.transaction_method_id,
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text(state.riwayat.amount.toString(),
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text((state.riwayat.amount+2500).toString(),
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text(state.riwayat.transaction_status,
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              textStyle:
+                                                                  Nunito_17px,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Text1,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      }))
                                 ])),
                           ],
                         ),
@@ -104,6 +230,39 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                 )
               ],
             ),
+            bottomNavigationBar: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Button(
+                      onTap: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           KonfirPembayaran(
+                        //               harga: state
+                        //                       .produk[
+                        //                           0]
+                        //                       .price +
+                        //                   2500,
+                        //               product_id:
+                        //                   state
+                        //                       .produk[
+                        //                           0]
+                        //                       .id,
+                        //               notes: ""),
+                        //     ));
+                      },
+                      "Beli Lagi",
+                      backgroundColor: Primary50,
+                      width: 151,
+                      height: 48,
+                    ),
+                  ],
+                )),
           ),
         ));
   }
