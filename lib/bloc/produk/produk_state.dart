@@ -4,6 +4,9 @@ abstract class ProdukState {}
 
 class ProdukLoading extends ProdukState {}
 
+class ProdukInitial extends ProdukState {
+}
+
 class ProdukListLoaded extends ProdukState {
   final List<Produk> produk;
   final String name;

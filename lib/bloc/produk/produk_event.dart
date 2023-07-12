@@ -11,3 +11,4 @@ class GetProdukListInisiate extends ProdukEvent {
 }
 
 class initProduk extends ProdukEvent {}
+class resetProdukState extends ProdukEvent{}

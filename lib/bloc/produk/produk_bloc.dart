@@ -11,7 +11,7 @@ part 'produk_state.dart';
 
 class ProdukBloc extends Bloc<ProdukEvent, ProdukState> {
   final ProdukRepositories data;
-  ProdukBloc({required this.data}) : super(ProdukLoading()) {
+  ProdukBloc({required this.data}) : super(ProdukInitial()) {
     on<ProdukEvent>((event, emit) async {
       if (event is GetProdukListInisiate) {
         emit(ProdukLoading());
@@ -24,6 +24,9 @@ class ProdukBloc extends Bloc<ProdukEvent, ProdukState> {
       }
       if (event is initProduk) {
         emit(ProdukLoading());
+      }
+      if (event is resetProdukState) {
+        emit(ProdukInitial());
       }
     });
   }
