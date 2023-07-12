@@ -176,12 +176,194 @@ class _PdamState extends State<Pdam> {
                     /// yang tidak berhubungan buat nampilin widget
 
                     if (state is ProdukListLoaded) {
-                      /// diisi kode showModalBottomSheet yang ada di
-                      /// file CardToken
-                      ///
-                      /// Goalsnya adalah ketika state nya ProdukListLoaded atau
-                      /// data berhasil di get, maka akan menampilkan modal bottom
-                      /// sheet
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              height: 430,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 32.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Informasi Pelanggan',
+                                        style: GoogleFonts.nunito(
+                                          textStyle: Nunito_17px,
+                                          fontWeight: FontWeight.w700,
+                                          color: Text1,
+                                        )),
+                                    SizedBox(height: 18),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('ID Pelanggan',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w500,
+                                              color: Text1,
+                                            )),
+                                        Text(idpelangganController.text,
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w600,
+                                              color: Text1,
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Nama Pelanggan',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w500,
+                                              color: Text1,
+                                            )),
+                                        Text(state.name,
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w600,
+                                              color: Text1,
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12),
+                                    // Row(
+                                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Text('Tarif/Daya',
+                                    //         style: GoogleFonts.nunito(
+                                    //           textStyle: Nunito_15px,
+                                    //           fontWeight: FontWeight.w500,
+                                    //           color: Text1,
+                                    //         )),
+                                    //     Text('',
+                                    //         style: GoogleFonts.nunito(
+                                    //           textStyle: Nunito_15px,
+                                    //           fontWeight: FontWeight.w600,
+                                    //           color: Text1,
+                                    //         )),
+                                    //   ],
+                                    // ),
+                                    SizedBox(height: 18),
+                                    Row(
+                                      children: [
+                                        Text('Detail Pembayaran',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_17px,
+                                              fontWeight: FontWeight.w700,
+                                              color: Text1,
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(height: 18),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Harga Token',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w500,
+                                              color: Text1,
+                                            )),
+                                        Text("Rp" + state.produk[0].price.toString(),
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w600,
+                                              color: Text1,
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Biaya Transaksi',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w500,
+                                              color: Text1,
+                                            )),
+                                        Text('Rp 2500',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w600,
+                                              color: Text1,
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12),
+                                    Divider(
+                                      color: Color(0xff3A3541), // Warna garis
+                                      thickness: 1.0, // Ketebalan garis
+                                    ),
+                                    SizedBox(height: 14),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Total Pembayaran',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w700,
+                                              color: Text1,
+                                            )),
+                                        Text(
+                                            "Rp " +
+                                                (state.produk[0].price+2500).toString(),
+                                            style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.w700,
+                                              color: Text1,
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(height: 14),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Button(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          "Batal",
+                                          backgroundColor: Colors.white,
+                                          color: Primary50,
+                                          width: 151,
+                                          height: 48,
+                                        ),
+                                        Button(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      KonfirPembayaran(
+                                                          harga: state.produk[0].price+2500,
+                                                          product_id:
+                                                              state.produk[0].id,
+                                                          notes: ""),
+                                                ));
+                                          },
+                                          "Konfirmasi",
+                                          backgroundColor: Primary70,
+                                          width: 151,
+                                          height: 48,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     }
                   },
                   builder: (context, state) {

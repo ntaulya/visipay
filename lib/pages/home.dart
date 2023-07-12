@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/get_wallet/get_wallet_bloc.dart';
+import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
@@ -62,7 +63,8 @@ class _HomeState extends State<Home> {
                               print(state);
                               if (state is GetWalletLoaded) {
                                 return Text(
-                                  state.wallet.balance.toString(),
+                                  state.wallet.balance.toRupiahWithSymbol,
+                                  // state.wallet.balance.toString(),
                                   style: GoogleFonts.nunito(
                                       textStyle: Nunito_25px,
                                       fontWeight: FontWeight.w700,
