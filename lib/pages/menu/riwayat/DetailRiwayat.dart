@@ -8,6 +8,7 @@ import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/widgets/button.dart';
 import '../../../core/theme/palette.dart';
 import '../../../core/theme/textSize.dart';
+import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 
 class DetailRiwayat extends StatefulWidget {
   final String id;
@@ -167,7 +168,9 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                           CrossAxisAlignment
                                                               .end,
                                                       children: [
-                                                        Text(state.riwayat.transaction_method_id,
+                                                        Text(
+                                                            state.riwayat
+                                                                .transaction_method_id,
                                                             style: GoogleFonts
                                                                 .nunito(
                                                               textStyle:
@@ -178,7 +181,9 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
-                                                        Text(state.riwayat.amount.toString(),
+                                                        Text(
+                                                            state.riwayat.amount
+                                                                .toString(),
                                                             style: GoogleFonts
                                                                 .nunito(
                                                               textStyle:
@@ -189,7 +194,11 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
-                                                        Text((state.riwayat.amount+2500).toString(),
+                                                        Text(
+                                                            (state.riwayat
+                                                                        .amount +
+                                                                    2500)
+                                                                .toString(),
                                                             style: GoogleFonts
                                                                 .nunito(
                                                               textStyle:
@@ -200,7 +209,9 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
-                                                        Text(state.riwayat.transaction_status,
+                                                        Text(
+                                                            state.riwayat
+                                                                .transaction_status,
                                                             style: GoogleFonts
                                                                 .nunito(
                                                               textStyle:
@@ -230,39 +241,50 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                 )
               ],
             ),
-            bottomNavigationBar: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Button(
-                      onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) =>
-                        //           KonfirPembayaran(
-                        //               harga: state
-                        //                       .produk[
-                        //                           0]
-                        //                       .price +
-                        //                   2500,
-                        //               product_id:
-                        //                   state
-                        //                       .produk[
-                        //                           0]
-                        //                       .id,
-                        //               notes: ""),
-                        //     ));
-                      },
-                      "Beli Lagi",
-                      backgroundColor: Primary50,
-                      width: 151,
-                      height: 48,
-                    ),
-                  ],
-                )),
+            bottomNavigationBar: BlocProvider(
+              create: (context) =>
+                  sl<RiwayatBloc>()..add(RiwayatDetailInisiate(widget.id)),
+              child: BlocBuilder<RiwayatBloc, RiwayatState>(
+                builder: (context, state) {
+                  return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Button(
+                            onTap: () {
+                              if (state is RiwayatLoadedID) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => KonfirPembayaran(
+                                      harga: state.riwayat.amount + 2500,
+                                      product_id: state.riwayat.product_id,
+                                      notes: "",
+                                    ),
+                                  ),
+                                );
+                              }
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => KonfirPembayaran(
+                              //           harga: state.produk[0].price + 2500,
+                              //           product_id: state.produk[0].id,
+                              //           notes: ""),
+                              //     ));
+                            },
+                            "Beli Lagi",
+                            backgroundColor: Primary50,
+                            width: 151,
+                            height: 48,
+                          )
+                        ],
+                      ));
+                },
+              ),
+            ),
           ),
         ));
   }

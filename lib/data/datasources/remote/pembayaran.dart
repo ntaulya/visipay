@@ -17,7 +17,7 @@ class PembayaranRemoteDatasourcesImpl extends PembayaranRemoteDatasources {
     var response = await ApiRequest(
       method: API_METHODS.POST,
       path: "/api/transaction",
-      payloadJson: {"product_id": product_id, "promo_id": promo_id, "notes": notes},
+      payloadJson: {"product_id": product_id, "promo_id": promo_id.isEmpty?null:promo_id, "notes": notes},
     );
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {

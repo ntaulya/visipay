@@ -12,7 +12,8 @@ class CardPulsa extends StatefulWidget {
   final int harga;
   final String product_id;
   final String notes;
-  const CardPulsa({required this.harga, required this.product_id, required this.notes});
+  final String no_hp;
+  const CardPulsa({required this.harga, required this.product_id, required this.notes, required this.no_hp});
 
   @override
   State<CardPulsa> createState() => _CardPulsaState();
@@ -51,7 +52,7 @@ class _CardPulsaState extends State<CardPulsa> {
                                 fontWeight: FontWeight.w500,
                                 color: Text1,
                               )),
-                          Text('123456789',
+                          Text(widget.no_hp.toString(),
                               style: GoogleFonts.nunito(
                                 textStyle: Nunito_15px,
                                 fontWeight: FontWeight.w600,
@@ -155,7 +156,7 @@ class _CardPulsaState extends State<CardPulsa> {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            "Ubah",
+                            "Batal",
                             backgroundColor: Primary50,
                             width: 151,
                             height: 48,

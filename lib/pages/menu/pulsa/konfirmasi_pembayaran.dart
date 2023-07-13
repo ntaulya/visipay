@@ -6,6 +6,7 @@ import 'package:visipay/bloc/pembayaran/pembayaran_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/data/model/promo.dart';
+import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
@@ -15,7 +16,11 @@ import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
 class KonfirPembayaran extends StatefulWidget {
-  const KonfirPembayaran({super.key, required this.harga, required this.product_id, required this.notes});
+  const KonfirPembayaran(
+      {super.key,
+      required this.harga,
+      required this.product_id,
+      required this.notes});
   final int harga;
   final String notes;
   final String product_id;
@@ -39,11 +44,8 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Home(),
-                  ));
+              Navigator.pop(context);
+              Navigator.pop(context);
             },
           ),
           title: Text("Konfirmasi Pembayaran",
@@ -79,7 +81,7 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                           ),
                         ),
                         Text(
-                          widget.harga.toString(),
+                          widget.harga.toRupiahWithSymbol,
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
@@ -146,7 +148,7 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                               print(state);
                               if (state is GetWalletLoaded) {
                                 return Text(
-                                  state.wallet.balance.toString(),
+                                  state.wallet.balance.toRupiahWithSymbol,
                                   style: GoogleFonts.nunito(
                                       textStyle: Nunito_17px,
                                       fontWeight: FontWeight.w600,
@@ -297,13 +299,11 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                           ),
                         ),
                         Text(
-                          'Rp' +
-                              (widget.harga -
-                                      (selectedPromo == null
-                                          ? 0
-                                          : widget.harga *
-                                              selectedPromo!.discount))
-                                  .toString(),
+                          (widget.harga -
+                                  (selectedPromo == null
+                                      ? 0
+                                      : widget.harga * selectedPromo!.discount))
+                              .toRupiahWithSymbol,
                           style: GoogleFonts.nunito(
                             textStyle: Nunito_15px,
                             fontWeight: FontWeight.w500,
@@ -327,12 +327,14 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                                 context.read<PembayaranBloc>().add(
                                     PembayaranInisiate(
                                         product_id: widget.product_id,
-                                        promo_id: selectedPromo==null?"":selectedPromo!.id,
+                                        promo_id: selectedPromo?.id ?? '',
                                         notes: widget.notes));
                               },
                             );
-                          } else if(state is PembayaranSuccess){
-                            Future.microtask(() => Navigator.of(context).push(MaterialPageRoute(builder: (_)=>StatusBerhasil())));
+                          } else if (state is PembayaranSuccess) {
+                            Future.microtask(() => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (_) => StatusBerhasil())));
                             return Container();
                           } else if (state is PembayaranError) {
                             return Button(
@@ -344,7 +346,9 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                                 context.read<PembayaranBloc>().add(
                                     PembayaranInisiate(
                                         product_id: widget.product_id,
-                                        promo_id: selectedPromo==null?"":selectedPromo!.id,
+                                        promo_id: selectedPromo == null
+                                            ? ""
+                                            : selectedPromo!.id,
                                         notes: widget.notes));
                               },
                             );

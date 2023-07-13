@@ -19,8 +19,15 @@ class ProdukBloc extends Bloc<ProdukEvent, ProdukState> {
             event.code, event.category, event.idPelanggan);
         final jwt = await getJWT();
         final claims = await getClaims(jwt ?? '');
-        emit(failureOrUser.fold(
-            (l) => ProdukError(l), (r) => ProdukListLoaded(r,claims["user"]["name"])));
+        emit(
+          failureOrUser.fold((l) => ProdukError(l), (r) {
+            r.sort((a,b)=>a.price-b.price);
+            return ProdukListLoaded(
+              r,
+              claims["user"]["name"],
+            );
+          }),
+        );
       }
       if (event is initProduk) {
         emit(ProdukLoading());

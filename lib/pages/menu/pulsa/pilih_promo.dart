@@ -27,7 +27,9 @@ class _PilihPromoState extends State<PilihPromo> {
     backgroundColor: Primary50,
     leading: IconButton(
       icon: Icon(Icons.arrow_back),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
     ),
     title: Text("Pilih Promo",
         style: GoogleFonts.nunito(
@@ -45,45 +47,7 @@ class _PilihPromoState extends State<PilihPromo> {
         if (state is PromoLoaded) {
           return Column(
             children: [
-              Card(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Voucher Bulan Mei',
-                            style: GoogleFonts.nunito(
-                              textStyle: Nunito_17px,
-                              fontWeight: FontWeight.w700,
-                              color: Text1,
-                            ),
-                          ),
-                          Text(
-                            'Lorem ipsum dolor sit amet consectetur. Convallis velit imperdiet volutpat massa vel ut mauris quisque.',
-                            style: GoogleFonts.nunito(
-                              textStyle: Nunito_15px,
-                              fontWeight: FontWeight.w500,
-                              color: Text1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Button(
-                      "Pilih",
-                      backgroundColor: Secondary50,
-                      width: 70,
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+              
               Expanded(
                 child: ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
