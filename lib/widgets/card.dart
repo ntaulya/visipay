@@ -7,8 +7,9 @@ import '../core/theme/textSize.dart';
 class CardButton extends StatelessWidget {
   final String? image;
   final String? text;
-  final Widget Function(BuildContext) route;
-  const CardButton({this.image, this.text, required this.route});
+  final Widget Function(BuildContext)? route;
+  final VoidCallback? onTap;
+  const CardButton({this.image, this.text, this.route, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +23,10 @@ class CardButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: InkWell(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: route));
+          onTap: onTap ?? () {
+            if (route != null) {
+              Navigator.push(context, MaterialPageRoute(builder: route!));
+            }
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -15,7 +15,7 @@ class Transaction_Method_Model extends Transaction_Method {
   factory Transaction_Method_Model.fromJson(Map<String, dynamic> json) {
     return Transaction_Method_Model(
       method_name: json['method_name'],
-      icon: json['icon'],
+      icon: "",
       instruction:json['instruction'],
       category:json['category'],
       status:json['status'],

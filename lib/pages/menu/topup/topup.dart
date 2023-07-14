@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/bloc/transaction_method/transaction_method_bloc.dart';
+import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/topup/VA_BCA.dart';
 import 'package:visipay/pages/menu/topup/VA_BNI.dart';
@@ -108,71 +111,47 @@ class _TopUpState extends State<TopUp> {
               SizedBox(
                 height: 8,
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CardButton(
-                        image: "assets/img/BCA.png",
-                        text: "BCA",
-                        route: (_) => VirtualAccount()),
-                    CardButton(
-                        image: "assets/img/BRI.png",
-                        text: "BRI",
-                        route: (_) => VirtualAccountBRI()),
-                  ],
+              BlocProvider(
+                create: (context) => sl<TransactionMethodBloc>()
+                  ..add(TransactionMethodListInisiate()),
+                child:
+                    BlocBuilder<TransactionMethodBloc, TransactionMethodState>(
+                  builder: (context, state) {
+                    if (state is TransactionMethodLoading) {
+                      return CircularProgressIndicator();
+                    } else if (state is TransactionMethodLoaded) {
+                      return Wrap(
+                          children: List<Widget>.from(
+                        state.items.map(
+                          (e) => CardButton(
+                            onTap: () {
+                              if (inputNominal.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            "Anda belum menginputkan nominal")));
+                                return;
+                              }
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => VirtualAccount(
+                                          data: e,
+                                          grossAmount:
+                                              int.parse(inputNominal))));
+                            },
+                            text: e.method_name,
+                            image: "assets/img/${e.method_name}.png",
+                          ),
+                        ),
+                      ));
+                    } else if (state is TransactionMethodError) {
+                      return Text(state.error_message);
+                    }
+                    return SizedBox();
+                  },
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: SizedBox(
-                  // width: 380,
-                  height: 150,
-                  width: double.infinity,
-                  child: Card(
-                    shadowColor: Colors.black,
-                    elevation: 1.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        if (inputNominal.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Anda belum menginputkan nominal",
-                                  style: Nunito_17px)));
-                          return;
-                        }
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VirtualAccountBNI()));
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/img/BNI.png",
-                            // width: 48,
-                            height: 48,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "BNI",
-                            style: GoogleFonts.nunito(
-                              textStyle: Nunito_21px,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              )
             ],
           ),
         ),

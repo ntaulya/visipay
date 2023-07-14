@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:visipay/bloc/cekTransaksi/cek_transaksi_bloc.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/router.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl<ProdukBloc>()),
+        BlocProvider(create: (context) => sl<CekTransaksiBloc>()),
       ],
       child: MaterialApp(
         // home: SplashScreen(),
