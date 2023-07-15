@@ -9,6 +9,8 @@ abstract class AuthRepositories {
   Future<Either<String, User>> login(String phone, String security_code);
   Future<Either<String, User>> register(String phone,String name, String email, String security_code);
   Future<Either<String, User>> finduser(String phone);
+  Future<Either<String, String>> sendOtp(String phone);
+  Future<Either<String, String>> verifyOtp(String phone, String otp);
 }
 
 class AuthRepositoriesImpl extends AuthRepositories{
@@ -41,6 +43,16 @@ class AuthRepositoriesImpl extends AuthRepositories{
   @override
   Future<Either<String, User>> finduser(String phone) async {
     return remoteDatasources.finduser(phone);
+  }
+  
+  @override
+  Future<Either<String, String>> sendOtp(String phone) {
+    return remoteDatasources.sendOtp(phone);
+  }
+  
+  @override
+  Future<Either<String, String>> verifyOtp(String phone, String otp) {
+    return remoteDatasources.verifyOtp(phone,otp);
   }
 }
 

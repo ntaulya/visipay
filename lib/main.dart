@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:visipay/bloc/cekTransaksi/cek_transaksi_bloc.dart';
 import 'package:visipay/bloc/editProfile/edit_profile_bloc.dart';
+import 'package:visipay/bloc/otp/otp_bloc.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
+import 'package:visipay/bloc/register/register_bloc.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/router.dart';
 import 'injection_container/di.dart' as di;
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<ProdukBloc>()),
         BlocProvider(create: (context) => sl<CekTransaksiBloc>()),
         BlocProvider(create: (context) => sl<EditProfileBloc>()),
+        BlocProvider(create: (context) => sl<RegisterBloc>()),
+        BlocProvider(create: (context) => sl<OtpBloc>()),
+        
       ],
       child: MaterialApp(
         // home: SplashScreen(),

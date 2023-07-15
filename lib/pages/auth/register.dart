@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/bloc/otp/otp_bloc.dart';
 import 'package:visipay/bloc/register/register_bloc.dart';
 import 'package:visipay/core/constant/routes.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
+import 'package:visipay/pages/auth/otp.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 
@@ -159,81 +161,41 @@ class _RegisterState extends State<Register> {
             ),
 
             // bottom bar dengan API
-            bottomNavigationBar: BlocProvider(
-              //bloc buat state management (tampilin ui bisa nampilin error, loading ataupun load data)
-              create: (context) => sl<RegisterBloc>(), //buat manggil eventnya
-              child: BlocBuilder<RegisterBloc, RegisterState>(
-                //buat nampilin widget
-                builder: (context, state) {
-                  //buat manggil
+            bottomNavigationBar: BlocListener<RegisterBloc, RegisterState>(
+                listener: (context, state) {
                   if (state is RegisterInitial) {
                     //registerinitial buat kalau event nya gak di trigger
-                    return Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Button(
-                        "Lanjutkan",
-                        onTap: () {
-                          //kalau ngetap tombolnya, akan ngetrigger event
-                          context.read<RegisterBloc>().add(RegisterFormSubmit(
-                              _phoneController.text,
-                              _nameController.text,
-                              _emailController.text,
-                              _pinController.text));
-                        },
-                      ),
-                    );
                   } else if (state is RegisterSuccess) {
                     //jika sukses
-                    Timer(Duration.zero, () {
-                      //navigator otomatis
-                      Navigator.of(context).pushNamed(RouteUrl.Home);
-                      // Navigator.push(
-                      //     context, //navigasi screen
-                      //     MaterialPageRoute(
-                      //       builder: (context) => Home(),
-                      //     ) //menampilkan home
-                      //     );
-                    });
-                    return Container();
+                    context.read<OtpBloc>().add(SendOtp(_phoneController.text));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return VerifyOtpPage(phone: _phoneController.text);
+                    },));
                     //kalau register gagal
                   } else if (state is RegisterError) {
-                    //jika sukses
-                    Timer(Duration.zero, () {
-                      //navigator otomatis
-                      // Navigator.of(context).pushNamed('/home');
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Anda Gagal Registrasi'),
-                          duration: Duration(seconds: 5),
-                        ),
-                      );
-                    });
-                    return Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Button(
-                        "Lanjutkan",
-                        onTap: () {
-                          //kalau ngetap tombolnya, akan ngetrigger event
-                          context.read<RegisterBloc>().add(RegisterFormSubmit(
-                              _phoneController.text,
-                              _nameController.text,
-                              _emailController.text,
-                              _pinController.text));
-                        },
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Anda Gagal Registrasi'),
+                        duration: Duration(seconds: 5),
                       ),
                     );
                   }
-                  //kalau state nya loading
-                  return Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    child: Button(
-                      "Lanjutkan",
-                      backgroundColor: Primary50.withOpacity(0.5),
-                    ),
-                  );
                 },
-              ),
-            ))
+                //buat nampilin widget
+                child: Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: Button(
+                    "Lanjutkan",
+                    onTap: () {
+                      //kalau ngetap tombolnya, akan ngetrigger event
+                      context.read<RegisterBloc>().add(RegisterFormSubmit(
+                          _phoneController.text,
+                          _nameController.text,
+                          _emailController.text,
+                          _pinController.text));
+                    },
+                  ),
+                )))
         // bottomNavigationBar: Container(
         //   padding: EdgeInsets.only(left: 16, right: 16, bottom: 30),
         //   // width: 380,

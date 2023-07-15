@@ -6,6 +6,7 @@ import 'package:visipay/core/constant/routes.dart';
 import 'package:visipay/core/helper/jwt.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/auth/login.dart';
+import 'package:visipay/pages/auth/otp.dart';
 import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/pdam/pdam.dart';

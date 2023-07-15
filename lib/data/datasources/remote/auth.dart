@@ -89,10 +89,12 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
   @override
   Future<Either<String, String>> sendOtp(String phone) async {
     var response = await ApiRequest(
+      apiUrl: "https://77abcafd-99e3-4064-8058-7f6ddd2fe4d4.mock.pstmn.io",
       method: API_METHODS.POST,
-      path: "/api/user/otp",
+      path: "/user/otp",
       payloadJson: {
-        "phone": phone,
+        "identifier": phone,
+        "otpChannel" : "sms"
       },
     );
     print(response.asRight().body);
@@ -106,10 +108,11 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
   @override
   Future<Either<String, String>> verifyOtp(String phone, String otp) async {
     var response = await ApiRequest(
+      apiUrl: "https://77abcafd-99e3-4064-8058-7f6ddd2fe4d4.mock.pstmn.io",
       method: API_METHODS.POST,
-      path: "/api/user/verify",
+      path: "/user/verify",
       payloadJson: {
-        "phone": phone,
+        "identifier" : phone,
         "otp": otp,
       },
     );
