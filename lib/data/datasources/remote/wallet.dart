@@ -13,6 +13,7 @@ import 'package:visipay/data/model/wallet_model.dart';
 abstract class WalletRemoteDatasources {
   Future<Either<String, Wallet>> getWallet();
   // Future<Either<String, Wallet>> updateWallet();
+  Future<Either<String, String>> createWallet();
 }
 
 class WalletRemoteDatasourcesImpl extends WalletRemoteDatasources {
@@ -27,6 +28,20 @@ class WalletRemoteDatasourcesImpl extends WalletRemoteDatasources {
       var body = json.decode(response.asRight().body);
       var data = WalletModel.fromJson(body['data']);
       return Future.value(Right(data));
+    } else {
+      return Future.value(Left(''));
+    }
+  }
+  
+  @override
+  Future<Either<String, String>> createWallet() async {
+    var response = await ApiRequest(
+      method: API_METHODS.POST,
+      path: "/api/wallet",
+    );
+    print(response.asRight().body);
+    if (response.asRight().statusCode == 200) {
+      return Future.value(Right("success create wallet"));
     } else {
       return Future.value(Left(''));
     }

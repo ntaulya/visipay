@@ -56,9 +56,9 @@ class _HomeState extends State<Home> {
                               color: Colors.white),
                         ),
                         BlocProvider(
-                          create: (context) =>
-                              sl<GetWalletBloc>()..add(GetWalletInisiate()),
+                          create: (context) => sl<GetWalletBloc>(),
                           child: BlocBuilder<GetWalletBloc, GetWalletState>(
+                            bloc: sl<GetWalletBloc>()..add(GetWalletInisiate()),
                             builder: (context, state) {
                               print(state);
                               if (state is GetWalletLoaded) {

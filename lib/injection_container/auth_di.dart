@@ -4,6 +4,7 @@ import 'package:visipay/bloc/page_navigation/page_navigation_bloc.dart';
 import 'package:visipay/data/datasources/remote/auth.dart';
 import 'package:visipay/data/repositories/auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:visipay/data/repositories/wallet.dart';
 
 import '../bloc/register/register_bloc.dart';
 
@@ -14,6 +15,7 @@ void initAuthFeatures(GetIt sl) {
         data: sl<AuthRepositories>(),
       ));
   sl.registerFactory<LoginBloc>(() => LoginBloc(
+        walletrepositories: sl<WalletRepositories>(),
         data: sl<AuthRepositories>(),
       ));
   sl.registerFactory<OtpBloc>(() => OtpBloc(

@@ -12,6 +12,7 @@ import 'package:visipay/data/model/wallet.dart';
 
 abstract class WalletRepositories {
   Future<Either<String, Wallet>> getWallet();
+  Future<Either<String, String>> createWallet();
 }
 
 
@@ -23,6 +24,11 @@ class WalletRepositoriesImpl extends WalletRepositories{
   @override
   Future<Either<String, Wallet>> getWallet() async {
     return remoteDatasources.getWallet();
+  }
+  
+  @override
+  Future<Either<String, String>> createWallet() {
+    return remoteDatasources.createWallet();
   }
   
 }

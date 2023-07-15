@@ -40,7 +40,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
               child: BlocConsumer<OtpBloc, OtpState>(
                 listener: (context, state) {
                   if (state is VerifyOtpSuccess) {
-                    Navigator.pushNamed(context, "/home");
+                    Navigator.pushNamed(context, "/login");
                   } else if (state is VerifyOtpError) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
