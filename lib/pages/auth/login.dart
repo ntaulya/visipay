@@ -52,8 +52,8 @@ class _LoginState extends State<Login> {
                     //text 1
                     Text(
                       'Masuk',
-                      style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.nunito(
+                          textStyle: Nunito_17px, fontWeight: FontWeight.bold),
                     ),
 
                     //container
@@ -62,8 +62,9 @@ class _LoginState extends State<Login> {
                     //text 2
                     Text(
                       'Masuk cuma butuh nomor HP aja.',
-                      style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                      style: GoogleFonts.nunito(
+                          textStyle: Nunito_17px,
+                          fontWeight: FontWeight.normal),
                     ),
 
                     SizedBox(height: 16),
@@ -112,27 +113,31 @@ class _LoginState extends State<Login> {
           //bottom bar
           bottomNavigationBar: BlocProvider(
             create: (context) => sl<LoginBloc>(),
-            child: BlocBuilder<LoginBloc, LoginState>(
+            child: BlocConsumer<LoginBloc, LoginState>(
+              listener: (context, state) {
+                if (state is userfound) {
+                  Navigator.of(context).pushNamed("/pin",
+                      arguments: {"phone": _phoneController.text});
+                }
+              },
               builder: (context, state) {
                 if (state is LoginInitial) {
                   return Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Button("Lanjutkan", onTap: () {
-                      context.read<LoginBloc>().add(finduser(_phoneController.text));
+                      context
+                          .read<LoginBloc>()
+                          .add(finduser(_phoneController.text));
                     }),
                   );
-                } else if (state is userfound) {
-                  Timer(Duration.zero, () {
-                    Navigator.of(context)
-                        .pushNamed("/pin", arguments: {"phone": _phoneController.text});
-                  });
-                  return Container();
                 } else if (state is LoginError) {
                   print("error");
                   return Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Button("Lanjutkan", onTap: () {
-                      context.read<LoginBloc>().add(finduser(_phoneController.text));
+                      context
+                          .read<LoginBloc>()
+                          .add(finduser(_phoneController.text));
                     }),
                   );
                 }

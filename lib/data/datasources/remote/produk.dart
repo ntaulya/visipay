@@ -8,19 +8,19 @@ import 'package:visipay/data/model/produk_model.dart';
 
 abstract class ProdukRemoteDatasources {
   Future<Either<String, List<Produk>>> getProdukList(
-      String code, String category, String idPelanggan);
+      String code, String category, {String ? idPelanggan, String ? phone_number});
 }
 
 class ProdukRemoteDatasourcesImpl extends ProdukRemoteDatasources {
   @override
   Future<Either<String, List<Produk>>> getProdukList(
-      String code, String category, String idPelanggan) async {
+      String code, String category, {String ? idPelanggan, String ? phone_number}) async {
     print(idPelanggan);
     print(category);
     var response = await ApiRequest(
       method: API_METHODS.GET,
       path: "/api/products",
-      payloadQparams: {"code": code, "category": category, "id_pelanggan": idPelanggan},
+      payloadQparams: {"code": code, "category": category, "id_pelanggan": idPelanggan, "phone_number" : phone_number},
     );
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {

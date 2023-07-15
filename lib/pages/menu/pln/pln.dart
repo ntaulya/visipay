@@ -227,11 +227,10 @@ class _PlnState extends State<Pln> {
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return CardToken(
-                                    harga: state.produk[index].price,
-                                    heading:
-                                        "Token ${state.produk[index].price}",
-                                        idpelanggan: idpelangganController.text,
-                                        name: state.name, product_id: state.produk[index].id, notes: 'Pembayaran '+state.produk[index].name,
+                                    produk: state.produk[index], 
+                                    idpelanggan: inputNumber, 
+                                    name: state.name, 
+                                    notes: "Pembayaran",
                                   );
                                 },
                                 itemCount: state.produk.length,

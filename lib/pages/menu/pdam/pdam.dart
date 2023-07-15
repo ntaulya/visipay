@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
@@ -271,7 +272,9 @@ class _PdamState extends State<Pdam> {
                                               fontWeight: FontWeight.w500,
                                               color: Text1,
                                             )),
-                                        Text("Rp" + state.produk[0].price.toString(),
+                                        Text(
+                                            state.produk[0].price
+                                                .toRupiahWithSymbol,
                                             style: GoogleFonts.nunito(
                                               textStyle: Nunito_15px,
                                               fontWeight: FontWeight.w600,
@@ -290,7 +293,7 @@ class _PdamState extends State<Pdam> {
                                               fontWeight: FontWeight.w500,
                                               color: Text1,
                                             )),
-                                        Text('Rp 2500',
+                                        Text(2500.toRupiahWithSymbol,
                                             style: GoogleFonts.nunito(
                                               textStyle: Nunito_15px,
                                               fontWeight: FontWeight.w600,
@@ -315,8 +318,8 @@ class _PdamState extends State<Pdam> {
                                               color: Text1,
                                             )),
                                         Text(
-                                            "Rp " +
-                                                (state.produk[0].price+2500).toString(),
+                                            (state.produk[0].price + 2500)
+                                                .toRupiahWithSymbol,
                                             style: GoogleFonts.nunito(
                                               textStyle: Nunito_15px,
                                               fontWeight: FontWeight.w700,
@@ -346,9 +349,11 @@ class _PdamState extends State<Pdam> {
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       KonfirPembayaran(
-                                                          harga: state.produk[0].price+2500,
-                                                          product_id:
-                                                              state.produk[0].id,
+                                                          harga: state.produk[0]
+                                                                  .price +
+                                                              2500,
+                                                          product_id: state
+                                                              .produk[0].id,
                                                           notes: ""),
                                                 ));
                                           },

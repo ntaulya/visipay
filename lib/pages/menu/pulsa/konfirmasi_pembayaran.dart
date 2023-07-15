@@ -5,6 +5,7 @@ import 'package:visipay/bloc/get_wallet/get_wallet_bloc.dart';
 import 'package:visipay/bloc/pembayaran/pembayaran_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
+import 'package:visipay/data/model/produk.dart';
 import 'package:visipay/data/model/promo.dart';
 import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
@@ -16,11 +17,12 @@ import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
 class KonfirPembayaran extends StatefulWidget {
-  const KonfirPembayaran(
-      {super.key,
-      required this.harga,
-      required this.product_id,
-      required this.notes});
+  const KonfirPembayaran({
+    super.key,
+    required this.harga,
+    required this.product_id,
+    required this.notes,
+  });
   final int harga;
   final String notes;
   final String product_id;
@@ -314,8 +316,14 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                     ),
                     BlocProvider(
                         create: (context) => sl<PembayaranBloc>(),
-                        child: BlocBuilder<PembayaranBloc, PembayaranState>(
-                            builder: (context, state) {
+                        child: BlocConsumer<PembayaranBloc, PembayaranState>(
+                            listener: (context, state) {
+                          if (state is PembayaranSuccess) {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (_) => StatusBerhasil()));
+                          }
+                        }, builder: (context, state) {
                           print(state);
                           if (state is PembayaranInitial) {
                             return Button(
@@ -331,11 +339,6 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                                         notes: widget.notes));
                               },
                             );
-                          } else if (state is PembayaranSuccess) {
-                            Future.microtask(() => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (_) => StatusBerhasil())));
-                            return Container();
                           } else if (state is PembayaranError) {
                             return Button(
                               "Bayar",

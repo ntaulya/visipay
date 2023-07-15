@@ -17,7 +17,3 @@ class GetProfileError extends GetProfileState {
 
   GetProfileError(this.error_message);
 }
-
-class EditProfileSuccess extends GetProfileState {
-  
-}

@@ -23,11 +23,7 @@ class GetProfileBloc extends Bloc<GetProfileEvent, GetProfileState> {
         // }
         emit(failureOrUser.fold((err_message) => GetProfileError(err_message), (user) => GetProfileLoaded(user)));
       }
-      if (event is EditProfileInisiate) {
-        emit(GetProfileLoading());
-        final failureOrUser = await data.editProfile(event.name,event.email);
-        emit(failureOrUser.fold((err_message) => GetProfileError(err_message), (user) => GetProfileLoaded(user)));
-      }
+      
     });
   }
 }

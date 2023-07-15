@@ -20,6 +20,12 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("coba");
+  }
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
@@ -148,7 +154,7 @@ class _MyProfileState extends State<MyProfile> {
                       "Log Out",
                       onTap: () async {
                         await saveJWT("");
-                        Navigator.of(context).pushNamed('onboarding');
+                        Navigator.of(context).pushReplacementNamed('/onboarding');
                       },
                       backgroundColor: Color(0xffD66161),
                       width: 286,

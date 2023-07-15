@@ -7,18 +7,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/data/model/produk.dart';
+import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 import 'package:visipay/widgets/button.dart';
 
 class CardToken extends StatefulWidget {
-  final String? heading;
-  final int harga;
+  final Produk produk;
   final String name;
   final String idpelanggan;
-  final String product_id;
   final String notes;
-  const CardToken({this.heading, required this.harga, required this.name, required this.idpelanggan, required this.product_id, required this.notes});
+  const CardToken({required this.name, required this.idpelanggan, required this.notes, required this.produk});
 
   @override
   State<CardToken> createState() => _CardTokenState();
@@ -130,7 +129,7 @@ class _CardTokenState extends State<CardToken> {
                                     fontWeight: FontWeight.w500,
                                     color: Text1,
                                   )),
-                              Text("Rp ${widget.harga}",
+                              Text(widget.produk.price.toRupiahWithSymbol,
                                   style: GoogleFonts.nunito(
                                     textStyle: Nunito_15px,
                                     fontWeight: FontWeight.w600,
@@ -148,7 +147,7 @@ class _CardTokenState extends State<CardToken> {
                                     fontWeight: FontWeight.w500,
                                     color: Text1,
                                   )),
-                              Text('Rp 2500',
+                              Text(2500.toRupiahWithSymbol,
                                   style: GoogleFonts.nunito(
                                     textStyle: Nunito_15px,
                                     fontWeight: FontWeight.w600,
@@ -171,7 +170,7 @@ class _CardTokenState extends State<CardToken> {
                                     fontWeight: FontWeight.w700,
                                     color: Text1,
                                   )),
-                              Text("Rp " + (widget.harga+ 2500).toString(),
+                              Text((widget.produk.price+ 2500).toRupiahWithSymbol,
                                   style: GoogleFonts.nunito(
                                     textStyle: Nunito_15px,
                                     fontWeight: FontWeight.w700,
@@ -198,7 +197,7 @@ class _CardTokenState extends State<CardToken> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => KonfirPembayaran(harga: widget.harga + 2500, product_id: widget.product_id, notes: widget.notes),
+                                        builder: (context) => KonfirPembayaran(harga: widget.produk.price + 2500, product_id: widget.produk.id, notes: widget.notes),
                                       ));
                                 },
                                 "Konfirmasi",
@@ -218,7 +217,7 @@ class _CardTokenState extends State<CardToken> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.heading!,
+                widget.name,
                 style: GoogleFonts.nunito(
                     textStyle: Nunito_25px,
                     fontWeight: FontWeight.w700,
@@ -228,7 +227,7 @@ class _CardTokenState extends State<CardToken> {
                 height: 8,
               ),
               Text(
-                "Harga Rp " + (widget.harga).toString(),
+                "Harga " + (widget.produk.price).toRupiahWithSymbol,
                 style: GoogleFonts.nunito(
                   textStyle: Nunito_17px,
                   fontWeight: FontWeight.w500,

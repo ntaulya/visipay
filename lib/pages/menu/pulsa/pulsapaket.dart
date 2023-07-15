@@ -26,10 +26,10 @@ class _PulsaPaketState extends State<PulsaPaket> {
 
   void onFieldSubmitted(String value) {
     setState(() {
-      inputNumber = value;
+      inputNumber = value.replaceFirst("0", "62");
     });
     blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
-        code: "", category: "Pulsa/Paket Data", idPelanggan: value));
+        code: "", category: "Pulsa", phone_number: inputNumber));
   }
 
   final TextEditingController __PulsaPaketController = TextEditingController();
@@ -100,6 +100,21 @@ class _PulsaPaketState extends State<PulsaPaket> {
                             style: TextStyle(color: Primary50)),
                       ),
                     ],
+                    onTap: (value) {
+                      if (value == 0) {
+                        blocContext.read<ProdukBloc>().add(
+                            GetProdukListInisiate(
+                                code: "",
+                                category: "Pulsa",
+                                phone_number: inputNumber));
+                      } else if (value == 1) {
+                        blocContext.read<ProdukBloc>().add(
+                            GetProdukListInisiate(
+                                code: "",
+                                category: "Paket-Data",
+                                phone_number: inputNumber));
+                      }
+                    },
                   ),
                   Expanded(
                     child: BlocProvider(
@@ -110,14 +125,13 @@ class _PulsaPaketState extends State<PulsaPaket> {
                           blocContext = context;
                           if (state is ProdukListLoaded) {
                             return ListView.builder(
-                                
                                 itemCount: state.produk.length,
                                 itemBuilder: (context, index) {
                                   return CardPulsa(
-                                    harga: state.produk[index].price,
                                     notes: '',
-                                    product_id: state.produk[index].id,
                                     no_hp: inputNumber,
+                                    title: state.produk[index].name,
+                                    produk: state.produk[index],
                                   );
                                 });
                           } else {

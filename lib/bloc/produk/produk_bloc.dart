@@ -16,7 +16,7 @@ class ProdukBloc extends Bloc<ProdukEvent, ProdukState> {
       if (event is GetProdukListInisiate) {
         emit(ProdukLoading());
         final failureOrUser = await data.getProdukList(
-            event.code, event.category, event.idPelanggan);
+            event.code, event.category, idPelanggan: event.idPelanggan, phone_number: event.phone_number);
         final jwt = await getJWT();
         final claims = await getClaims(jwt ?? '');
         emit(
