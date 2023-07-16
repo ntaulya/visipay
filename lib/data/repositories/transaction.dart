@@ -10,6 +10,7 @@ abstract class TransactionRepositories {
   Future<Either<String, List<Transaction_Method>>> getTransactionMethodList();
   Future<Either<String, ChargeResponse>> topupEWallet(TopupPayloadModel data);
   Future<Either<String, ChargeResponse>> cekTransaksi(String id);
+  Future<Either<String, String>> cancelTransaction(String id);
 }
 
 class TransactionRepositoriesImpl extends TransactionRepositories {
@@ -31,6 +32,9 @@ class TransactionRepositoriesImpl extends TransactionRepositories {
   Future<Either<String, ChargeResponse>> cekTransaksi(String id) {
     return remoteDatasources.cekTransaksi(id);
   }
-
   
+  @override
+  Future<Either<String, String>> cancelTransaction(String id) {
+    return remoteDatasources.cancelTransaction(id);
+  }
 }

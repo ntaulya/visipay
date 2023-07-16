@@ -8,6 +8,7 @@ import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/data/model/topup_payload.dart';
 import 'package:visipay/data/model/topup_payload_model.dart';
 import 'package:visipay/data/model/transaction_method.dart';
+import 'package:visipay/data/repositories/transaction.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/pulsa/promo_terpilih.dart';
@@ -23,22 +24,53 @@ class VirtualAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: SafeArea(
-          child: BlocProvider(
-            create: (context) => sl<TopupEWalletBloc>()
-              ..add(
-                TopupEWalletInisiate(
-                  TopupPayloadModel(
-                    bankTransfer: BankTransfer(bank: data.method_name),
-                    notes: 'TopupEWallet',
-                    paymentType: 'bank_transfer',
-                    transactionDetails:
-                        TransactionDetailsModel(grossAmount: grossAmount),
-                  ),
-                ),
-              ),
+    return BlocProvider(
+      create: (context) => sl<TopupEWalletBloc>()
+        ..add(
+          TopupEWalletInisiate(
+            TopupPayloadModel(
+              bankTransfer: BankTransfer(bank: data.method_name),
+              notes: 'TopupEWallet',
+              paymentType: 'bank_transfer',
+              transactionDetails:
+                  TransactionDetailsModel(grossAmount: grossAmount),
+            ),
+          ),
+        ),
+      child: BlocBuilder<TopupEWalletBloc, TopupEWalletState>(
+        builder: (context, state) {
+          return WillPopScope(
+            onWillPop: () async {
+              final shouldPop = await showDialog<bool>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text(
+                        'Jika anda kembali, maka anda akan membatalkan transaksi'),
+                    actionsAlignment: MainAxisAlignment.spaceBetween,
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          if (state is TopupEWalletLoaded) {
+                            sl<TransactionRepositories>().cancelTransaction(
+                                state.data.midtrans.transactionId);
+                            Navigator.pop(context, true);
+                          }
+                        },
+                        child: const Text('Yes'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, false);
+                        },
+                        child: const Text('No'),
+                      ),
+                    ],
+                  );
+                },
+              );
+              return shouldPop!;
+            },
             child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Primary50,
@@ -47,8 +79,7 @@ class VirtualAccount extends StatelessWidget {
                   child: IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
+                      Navigator.maybePop(context);
                     },
                   ),
                 ),
@@ -87,39 +118,34 @@ class VirtualAccount extends StatelessWidget {
                   ]),
                 ),
                 SizedBox(height: 20),
-                BlocBuilder<TopupEWalletBloc, TopupEWalletState>(
-                  builder: (context, state) {
-                    if (state is TopupEWalletLoading) {
-                      return CircularProgressIndicator();
-                    } else if (state is TopupEWalletLoaded) {
-                      return Container(
-                        width: 328,
-                        height: 92,
-                        color: Color(0xffF1F6F9),
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("No Virtual Account",
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_15px,
-                                    fontWeight: FontWeight.w500,
-                                    color: Text1,
-                                  )),
-                              Text(state.data.midtrans.vaNumbers.first.vaNumber,
-                                  style: GoogleFonts.nunito(
-                                    textStyle: Nunito_21px,
-                                    fontWeight: FontWeight.w700,
-                                    color: Secondary50,
-                                  )),
-                            ]),
-                      );
-                    } else if (state is TopupEWalletError) {
-                      return Text(state.error_message);
-                    }
-                    return SizedBox();
-                  },
-                ),
+                if (state is TopupEWalletLoading) ...{
+                  CircularProgressIndicator(),
+                } else if (state is TopupEWalletLoaded) ...{
+                  Container(
+                    width: 328,
+                    height: 92,
+                    color: Color(0xffF1F6F9),
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("No Virtual Account",
+                              style: GoogleFonts.nunito(
+                                textStyle: Nunito_15px,
+                                fontWeight: FontWeight.w500,
+                                color: Text1,
+                              )),
+                          Text(state.data.midtrans.vaNumbers.first.vaNumber,
+                              style: GoogleFonts.nunito(
+                                textStyle: Nunito_21px,
+                                fontWeight: FontWeight.w700,
+                                color: Secondary50,
+                              )),
+                        ]),
+                  ),
+                } else if (state is TopupEWalletError) ...{
+                  Text(state.error_message),
+                },
                 SizedBox(height: 17),
                 Text(
                   "Tata Cara Top Up di " + data.method_name,
@@ -195,7 +221,9 @@ class VirtualAccount extends StatelessWidget {
                 },
               ),
             ),
-          ),
-        ));
+          );
+        },
+      ),
+    );
   }
 }

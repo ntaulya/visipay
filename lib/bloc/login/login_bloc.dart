@@ -20,18 +20,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         failureOrUser.fold((l) {
           emit(LoginError(l));
         }, (r) async {
-          walletrepositories.createWallet();
-          await Future.delayed(Duration(seconds: 2), () {
+          
+          
             emit(LoginSuccess());
-          });
-        });
-        failureOrUser.fold((l) {
-          emit(LoginError(l));
-        }, (r) async {
-          walletrepositories.createWallet();
-          await Future.delayed(Duration(seconds: 2)).whenComplete(() {
-            emit(LoginSuccess());
-          });
+          
         });
       }
       if (event is finduser) {

@@ -8,6 +8,7 @@ import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/data/repositories/wallet.dart';
 
 class Pin extends StatefulWidget {
   final String phone;
@@ -36,100 +37,47 @@ class _PinState extends State<Pin> {
             // SizedBox(height: 60,),
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: BlocProvider(
-                create: (context) => sl<LoginBloc>(),
-                child: BlocBuilder<LoginBloc, LoginState>(
-                  builder: (context, state) {
-                    print(state);
-                    if (state is LoginInitial) {
-                      return PinCodeTextField(
-                        onCompleted: (String pin) {
-                          context.read<LoginBloc>().add(LoginFormSubmit(widget.phone, pin));
-                        },
-                        appContext: context,
-                        length: 6,
-                        obscureText: false,
-                        animationType: AnimationType.fade,
-                        pinTheme: PinTheme(
-                            shape: PinCodeFieldShape.circle,
-                            borderRadius: BorderRadius.circular(5),
-                            fieldHeight: 40,
-                            fieldWidth: 40,
-                            inactiveColor: Colors.white,
-                            inactiveFillColor: Colors.white,
-                            activeFillColor: Colors.white,
-                            borderWidth: 0,
-                            selectedFillColor: Colors.white,
-                            activeColor: Colors.white,
-                            errorBorderColor: Colors.white),
-                        animationDuration: Duration(milliseconds: 300),
-                        enableActiveFill: true,
-                        controller: _pinController,
-                        onChanged: (String pin) {},
-                        keyboardType: TextInputType.number,
-                      );
-                    } else if (state is LoginSuccess) {
-                      Timer(Duration.zero, () {
-                        Navigator.of(context).pushReplacementNamed("/home");
-                      });
-                      return Container();
-                    } else if (state is LoginError) {
-                      return PinCodeTextField(
-                        onCompleted: (String pin) {
-                          context.read<LoginBloc>().add(LoginFormSubmit(widget.phone, pin));
-                        },
-                        appContext: context,
-                        length: 6,
-                        obscureText: false,
-                        animationType: AnimationType.fade,
-                        pinTheme: PinTheme(
-                            shape: PinCodeFieldShape.circle,
-                            borderRadius: BorderRadius.circular(5),
-                            fieldHeight: 40,
-                            fieldWidth: 40,
-                            inactiveColor: Colors.white,
-                            inactiveFillColor: Colors.white,
-                            activeFillColor: Colors.white,
-                            borderWidth: 0,
-                            selectedFillColor: Colors.white,
-                            activeColor: Colors.white,
-                            errorBorderColor: Colors.white),
-                        animationDuration: Duration(milliseconds: 300),
-                        enableActiveFill: true,
-                        controller: _pinController,
-                        onChanged: (String pin) {},
-                        keyboardType: TextInputType.number,
+              child: BlocListener<LoginBloc, LoginState>(
+                  listener: (context, state) async {
+                    
+                    if (state is LoginSuccess) {
+                      sl<WalletRepositories>().createWallet();
+
+                      await Future.delayed(const Duration(seconds: 3))
+                          .whenComplete(
+                        () =>
+                            Navigator.of(context).pushReplacementNamed("/home"),
                       );
                     }
-                    return PinCodeTextField(
-                      onCompleted: (String pin) {
-                        context.read<LoginBloc>().add(LoginFormSubmit(widget.phone, pin));
-                      },
-                      appContext: context,
-                      length: 6,
-                      obscureText: false,
-                      animationType: AnimationType.fade,
-                      pinTheme: PinTheme(
-                          shape: PinCodeFieldShape.circle,
-                          borderRadius: BorderRadius.circular(5),
-                          fieldHeight: 40,
-                          fieldWidth: 40,
-                          inactiveColor: Colors.white,
-                          inactiveFillColor: Colors.white,
-                          activeFillColor: Colors.white,
-                          borderWidth: 0,
-                          selectedFillColor: Colors.white,
-                          activeColor: Colors.white,
-                          errorBorderColor: Colors.white),
-                      animationDuration: Duration(milliseconds: 300),
-                      enableActiveFill: true,
-                      controller: _pinController,
-                      onChanged: (String pin) {},
-                      keyboardType: TextInputType.number,
-                    );
                   },
-                ),
-              ),
+                  child: PinCodeTextField(
+                    onCompleted: (String pin) {
+                      context.read<LoginBloc>().add(
+                            LoginFormSubmit(widget.phone, pin),
+                          );
+                    },
+                    appContext: context,
+                    length: 6,
+                    obscureText: false,
+                    animationType: AnimationType.fade,
+                    pinTheme: PinTheme(
+                        shape: PinCodeFieldShape.circle,
+                        borderRadius: BorderRadius.circular(5),
+                        fieldHeight: 40,
+                        fieldWidth: 40,
+                        inactiveColor: Colors.white,
+                        inactiveFillColor: Colors.white,
+                        activeFillColor: Colors.white,
+                        borderWidth: 0,
+                        selectedFillColor: Colors.white,
+                        activeColor: Colors.white,
+                        errorBorderColor: Colors.white),
+                    animationDuration: Duration(milliseconds: 300),
+                    enableActiveFill: true,
+                    controller: _pinController,
+                    onChanged: (String pin) {},
+                    keyboardType: TextInputType.number,
+                  )),
             )
           ],
         ),

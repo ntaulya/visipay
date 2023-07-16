@@ -9,6 +9,7 @@ import 'package:visipay/bloc/register/register_bloc.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/router.dart';
 import 'injection_container/di.dart' as di;
+import 'package:visipay/bloc/login/login_bloc.dart';
 
 void main() async {
   await di.init();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<EditProfileBloc>()),
         BlocProvider(create: (context) => sl<RegisterBloc>()),
         BlocProvider(create: (context) => sl<OtpBloc>()),
+        BlocProvider(create: (context) => sl<LoginBloc>()),
         
       ],
       child: MaterialApp(

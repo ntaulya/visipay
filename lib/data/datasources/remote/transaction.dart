@@ -16,6 +16,7 @@ abstract class TransactionRemoteDatasources {
   Future<Either<String, List<Transaction_Method>>> getTransactionMethodList();
   Future<Either<String, ChargeResponse>> topupEWallet(TopupPayloadModel data);
   Future<Either<String, ChargeResponse>> cekTransaksi(String id);
+  Future<Either<String, String>> cancelTransaction(String id);
 }
 
 class TransactionRemoteDatasourcesImpl extends TransactionRemoteDatasources {
@@ -63,6 +64,22 @@ class TransactionRemoteDatasourcesImpl extends TransactionRemoteDatasources {
     if (response.asRight().statusCode == 200) {
       var body = json.decode(response.asRight().body);
       return Future.value(Right(ChargeResponseModel.fromJson(body)));
+    } else {
+      return Future.value(Left(''));
+    }
+  }
+  
+  @override
+  Future<Either<String, String>> cancelTransaction(String id) async {
+    var response = await ApiRequest(
+      method: API_METHODS.POST,
+      path: "/api/transaction/cancel",
+      payloadQparams: {"transaction_id": id},
+    );
+    print(response.asRight().body);
+    if (response.asRight().statusCode == 200) {
+      var body = json.decode(response.asRight().body);
+      return Future.value(Right(''));
     } else {
       return Future.value(Left(''));
     }
