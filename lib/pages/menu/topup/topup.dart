@@ -12,6 +12,7 @@ import 'package:visipay/pages/menu/topup/VA_BCA.dart';
 import 'package:visipay/pages/menu/topup/VA_BNI.dart';
 import 'package:visipay/pages/menu/topup/VA_BRI.dart';
 import 'package:visipay/widgets/card.dart';
+import 'package:visipay/widgets/cardTopUp.dart';
 import '../../../core/theme/palette.dart';
 import '../../../core/theme/textSize.dart';
 
@@ -25,6 +26,7 @@ class TopUp extends StatefulWidget {
 class _TopUpState extends State<TopUp> {
   late BuildContext blocContext;
   String inputNominal = "";
+  final TextEditingController nominalController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +73,68 @@ class _TopUpState extends State<TopUp> {
               SizedBox(
                 height: 8,
               ),
+              Container (
+                padding: EdgeInsets.all(16),
+                height: 280,
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: Row(
+                      children: [
+                        CardTopUp(
+                          nominal: 20000,
+                          controller: nominalController,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        CardTopUp(
+                          nominal: 50000,
+                          controller: nominalController,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        CardTopUp(
+                          nominal: 100000,
+                          controller: nominalController,
+                        ),
+                      ],
+                    )),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Expanded(
+                        child: Row(
+                      children: [
+                        CardTopUp(
+                          nominal: 200000,
+                          controller: nominalController,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        CardTopUp(
+                          nominal: 300000,
+                          controller: nominalController,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        CardTopUp(
+                          nominal: 500000,
+                          controller: nominalController,
+                        )
+                      ],
+                    )),
+                  ],
+                ),
+              ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: TextFormField(
                   keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    setState(() {
-                      inputNominal = value;
-                    });
-                  },
+                  controller: nominalController,
                   decoration: InputDecoration(
                     prefixText: "Rp. ",
                     // labelText: 'Username',
@@ -125,7 +180,7 @@ class _TopUpState extends State<TopUp> {
                         state.items.map(
                           (e) => CardButton(
                             onTap: () {
-                              if (inputNominal.isEmpty) {
+                              if (nominalController.text.isEmpty) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text(
@@ -137,8 +192,8 @@ class _TopUpState extends State<TopUp> {
                                   MaterialPageRoute(
                                       builder: (context) => VirtualAccount(
                                           data: e,
-                                          grossAmount:
-                                              int.parse(inputNominal))));
+                                          grossAmount: int.parse(
+                                              nominalController.text))));
                             },
                             text: e.method_name,
                             image: "assets/img/${e.method_name}.png",

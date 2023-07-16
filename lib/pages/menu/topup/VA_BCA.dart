@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/cekTransaksi/cek_transaksi_bloc.dart';
@@ -18,6 +19,15 @@ import 'package:visipay/widgets/button.dart';
 class VirtualAccount extends StatelessWidget {
   final Transaction_Method data;
   final int grossAmount;
+
+  void _copyTextToClipboard(BuildContext context, String noVA) {
+    Clipboard.setData(ClipboardData(text: noVA));
+
+    final snackBar = SnackBar(
+      content: Text('nomor VA berhasil disalin'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   const VirtualAccount(
       {super.key, required this.data, required this.grossAmount});
@@ -54,8 +64,8 @@ class VirtualAccount extends StatelessWidget {
                           if (state is TopupEWalletLoaded) {
                             sl<TransactionRepositories>().cancelTransaction(
                                 state.data.midtrans.transactionId);
-                            Navigator.pop(context, true);
                           }
+                          Navigator.pop(context, true);
                         },
                         child: const Text('Yes'),
                       ),
@@ -123,7 +133,6 @@ class VirtualAccount extends StatelessWidget {
                 } else if (state is TopupEWalletLoaded) ...{
                   Container(
                     width: 328,
-                    height: 92,
                     color: Color(0xffF1F6F9),
                     padding: EdgeInsets.all(16.0),
                     child: Column(
@@ -135,12 +144,34 @@ class VirtualAccount extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 color: Text1,
                               )),
-                          Text(state.data.midtrans.vaNumbers.first.vaNumber,
-                              style: GoogleFonts.nunito(
-                                textStyle: Nunito_21px,
-                                fontWeight: FontWeight.w700,
-                                color: Secondary50,
-                              )),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(state.data.midtrans.vaNumbers.first.vaNumber,
+                                  style: GoogleFonts.nunito(
+                                    textStyle: Nunito_21px,
+                                    fontWeight: FontWeight.w700,
+                                    color: Secondary50,
+                                  )),
+                              Semantics(
+                                label: "Salin nomor",
+                                hint: "tekan untuk menyalin nomor Virtual Akun",
+                                child: GestureDetector(
+                                  excludeFromSemantics: true,
+                                  onTap: () {
+                                    _copyTextToClipboard(
+                                        context,
+                                        state.data.midtrans.vaNumbers.first
+                                            .vaNumber);
+                                    HapticFeedback.heavyImpact();
+                                    // AccessibilityEventAnnouncement('Tombol berhasil di klik');
+                                    // announce('Tombol berhasil di klik');
+                                  },
+                                  child: Icon(Icons.copy),
+                                ),
+                              ),
+                            ],
+                          ),
                         ]),
                   ),
                 } else if (state is TopupEWalletError) ...{
