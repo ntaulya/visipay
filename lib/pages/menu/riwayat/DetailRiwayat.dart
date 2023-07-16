@@ -87,7 +87,8 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                               .center,
                                                       children: [
                                                         Text(
-                                                          state.riwayat.notes!,
+                                                          state.riwayat.notes ??
+                                                              "",
                                                           style: GoogleFonts
                                                               .nunito(
                                                             textStyle:
@@ -252,9 +253,10 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Button(
-                            onTap: () {
-                              if (state is RiwayatLoadedID) {
+                          if (state is RiwayatLoadedID &&
+                              state.riwayat.transaction_status == "done") ...[
+                            Button(
+                              onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -265,21 +267,21 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                     ),
                                   ),
                                 );
-                              }
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => KonfirPembayaran(
-                              //           harga: state.produk[0].price + 2500,
-                              //           product_id: state.produk[0].id,
-                              //           notes: ""),
-                              //     ));
-                            },
-                            "Beli Lagi",
-                            backgroundColor: Primary50,
-                            width: 151,
-                            height: 48,
-                          )
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //       builder: (context) => KonfirPembayaran(
+                                //           harga: state.produk[0].price + 2500,
+                                //           product_id: state.produk[0].id,
+                                //           notes: ""),
+                                //     ));
+                              },
+                              "Beli Lagi",
+                              backgroundColor: Primary50,
+                              width: 151,
+                              height: 48,
+                            )
+                          ]
                         ],
                       ));
                 },

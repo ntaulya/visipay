@@ -61,7 +61,6 @@ class _RiwayatState extends State<Riwayat> {
                         })
                     .toList();
                 return ListView.builder(
-                    
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       return Column(
@@ -96,6 +95,8 @@ class _RiwayatState extends State<Riwayat> {
                                             ));
                                           },
                                           child: Container(
+                                            width: double.maxFinite,
+                                            color: Colors.white,
                                             padding: EdgeInsets.symmetric(
                                               horizontal: 16,
                                               vertical: 16,
@@ -141,7 +142,7 @@ class _RiwayatState extends State<Riwayat> {
                                                           ),
                                                         ),
                                                         Text(
-                                                          'Pukul ${DateFormat.Hms().format(e.createdAt)}',
+                                                          'Pukul ${DateFormat.Hms().format(e.createdAt.toLocal())}',
                                                           style: GoogleFonts
                                                               .nunito(
                                                             textStyle:
