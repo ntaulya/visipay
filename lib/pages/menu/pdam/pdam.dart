@@ -1,6 +1,8 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:visipay/bloc/riwayat/riwayat_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/extention/currency_extention.dart';
@@ -91,84 +93,110 @@ class _PdamState extends State<Pdam> {
               SizedBox(
                 height: 16,
               ),
-              Container(
-                // color: Colors.green,
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 16),
-                child: Text(
-                  "Transaksi Terakhir",
-                  textAlign: TextAlign.left,
-                  style: GoogleFonts.nunito(
-                      textStyle: Nunito_21px, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                padding:
-                    EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
-                child: SizedBox(
-                  // width: 380,
-                  height: 76,
-                  child: Card(
-                    shadowColor: Colors.black,
-                    elevation: 1.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()));
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset(
-                                  "assets/icon/History.png",
-                                  width: 34,
-                                  height: 34,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "PDAM",
-                                      style: GoogleFonts.nunito(
-                                        textStyle: Nunito_15px,
-                                        fontWeight: FontWeight.w600,
+              BlocBuilder<RiwayatBloc, RiwayatState>(
+                bloc: sl<RiwayatBloc>()
+                  ..add(RiwayatListInisiate(category: "PDAM")),
+                builder: (context, state) {
+                  if (state is RiwayatLoaded) {
+                    final data = state.riwayat.first;
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Transaksi Terakhir",
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.nunito(
+                                textStyle: Nunito_21px,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            // width: 380,
+                            height: 76,
+                            child: Card(
+                              shadowColor: Colors.black,
+                              elevation: 1.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => KonfirPembayaran(
+                                        harga: data.amount + 2500,
+                                        product_id: data.transactionProduct.id,
+                                        notes: "PDAM",
                                       ),
                                     ),
-                                    Text(
-                                      "09 Maret 2021, 22.10",
-                                      style: GoogleFonts.nunito(
-                                          textStyle: Nunito_13px,
-                                          fontWeight: FontWeight.normal),
-                                    )
-                                  ],
-                                )
-                              ],
+                                  );
+                                },
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            "assets/icon/History.png",
+                                            width: 34,
+                                            height: 34,
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "PDAM",
+                                                style: GoogleFonts.nunito(
+                                                  textStyle: Nunito_15px,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                DateFormat("dd MMM yyyy H:m")
+                                                    .format(
+                                                        data.createdAt.toLocal()),
+                                                style: GoogleFonts.nunito(
+                                                    textStyle: Nunito_13px,
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Text(
+                                        "Beli Lagi",
+                                        style: GoogleFonts.nunito(
+                                            textStyle: Nunito_15px,
+                                            fontWeight: FontWeight.bold,
+                                            color: Primary50),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                            Text(
-                              "Beli Lagi",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.bold,
-                                  color: Primary50),
-                            )
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                ),
+                    );
+                  } else {
+                    return SizedBox();
+                  }
+                },
               ),
               Expanded(
                 child: BlocConsumer<ProdukBloc, ProdukState>(

@@ -14,10 +14,14 @@ abstract class RiwayatRemoteDatasources {
 class RiwayatRemoteDatasourcesImpl extends RiwayatRemoteDatasources {
   @override
   Future<Either<String, List<Riwayat>>> getRiwayatList({String ? category}) async {
+    Map<String, dynamic>queryparam = {"limit":"10","page":"1"};
+    if (category != null) {
+      queryparam.addAll({"category" : category});
+    }
     var response = await ApiRequest(
       method: API_METHODS.GET,
       path: "/api/transactions",
-      payloadQparams: {"limit":"10","page":"1","category" : "category"},
+      payloadQparams: queryparam,
     );
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {

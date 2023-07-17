@@ -1,30 +1,97 @@
 class Riwayat {
-  String id;
-  String user_id;
-  String wallet_id;
-  String transaction_method_id;
-  String product_id;
-  String promo_id;
-  int amount;
-  String? notes;
-  String transaction_type;
-  String transaction_status;
-  DateTime createdAt;
+  final String id;
+  final String userId;
+  final String walletId;
+  final String transactionMethodId;
+  final String productId;
+  final dynamic promoId;
+  final int amount;
+  final dynamic notes;
+  final String transactionType;
+  final String transactionStatus;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final UserTransaction userTransaction;
+  final WalletTransaction walletTransaction;
+  final TransactionMethod transactionMethod;
+  final TransactionProduct transactionProduct;
+  final dynamic transactionDiscount;
 
   Riwayat({
     required this.id,
-    required this.user_id,
-    required this.wallet_id,
-    required this.transaction_method_id,
-    required this.product_id,
-    required this.promo_id,
+    required this.userId,
+    required this.walletId,
+    required this.transactionMethodId,
+    required this.productId,
+    this.promoId,
     required this.amount,
-    required this.notes,
-    required this.transaction_type,
-    required this.transaction_status,
+    this.notes,
+    required this.transactionType,
+    required this.transactionStatus,
     required this.createdAt,
+    required this.updatedAt,
+    required this.userTransaction,
+    required this.walletTransaction,
+    required this.transactionMethod,
+    required this.transactionProduct,
+    this.transactionDiscount,
   });
 }
 
-enum TransactionType { debit, credit }
-enum TransactionStatus { pending, done, failed }
+class TransactionMethod {
+  final String id;
+  final String methodName;
+  final dynamic instruction;
+  final String category;
+  final bool status;
+
+  TransactionMethod({
+    required this.id,
+    required this.methodName,
+    this.instruction,
+    required this.category,
+    required this.status,
+  });
+}
+
+class TransactionProduct {
+  final String id;
+  final String name;
+  final String category;
+  final String code;
+  final int price;
+
+  TransactionProduct({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.code,
+    required this.price,
+  });
+}
+
+class UserTransaction {
+  final String id;
+  final String name;
+  final String phone;
+  final String email;
+
+  UserTransaction({
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.email,
+  });
+}
+
+class WalletTransaction {
+  final String id;
+  final String userId;
+  final int balance;
+
+  WalletTransaction({
+    required this.id,
+    required this.userId,
+    required this.balance,
+  });
+}

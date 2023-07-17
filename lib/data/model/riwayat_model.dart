@@ -1,47 +1,132 @@
+// To parse this JSON data, do
+//
+//     final riwayatModel = riwayatModelFromJson(jsonString);
+
+import 'dart:convert';
+
 import 'package:visipay/data/model/riwayat.dart';
 
 class RiwayatModel extends Riwayat {
   RiwayatModel({
-    required super.user_id,
-    required super.wallet_id,
-    required super.transaction_method_id,
-    required super.product_id,
-    required super.promo_id,
-    required super.amount,
+    super.promoId,
     super.notes,
-    required super.transaction_type,
-    required super.transaction_status,
+    super.transactionDiscount,
     required super.id,
+    required super.userId,
+    required super.walletId,
+    required super.transactionMethodId,
+    required super.productId,
+    required super.amount,
+    required super.transactionType,
+    required super.transactionStatus,
     required super.createdAt,
+    required super.updatedAt,
+    required super.userTransaction,
+    required super.walletTransaction,
+    required super.transactionMethod,
+    required super.transactionProduct,
   });
-  Map<String, dynamic> toJson() {
-    return {
-      'user_id': user_id,
-      'wallet_id': wallet_id,
-      'transaction_method_id' : transaction_method_id,
-      'product_id' : product_id,
-      'promo_id' : promo_id,
-      'amount': amount,
-      'notes': notes,
-      'transaction_type': transaction_type,
-      'transaction_status': transaction_status,
-      'createdAt': createdAt,
-    };
-  }
 
-  factory RiwayatModel.fromJson(Map<String, dynamic> json) {
-    return RiwayatModel(
-      user_id: json['user_id'],
-      wallet_id: json['wallet_id'],
-      transaction_method_id: json['transaction_method_id'],
-      product_id: json['product_id'] ?? "",
-      promo_id: json['promo_id'] ?? "",
-      amount: json['amount'],
-      notes: json['notes'],
-      transaction_type: json['transaction_type'],
-      transaction_status: json['transaction_status'],
-      id: json['id'],
-      createdAt: DateTime.parse(json['createdAt']),
-    );
-  }
+  factory RiwayatModel.fromRawJson(String str) =>
+      RiwayatModel.fromJson(json.decode(str));
+
+  factory RiwayatModel.fromJson(Map<String, dynamic> json) => RiwayatModel(
+        id: json["id"],
+        userId: json["user_id"],
+        walletId: json["wallet_id"],
+        transactionMethodId: json["transaction_method_id"],
+        productId: json["product_id"],
+        promoId: json["promo_id"],
+        amount: json["amount"],
+        notes: json["notes"],
+        transactionType: json["transaction_type"],
+        transactionStatus: json["transaction_status"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        userTransaction:
+            UserTransactionModel.fromJson(json["user_transaction"]),
+        walletTransaction:
+            WalletTransactionModel.fromJson(json["wallet_transaction"]),
+        transactionMethod:
+            TransactionMethodModel.fromJson(json["transaction_method"]),
+        transactionProduct:
+            TransactionProductModel.fromJson(json["transaction_product"]),
+        transactionDiscount: json["transaction_discount"],
+      );
+}
+
+class TransactionMethodModel extends TransactionMethod {
+  TransactionMethodModel(
+      {super.instruction,
+      required super.id,
+      required super.methodName,
+      required super.category,
+      required super.status});
+
+  factory TransactionMethodModel.fromRawJson(String str) =>
+      TransactionMethodModel.fromJson(json.decode(str));
+
+  factory TransactionMethodModel.fromJson(Map<String, dynamic> json) =>
+      TransactionMethodModel(
+        id: json["id"],
+        methodName: json["method_name"],
+        instruction: json["instruction"],
+        category: json["category"],
+        status: json["status"],
+      );
+}
+
+class TransactionProductModel extends TransactionProduct {
+  TransactionProductModel(
+      {required super.id,
+      required super.name,
+      required super.category,
+      required super.code,
+      required super.price});
+
+  factory TransactionProductModel.fromRawJson(String str) =>
+      TransactionProductModel.fromJson(json.decode(str));
+
+  factory TransactionProductModel.fromJson(Map<String, dynamic> json) =>
+      TransactionProductModel(
+        id: json["id"],
+        name: json["name"],
+        category: json["category"],
+        code: json["code"],
+        price: json["price"],
+      );
+}
+
+class UserTransactionModel extends UserTransaction {
+  UserTransactionModel(
+      {required super.id,
+      required super.name,
+      required super.phone,
+      required super.email});
+
+  factory UserTransactionModel.fromRawJson(String str) =>
+      UserTransactionModel.fromJson(json.decode(str));
+
+  factory UserTransactionModel.fromJson(Map<String, dynamic> json) =>
+      UserTransactionModel(
+        id: json["id"],
+        name: json["name"],
+        phone: json["phone"],
+        email: json["email"],
+      );
+}
+
+class WalletTransactionModel extends WalletTransaction {
+  WalletTransactionModel(
+      {required super.id, required super.userId, required super.balance});
+
+  factory WalletTransactionModel.fromRawJson(String str) =>
+      WalletTransactionModel.fromJson(json.decode(str));
+
+  factory WalletTransactionModel.fromJson(Map<String, dynamic> json) =>
+      WalletTransactionModel(
+        id: json["id"],
+        userId: json["user_id"],
+        balance: json["balance"],
+      );
 }

@@ -120,7 +120,7 @@ class _RiwayatState extends State<Riwayat> {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          '${e.notes} - ${e.transaction_status}',
+                                                          '${e.transactionProduct.name}',
                                                           style: GoogleFonts
                                                               .nunito(
                                                             textStyle:
@@ -132,6 +132,17 @@ class _RiwayatState extends State<Riwayat> {
                                                         Text(
                                                           e.amount
                                                               .toRupiahWithSymbol,
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            textStyle:
+                                                                Nunito_15px,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          e.transactionStatus,
                                                           style: GoogleFonts
                                                               .nunito(
                                                             textStyle:

@@ -171,7 +171,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                       children: [
                                                         Text(
                                                             state.riwayat
-                                                                .transaction_method_id,
+                                                                .transactionMethodId,
                                                             style: GoogleFonts
                                                                 .nunito(
                                                               textStyle:
@@ -212,7 +212,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                         SizedBox(height: 20),
                                                         Text(
                                                             state.riwayat
-                                                                .transaction_status,
+                                                                .transactionStatus,
                                                             style: GoogleFonts
                                                                 .nunito(
                                                               textStyle:
@@ -254,7 +254,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           if (state is RiwayatLoadedID &&
-                              state.riwayat.transaction_status == "done") ...[
+                              state.riwayat.transactionStatus == "done") ...[
                             Button(
                               onTap: () {
                                 Navigator.push(
@@ -262,8 +262,8 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                   MaterialPageRoute(
                                     builder: (context) => KonfirPembayaran(
                                       harga: state.riwayat.amount + 2500,
-                                      product_id: state.riwayat.product_id,
-                                      notes: "",
+                                      product_id: state.riwayat.productId,
+                                      notes: state.riwayat.notes ?? "Beli lagi produk",
                                     ),
                                   ),
                                 );

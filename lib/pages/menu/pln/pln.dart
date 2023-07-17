@@ -8,6 +8,7 @@ import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
+import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 import 'package:visipay/widgets/cardToken.dart';
 import 'package:visipay/widgets/container.dart';
 
@@ -84,90 +85,101 @@ class _PlnState extends State<Pln> {
                 ),
                 const SizedBox(height: 16),
                 BlocBuilder<RiwayatBloc, RiwayatState>(
-                  bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PLN")),
+                  bloc: sl<RiwayatBloc>()
+                    ..add(RiwayatListInisiate(category: "PLN")),
                   builder: (context, state) {
                     if (state is RiwayatLoaded) {
                       final data = state.riwayat.first;
+
                       return Column(
-                      children: [
-                        Text(
-                          "Transaksi Terakhir",
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.nunito(
-                              textStyle: Nunito_21px,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          // width: 380,
-                          height: 76,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 1.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Transaksi Terakhir",
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.nunito(
+                                textStyle: Nunito_21px,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            // width: 380,
+                            height: 76,
+                            child: Card(
+                              shadowColor: Colors.black,
+                              elevation: 1.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const Home()));
-                              },
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          "assets/icon/History.png",
-                                          width: 34,
-                                          height: 34,
-                                        ),
-                                        const SizedBox(
-                                          width: 8,
-                                        ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "PLN Listrik",
-                                              style: GoogleFonts.nunito(
-                                                textStyle: Nunito_15px,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              DateFormat("dd MMM yyyy H:n").format(data.createdAt.toLocal()),
-                                              style: GoogleFonts.nunito(
-                                                  textStyle: Nunito_13px,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                      builder: (context) => KonfirPembayaran(
+                                        harga: data.amount + 2500,
+                                        product_id: data.transactionProduct.id,
+                                        notes: "PLN Listrik",
+                                      ),
                                     ),
-                                    Text(
-                                      "Beli Lagi",
-                                      style: GoogleFonts.nunito(
-                                          textStyle: Nunito_15px,
-                                          fontWeight: FontWeight.bold,
-                                          color: Primary50),
-                                    )
-                                  ],
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            "assets/icon/History.png",
+                                            width: 34,
+                                            height: 34,
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "PLN Listrik",
+                                                style: GoogleFonts.nunito(
+                                                  textStyle: Nunito_15px,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                DateFormat("dd MMM yyyy H:m")
+                                                    .format(data.createdAt
+                                                        .toLocal()),
+                                                style: GoogleFonts.nunito(
+                                                    textStyle: Nunito_13px,
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Text(
+                                        "Beli Lagi",
+                                        style: GoogleFonts.nunito(
+                                            textStyle: Nunito_15px,
+                                            fontWeight: FontWeight.bold,
+                                            color: Primary50),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
                       );
                     } else {
                       return SizedBox();
