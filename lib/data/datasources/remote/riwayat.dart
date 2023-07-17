@@ -7,17 +7,17 @@ import 'package:visipay/data/model/riwayat.dart';
 import 'package:visipay/data/model/riwayat_model.dart';
 
 abstract class RiwayatRemoteDatasources {
-  Future<Either<String, List<Riwayat>>> getRiwayatList();
+  Future<Either<String, List<Riwayat>>> getRiwayatList({String ? category});
   Future<Either<String, Riwayat>> getRiwayatbyID(String id);
 }
 
 class RiwayatRemoteDatasourcesImpl extends RiwayatRemoteDatasources {
   @override
-  Future<Either<String, List<Riwayat>>> getRiwayatList() async {
+  Future<Either<String, List<Riwayat>>> getRiwayatList({String ? category}) async {
     var response = await ApiRequest(
       method: API_METHODS.GET,
       path: "/api/transactions",
-      payloadQparams: {"limit":"10","page":"1"},
+      payloadQparams: {"limit":"10","page":"1","category" : "category"},
     );
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {

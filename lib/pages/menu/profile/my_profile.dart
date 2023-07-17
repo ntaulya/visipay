@@ -20,12 +20,7 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
   @override
-  void initState() {
-    context.read<GetProfileBloc>().add(GetProfileInisiate());
-    // TODO: implement initState
-    super.initState();
-    print("coba");
-  }
+  late BuildContext blocContext;
 
   @override
   Widget build(BuildContext context) {
@@ -53,87 +48,91 @@ class _MyProfileState extends State<MyProfile> {
             ),
             body: Container(
               padding: EdgeInsetsDirectional.symmetric(horizontal: 16),
-              child: BlocBuilder<GetProfileBloc, GetProfileState>(
-                bloc: sl<GetProfileBloc>()..add(GetProfileInisiate()),
-                builder: (context, state) {
-                  if (state is GetProfileLoaded) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 20),
-                        Text(
-                          'Nama',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.nunito(
-                            textStyle: Nunito_21px,
-                            fontWeight: FontWeight.bold,
+              child: BlocProvider(
+                create: (context) => sl<GetProfileBloc>()..add(GetProfileInisiate()),
+                child: BlocBuilder<GetProfileBloc, GetProfileState>(
+                  
+                  builder: (context, state) {
+                    blocContext = context;
+                    if (state is GetProfileLoaded) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 20),
+                          Text(
+                            'Nama',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.nunito(
+                              textStyle: Nunito_21px,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          state.user.name,
-                          textAlign: TextAlign.start,
-                          style: Nunito_21px.apply(fontWeightDelta: 1),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          'Nomor Handphone',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.nunito(
-                            textStyle: Nunito_21px,
-                            fontWeight: FontWeight.bold,
+                          SizedBox(height: 8),
+                          Text(
+                            state.user.name,
+                            textAlign: TextAlign.start,
+                            style: Nunito_21px.apply(fontWeightDelta: 1),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          state.user.phone,
-                          textAlign: TextAlign.start,
-                          style: Nunito_21px.apply(fontWeightDelta: 1),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          'E-Mail',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.nunito(
-                            textStyle: Nunito_21px,
-                            fontWeight: FontWeight.bold,
+                          SizedBox(height: 20),
+                          Text(
+                            'Nomor Handphone',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.nunito(
+                              textStyle: Nunito_21px,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          state.user.email,
-                          textAlign: TextAlign.start,
-                          style: Nunito_21px.apply(fontWeightDelta: 1),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          'Kebijakan Privasi',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.nunito(
-                            decoration: TextDecoration.underline,
-                            textStyle: Nunito_17px,
-                            fontWeight: FontWeight.w500,
+                          SizedBox(height: 8),
+                          Text(
+                            state.user.phone,
+                            textAlign: TextAlign.start,
+                            style: Nunito_21px.apply(fontWeightDelta: 1),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Terms & Condition',
-                          textAlign: TextAlign.start,
-                          style: GoogleFonts.nunito(
-                            decoration: TextDecoration.underline,
-                            textStyle: Nunito_17px,
-                            fontWeight: FontWeight.w500,
+                          SizedBox(height: 20),
+                          Text(
+                            'E-Mail',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.nunito(
+                              textStyle: Nunito_21px,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
-                    );
-                  } else if (state is GetProfileError) {
-                    return Container(
-                      child: Text(state.error_message),
-                    );
-                  }
-                  return Container();
-                },
+                          SizedBox(height: 8),
+                          Text(
+                            state.user.email,
+                            textAlign: TextAlign.start,
+                            style: Nunito_21px.apply(fontWeightDelta: 1),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            'Kebijakan Privasi',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.nunito(
+                              decoration: TextDecoration.underline,
+                              textStyle: Nunito_17px,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Terms & Condition',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.nunito(
+                              decoration: TextDecoration.underline,
+                              textStyle: Nunito_17px,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      );
+                    } else if (state is GetProfileError) {
+                      return Container(
+                        child: Text(state.error_message),
+                      );
+                    }
+                    return Container();
+                  },
+                ),
               ),
             ),
             bottomNavigationBar: Padding(
@@ -147,11 +146,15 @@ class _MyProfileState extends State<MyProfile> {
                       backgroundColor: Secondary50,
                       width: 286,
                       height: 45,
-                      onTap: () {
+                      onTap: () async {
+                        final isSuccess = await
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const EditProfile()));
+                                if (isSuccess != null && isSuccess == true) {
+                                  blocContext.read<GetProfileBloc>().add(GetProfileInisiate());
+                                }
                       },
                     ),
                     SizedBox(height: 8),

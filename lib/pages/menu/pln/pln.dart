@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
+import 'package:visipay/bloc/riwayat/riwayat_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
@@ -81,76 +83,96 @@ class _PlnState extends State<Pln> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  "Transaksi Terakhir",
-                  textAlign: TextAlign.left,
-                  style: GoogleFonts.nunito(
-                      textStyle: Nunito_21px, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  // width: 380,
-                  height: 76,
-                  child: Card(
-                    shadowColor: Colors.black,
-                    elevation: 1.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset(
-                                  "assets/icon/History.png",
-                                  width: 34,
-                                  height: 34,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                BlocBuilder<RiwayatBloc, RiwayatState>(
+                  bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PLN")),
+                  builder: (context, state) {
+                    if (state is RiwayatLoaded) {
+                      final data = state.riwayat.first;
+                      return Column(
+                      children: [
+                        Text(
+                          "Transaksi Terakhir",
+                          textAlign: TextAlign.left,
+                          style: GoogleFonts.nunito(
+                              textStyle: Nunito_21px,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          // width: 380,
+                          height: 76,
+                          child: Card(
+                            shadowColor: Colors.black,
+                            elevation: 1.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Home()));
+                              },
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "PLN Listrik",
-                                      style: GoogleFonts.nunito(
-                                        textStyle: Nunito_15px,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          "assets/icon/History.png",
+                                          width: 34,
+                                          height: 34,
+                                        ),
+                                        const SizedBox(
+                                          width: 8,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "PLN Listrik",
+                                              style: GoogleFonts.nunito(
+                                                textStyle: Nunito_15px,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              DateFormat("dd MMM yyyy H:n").format(data.createdAt.toLocal()),
+                                              style: GoogleFonts.nunito(
+                                                  textStyle: Nunito_13px,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            )
+                                          ],
+                                        )
+                                      ],
                                     ),
                                     Text(
-                                      "09 Maret 2021, 22.10",
+                                      "Beli Lagi",
                                       style: GoogleFonts.nunito(
-                                          textStyle: Nunito_13px,
-                                          fontWeight: FontWeight.normal),
+                                          textStyle: Nunito_15px,
+                                          fontWeight: FontWeight.bold,
+                                          color: Primary50),
                                     )
                                   ],
-                                )
-                              ],
+                                ),
+                              ),
                             ),
-                            Text(
-                              "Beli Lagi",
-                              style: GoogleFonts.nunito(
-                                  textStyle: Nunito_15px,
-                                  fontWeight: FontWeight.bold,
-                                  color: Primary50),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
+                      ],
+                      );
+                    } else {
+                      return SizedBox();
+                    }
+                  },
                 ),
                 BlocProvider(
                   create: (context) => sl<ProdukBloc>(),
@@ -227,9 +249,9 @@ class _PlnState extends State<Pln> {
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return CardToken(
-                                    produk: state.produk[index], 
-                                    idpelanggan: inputNumber, 
-                                    name: state.name, 
+                                    produk: state.produk[index],
+                                    idpelanggan: inputNumber,
+                                    name: state.name,
                                     notes: "Pembayaran",
                                   );
                                 },

@@ -5,7 +5,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/bloc/topupEwallet/topup_e_wallet_bloc.dart';
 import 'package:visipay/bloc/transaction_method/transaction_method_bloc.dart';
+import 'package:visipay/data/model/topup_payload.dart';
+import 'package:visipay/data/model/topup_payload_model.dart';
+import 'package:visipay/data/model/transaction_method.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/topup/VA_BCA.dart';
@@ -27,6 +31,7 @@ class _TopUpState extends State<TopUp> {
   late BuildContext blocContext;
   String inputNominal = "";
   final TextEditingController nominalController = TextEditingController();
+  late Transaction_Method transaction_method;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +78,7 @@ class _TopUpState extends State<TopUp> {
               SizedBox(
                 height: 8,
               ),
-              Container (
+              Container(
                 padding: EdgeInsets.all(16),
                 height: 280,
                 child: Column(
@@ -175,31 +180,42 @@ class _TopUpState extends State<TopUp> {
                     if (state is TransactionMethodLoading) {
                       return CircularProgressIndicator();
                     } else if (state is TransactionMethodLoaded) {
-                      return Wrap(
-                          children: List<Widget>.from(
-                        state.items.map(
-                          (e) => CardButton(
-                            onTap: () {
-                              if (nominalController.text.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                            "Anda belum menginputkan nominal")));
-                                return;
-                              }
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => VirtualAccount(
-                                          data: e,
-                                          grossAmount: int.parse(
-                                              nominalController.text))));
-                            },
-                            text: e.method_name,
-                            image: "assets/img/${e.method_name}.png",
+                      return BlocListener<TopupEWalletBloc, TopupEWalletState>(
+                        listener: (topupcontext, topupstate) {
+                          if (topupstate is TopupEWalletLoaded) {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>VirtualAccount(data: topupstate.data, bank: transaction_method),),);
+                          } else if (topupstate is TopupEWalletLoading) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Memuat transaksi"),),);
+                          } else if (topupstate is TopupEWalletError) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Gagal memuat transaksi"),),);
+                          }
+                        },
+                        child: Wrap(
+                            children: List<Widget>.from(
+                          state.items.map(
+                            (e) => CardButton(
+                              onTap: () {
+                                if (nominalController.text.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              "Anda belum menginputkan nominal")));
+                                  return;
+                                }
+                                transaction_method = e;
+                                context.read<TopupEWalletBloc>().add(TopupEWalletInisiate(TopupPayloadModel(
+                                  bankTransfer: BankTransfer(bank: e.method_name),
+                                  notes: "Top Up E-Wallet",
+                                  paymentType: "bank_transfer",
+                                  transactionDetails: TransactionDetails(grossAmount: int.parse(nominalController.text))
+                                )));
+                              },
+                              text: e.method_name,
+                              image: "assets/img/${e.method_name}.png",
+                            ),
                           ),
-                        ),
-                      ));
+                        )),
+                      );
                     } else if (state is TransactionMethodError) {
                       return Text(state.error_message);
                     }

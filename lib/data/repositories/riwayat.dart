@@ -5,7 +5,7 @@ import 'package:visipay/data/model/riwayat.dart';
 
 
 abstract class RiwayatRepositories {
-  Future<Either<String, List<Riwayat>>> getRiwayatList();
+  Future<Either<String, List<Riwayat>>> getRiwayatList({String ? category});
   Future<Either<String, Riwayat>> getRiwayatbyID(String id);
 }
 
@@ -15,8 +15,8 @@ class RiwayatRepositoriesImpl extends RiwayatRepositories {
   RiwayatRepositoriesImpl({required this.remoteDatasources});
 
   @override
-  Future<Either<String, List<Riwayat>>> getRiwayatList() async {
-    return remoteDatasources.getRiwayatList();
+  Future<Either<String, List<Riwayat>>> getRiwayatList({String ? category}) async {
+    return remoteDatasources.getRiwayatList(category: category);
   }
 
   @override

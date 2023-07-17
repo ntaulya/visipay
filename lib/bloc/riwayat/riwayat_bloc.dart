@@ -15,7 +15,7 @@ class RiwayatBloc extends Bloc<RiwayatEvent, RiwayatState> {
     on<RiwayatEvent>((event, emit) async {
       if (event is RiwayatListInisiate) {
         emit(RiwayatLoading());
-        final failureOrUser = await data.getRiwayatList();
+        final failureOrUser = await data.getRiwayatList(category: event.category);
         final jwt = await getJWT();
         final claims = await getClaims(jwt??'');
         emit(failureOrUser.fold((err_message) => RiwayatError(err_message), (Riwayat) => RiwayatLoaded(Riwayat,claims["user"]["name"])));

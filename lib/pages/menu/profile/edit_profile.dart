@@ -138,7 +138,7 @@ class _EditProfileState extends State<EditProfile> {
                       listener: (context, state) {
                         if (state is EditProfileSuccess) {
                          
-                          Navigator.pop(context);
+                          Navigator.pop(context, true);
                         } else if (state is EditProfileError) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Gagal mengedit profile")));

@@ -7,6 +7,7 @@ import 'package:visipay/bloc/get_profile/get_profile_bloc.dart';
 import 'package:visipay/bloc/otp/otp_bloc.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
 import 'package:visipay/bloc/register/register_bloc.dart';
+import 'package:visipay/bloc/topupEwallet/topup_e_wallet_bloc.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/router.dart';
 import 'injection_container/di.dart' as di;
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<OtpBloc>()),
         BlocProvider(create: (context) => sl<LoginBloc>()),
         BlocProvider(create: (context) => sl<GetProfileBloc>()),
+        BlocProvider(create: (context) => sl<TopupEWalletBloc>()),
         
       ],
       child: MaterialApp(
