@@ -12,6 +12,7 @@ import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pilih_promo.dart';
+import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
@@ -165,12 +166,21 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                         )
                       ],
                     ),
-                    Text(
-                      'Refresh',
-                      style: GoogleFonts.nunito(
-                        textStyle: Nunito_15px,
-                        fontWeight: FontWeight.w700,
-                        color: Primary90,
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TopUp(),
+                            ));
+                      },
+                      child: Text(
+                        'Top Up',
+                        style: GoogleFonts.nunito(
+                          textStyle: Nunito_15px,
+                          fontWeight: FontWeight.w700,
+                          color: Primary90,
+                        ),
                       ),
                     ),
                   ],

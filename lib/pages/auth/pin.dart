@@ -58,7 +58,8 @@ class _PinState extends State<Pin> {
                     },
                     appContext: context,
                     length: 6,
-                    obscureText: false,
+                    obscureText: true,
+                    obscuringCharacter: "*",
                     animationType: AnimationType.fade,
                     pinTheme: PinTheme(
                         shape: PinCodeFieldShape.circle,

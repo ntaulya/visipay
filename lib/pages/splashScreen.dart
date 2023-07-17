@@ -38,13 +38,11 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 308,
             ),
             Image.asset(
-              "assets/icon/Logo_VisiPay.png",
-              width: 150,
-              height: 150,
+              "assets/img/visipaylogo.png",
+              width: 200,
+              height: 200,
             ),
-            Text("VisiPay",
-                style: GoogleFonts.nunito(
-                    textStyle: Nunito_25px, fontWeight: FontWeight.w700, color: Colors.white)),
+            
           ],
         ),
       ),

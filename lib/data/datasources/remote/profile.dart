@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:visipay/core/extension/dartz_x.dart';
 import 'package:visipay/core/helper/api_request.dart';
 import 'package:dartz/dartz.dart';
+import 'package:visipay/core/helper/jwt.dart';
 import 'package:visipay/data/model/user.dart';
 import 'package:visipay/data/model/user_model.dart';
 import 'package:visipay/data/model/user_session.dart';
@@ -40,6 +41,7 @@ class ProfileRemoteDatasourcesImpl extends ProfileRemoteDatasources {
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {
       var body = json.decode(response.asRight().body);
+      await saveJWT(body['access_token']);
       var data = UserModel.fromJson(body['data']);
       return Future.value(Right(data));
     } else {

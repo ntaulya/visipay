@@ -60,7 +60,8 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                       },
                       appContext: context,
                       length: 6,
-                      obscureText: false,
+                      obscureText: true,
+                      obscuringCharacter: "*",
                       animationType: AnimationType.fade,
                       pinTheme: PinTheme(
                           shape: PinCodeFieldShape.circle,

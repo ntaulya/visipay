@@ -33,6 +33,12 @@ class _PulsaPaketState extends State<PulsaPaket> {
   }
 
   final TextEditingController __PulsaPaketController = TextEditingController();
+  @override
+  void initState() {
+     context.read<ProdukBloc>().add(GetProdukListInisiate(
+        code: "", category: "Pulsa", phone_number: ""));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,27 +123,24 @@ class _PulsaPaketState extends State<PulsaPaket> {
                     },
                   ),
                   Expanded(
-                    child: BlocProvider(
-                        create: (context) =>
-                            sl<ProdukBloc>()..add(initProduk()),
-                        child: BlocBuilder<ProdukBloc, ProdukState>(
-                            builder: (context, state) {
-                          blocContext = context;
-                          if (state is ProdukListLoaded) {
-                            return ListView.builder(
-                                itemCount: state.produk.length,
-                                itemBuilder: (context, index) {
-                                  return CardPulsa(
-                                    notes: '',
-                                    no_hp: inputNumber,
-                                    title: state.produk[index].name,
-                                    produk: state.produk[index],
-                                  );
-                                });
-                          } else {
-                            return Container();
-                          }
-                        })),
+                    child: BlocBuilder<ProdukBloc, ProdukState>(
+                        builder: (context, state) {
+                      blocContext = context;
+                      if (state is ProdukListLoaded) {
+                        return ListView.builder(
+                            itemCount: state.produk.length,
+                            itemBuilder: (context, index) {
+                              return CardPulsa(
+                                notes: '',
+                                no_hp: inputNumber,
+                                title: state.produk[index].name,
+                                produk: state.produk[index],
+                              );
+                            });
+                      } else {
+                        return Container();
+                      }
+                    }),
                   )
                 ],
               ),

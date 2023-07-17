@@ -137,9 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                     BlocListener<EditProfileBloc, EditProfileState>(
                       listener: (context, state) {
                         if (state is EditProfileSuccess) {
-                          blocContext
-                              .read<GetProfileBloc>()
-                              .add(GetProfileInisiate());
+                         
                           Navigator.pop(context);
                         } else if (state is EditProfileError) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

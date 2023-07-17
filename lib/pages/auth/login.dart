@@ -113,43 +113,32 @@ class _LoginState extends State<Login> {
           //bottom bar
           bottomNavigationBar: BlocProvider(
             create: (context) => sl<LoginBloc>(),
-            child: BlocConsumer<LoginBloc, LoginState>(
-              listener: (context, state) {
-                if (state is userfound) {
-                  Navigator.of(context).pushNamed("/pin",
-                      arguments: {"phone": _phoneController.text});
-                }
-              },
-              builder: (context, state) {
-                if (state is LoginInitial) {
-                  return Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    child: Button("Lanjutkan", onTap: () {
+            child:
+                BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
+              if (state is userfound) {
+                Navigator.of(context).pushNamed("/pin",
+                    arguments: {"phone": _phoneController.text});
+              }
+            }, builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Button(
+                  "Lanjutkan",
+                  height: 50,
+                  backgroundColor:
+                      (state is LoginInitial || state is LoginError)
+                          ? Primary50
+                          : Primary50.withOpacity(0.5),
+                  onTap: () {
+                    if (state is LoginInitial || state is LoginError) {
                       context
                           .read<LoginBloc>()
                           .add(finduser(_phoneController.text));
-                    }),
-                  );
-                } else if (state is LoginError) {
-                  print("error");
-                  return Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    child: Button("Lanjutkan", onTap: () {
-                      context
-                          .read<LoginBloc>()
-                          .add(finduser(_phoneController.text));
-                    }),
-                  );
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(40.0),
-                  child: Button(
-                    "Lanjutkan",
-                    backgroundColor: Primary50.withOpacity(0.5),
-                  ),
-                );
-              },
-            ),
+                    }
+                  },
+                ),
+              );
+            }),
           )),
     );
   }

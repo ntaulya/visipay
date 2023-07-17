@@ -153,7 +153,7 @@ class _PlnState extends State<Pln> {
                   ),
                 ),
                 BlocProvider(
-                  create: (context) => sl<ProdukBloc>()..add(initProduk()),
+                  create: (context) => sl<ProdukBloc>(),
                   child: BlocBuilder<ProdukBloc, ProdukState>(
                     builder: (context, state) {
                       blocContext = context;
@@ -244,8 +244,12 @@ class _PlnState extends State<Pln> {
                             ],
                           ),
                         );
-                      } else {
+                      } else if (state is ProdukLoading) {
                         return Center(child: CircularProgressIndicator());
+                      } else if (state is ProdukError) {
+                        return Text("Gagal memuat data");
+                      } else {
+                        return SizedBox();
                       }
                     },
                   ),
