@@ -5,20 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/otp/otp_bloc.dart';
 import 'package:visipay/bloc/register/register_bloc.dart';
-import 'package:visipay/core/constant/routes.dart';
-import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/auth/otp.dart';
-import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/button.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key}); //untuk parsing data ke register, widget
 
   @override
-  State<Register> createState() =>
-      _RegisterState(); //nyoba datanya dengan state
+  State<Register> createState() => _RegisterState(); //nyoba datanya dengan state
 }
 
 class _RegisterState extends State<Register> {
@@ -47,17 +42,15 @@ class _RegisterState extends State<Register> {
                     //text 1
                     Text(
                       'Daftar Akun',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                     ),
 
                     //text 2
                     Text(
                       'Lengkapi profile untuk melanjutkan',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
 
                     SizedBox(height: 8),
@@ -65,9 +58,8 @@ class _RegisterState extends State<Register> {
                     //nama lengkap
                     Text(
                       'Nama Lengkap',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -83,9 +75,8 @@ class _RegisterState extends State<Register> {
                     //no handphone
                     Text(
                       'No Handphone',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -102,9 +93,8 @@ class _RegisterState extends State<Register> {
                     //email
                     Text(
                       'E-Mail',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
 
                     SizedBox(height: 8),
@@ -123,9 +113,8 @@ class _RegisterState extends State<Register> {
                     //pin transaksi
                     Text(
                       'Masukkan PIN',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -142,9 +131,8 @@ class _RegisterState extends State<Register> {
                     //konfirmasi pin
                     Text(
                       'Konfirmasi PIN',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -168,9 +156,11 @@ class _RegisterState extends State<Register> {
                   } else if (state is RegisterSuccess) {
                     //jika sukses
                     context.read<OtpBloc>().add(SendOtp(_phoneController.text));
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                      return VerifyOtpPage(phone: _phoneController.text);
-                    },));
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return VerifyOtpPage(phone: _phoneController.text);
+                      },
+                    ));
                     //kalau register gagal
                   } else if (state is RegisterError) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -179,6 +169,27 @@ class _RegisterState extends State<Register> {
                         duration: Duration(seconds: 5),
                       ),
                     );
+                  } else if (state is userfound) {
+                    showDialog<bool>(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Nomor sudah terdaftar, silahkan login'),
+                          actionsAlignment: MainAxisAlignment.center,
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/register');
+                              },
+                              child: const Text('Yes'),
+                            )
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    context.read<RegisterBloc>().add(RegisterFormSubmit(_phoneController.text,
+                        _nameController.text, _emailController.text, _pinController.text));
                   }
                 },
                 //buat nampilin widget
@@ -186,13 +197,9 @@ class _RegisterState extends State<Register> {
                   padding: const EdgeInsets.all(40.0),
                   child: Button(
                     "Lanjutkan",
+                    height: 60,
                     onTap: () {
-                      //kalau ngetap tombolnya, akan ngetrigger event
-                      context.read<RegisterBloc>().add(RegisterFormSubmit(
-                          _phoneController.text,
-                          _nameController.text,
-                          _emailController.text,
-                          _pinController.text));
+                      context.read<RegisterBloc>().add(finduser(_phoneController.text));
                     },
                   ),
                 )))
