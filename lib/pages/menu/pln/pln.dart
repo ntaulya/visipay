@@ -56,134 +56,135 @@ class _PlnState extends State<Pln> {
                   textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 24),
-                TextFormField(
-                  controller: idpelangganController,
-                  onFieldSubmitted: onFieldSubmitted,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    // prefixText: "Rp. ",
-                    labelText: 'Nomor Pelanggan',
-                    hintText: 'Contoh 123456789xxx',
-                    // prefixIcon: Icon(Icons.person),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Primary30),
-                      borderRadius: BorderRadius.circular(10.0),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24),
+                  TextFormField(
+                    controller: idpelangganController,
+                    onFieldSubmitted: onFieldSubmitted,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      // prefixText: "Rp. ",
+                      labelText: 'Nomor Pelanggan',
+                      hintText: 'Contoh 123456789xxx',
+                      // prefixIcon: Icon(Icons.person),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Primary30),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                BlocBuilder<RiwayatBloc, RiwayatState>(
-                  bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PLN")),
-                  builder: (context, state) {
-                    if (state is RiwayatLoaded) {
-                      final data = state.riwayat.first;
+                  const SizedBox(height: 16),
+                  BlocBuilder<RiwayatBloc, RiwayatState>(
+                    bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PLN")),
+                    builder: (context, state) {
+                      if (state is RiwayatLoaded) {
+                        final data = state.riwayat.first;
 
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Transaksi Terakhir",
-                            textAlign: TextAlign.left,
-                            style: GoogleFonts.nunito(
-                                textStyle: Nunito_21px, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            // width: 380,
-                            height: 76,
-                            child: Card(
-                              shadowColor: Colors.black,
-                              elevation: 1.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => KonfirPembayaran(
-                                        harga: data.amount + 2500,
-                                        product_id: data.transactionProduct?.id ?? '',
-                                        notes: "PLN Listrik",
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Transaksi Terakhir",
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.nunito(
+                                  textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              // width: 380,
+                              height: 76,
+                              child: Card(
+                                shadowColor: Colors.black,
+                                elevation: 1.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => KonfirPembayaran(
+                                          harga: data.amount + 2500,
+                                          product_id: data.transactionProduct?.id ?? '',
+                                          notes: "PLN Listrik",
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            "assets/icon/History.png",
-                                            width: 34,
-                                            height: 34,
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "PLN Listrik",
-                                                style: GoogleFonts.nunito(
-                                                  textStyle: Nunito_15px,
-                                                  fontWeight: FontWeight.w600,
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              "assets/icon/History.png",
+                                              width: 34,
+                                              height: 34,
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "PLN Listrik",
+                                                  style: GoogleFonts.nunito(
+                                                    textStyle: Nunito_15px,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                DateFormat("dd MMM yyyy H:m")
-                                                    .format(data.createdAt.toLocal()),
-                                                style: GoogleFonts.nunito(
-                                                    textStyle: Nunito_13px,
-                                                    fontWeight: FontWeight.normal),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Text(
-                                        "Beli Lagi",
-                                        style: GoogleFonts.nunito(
-                                            textStyle: Nunito_15px,
-                                            fontWeight: FontWeight.bold,
-                                            color: Primary50),
-                                      )
-                                    ],
+                                                Text(
+                                                  DateFormat("dd MMM yyyy H:m")
+                                                      .format(data.createdAt.toLocal()),
+                                                  style: GoogleFonts.nunito(
+                                                      textStyle: Nunito_13px,
+                                                      fontWeight: FontWeight.normal),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        Text(
+                                          "Beli Lagi",
+                                          style: GoogleFonts.nunito(
+                                              textStyle: Nunito_15px,
+                                              fontWeight: FontWeight.bold,
+                                              color: Primary50),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      );
-                    } else {
-                      return SizedBox();
-                    }
-                  },
-                ),
-                BlocProvider(
-                  create: (context) => sl<ProdukBloc>(),
-                  child: BlocBuilder<ProdukBloc, ProdukState>(
-                    builder: (context, state) {
-                      blocContext = context;
-                      if (state is ProdukListLoaded) {
-                        return Expanded(
-                          child: Column(
+                          ],
+                        );
+                      } else {
+                        return SizedBox();
+                      }
+                    },
+                  ),
+                  BlocProvider(
+                    create: (context) => sl<ProdukBloc>(),
+                    child: BlocBuilder<ProdukBloc, ProdukState>(
+                      builder: (context, state) {
+                        blocContext = context;
+                        if (state is ProdukListLoaded) {
+                          return Column(
                             children: [
                               OutlinedBox(
                                 padding: const EdgeInsets.all(16),
@@ -242,7 +243,7 @@ class _PlnState extends State<Pln> {
                                 ),
                               ),
                               GridView.builder(
-                                // physics: NeverScrollableScrollPhysics(),
+                                physics: ClampingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return CardToken(
@@ -260,19 +261,19 @@ class _PlnState extends State<Pln> {
                                     mainAxisExtent: 160),
                               ),
                             ],
-                          ),
-                        );
-                      } else if (state is ProdukLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (state is ProdukError) {
-                        return Text("Gagal memuat data");
-                      } else {
-                        return SizedBox();
-                      }
-                    },
-                  ),
-                )
-              ],
+                          );
+                        } else if (state is ProdukLoading) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (state is ProdukError) {
+                          return Text("Gagal memuat data");
+                        } else {
+                          return SizedBox();
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         )));
