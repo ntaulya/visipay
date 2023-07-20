@@ -33,17 +33,14 @@ class _MyProfileState extends State<MyProfile> {
                 child: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Home()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
                   },
                 ),
               ),
               title: Text(
                 "Profile",
                 style: GoogleFonts.nunito(
-                    textStyle: Nunito_21px,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
             body: Container(
@@ -51,7 +48,6 @@ class _MyProfileState extends State<MyProfile> {
               child: BlocProvider(
                 create: (context) => sl<GetProfileBloc>()..add(GetProfileInisiate()),
                 child: BlocBuilder<GetProfileBloc, GetProfileState>(
-                  
                   builder: (context, state) {
                     blocContext = context;
                     if (state is GetProfileLoaded) {
@@ -143,18 +139,15 @@ class _MyProfileState extends State<MyProfile> {
                   children: [
                     Button(
                       "Edit Profile",
-                      backgroundColor: Secondary50,
+                      backgroundColor: Primary50,
                       width: 286,
                       height: 45,
                       onTap: () async {
-                        final isSuccess = await
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const EditProfile()));
-                                if (isSuccess != null && isSuccess == true) {
-                                  blocContext.read<GetProfileBloc>().add(GetProfileInisiate());
-                                }
+                        final isSuccess = await Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const EditProfile()));
+                        if (isSuccess != null && isSuccess == true) {
+                          blocContext.read<GetProfileBloc>().add(GetProfileInisiate());
+                        }
                       },
                     ),
                     SizedBox(height: 8),
@@ -162,8 +155,7 @@ class _MyProfileState extends State<MyProfile> {
                       "Log Out",
                       onTap: () async {
                         await saveJWT("");
-                        Navigator.of(context)
-                            .pushReplacementNamed('/onboarding');
+                        Navigator.of(context).pushReplacementNamed('/onboarding');
                       },
                       backgroundColor: Color(0xffD66161),
                       width: 286,
