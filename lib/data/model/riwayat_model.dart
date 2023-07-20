@@ -45,7 +45,7 @@ class RiwayatModel extends Riwayat {
         userTransaction: UserTransactionModel.fromJson(json["user_transaction"]),
         walletTransaction: WalletTransactionModel.fromJson(json["wallet_transaction"]),
         transactionMethod: TransactionMethodModel.fromJson(json["transaction_method"]),
-        transactionProduct: json['tansaction_product'] != null
+        transactionProduct: json['transaction_product'] != null
             ? TransactionProductModel.fromJson(json['transaction_product'])
             : null,
         transactionDiscount: json["transaction_discount"],
