@@ -1,8 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/topupEwallet/topup_e_wallet_bloc.dart';
@@ -12,9 +10,7 @@ import 'package:visipay/data/model/topup_payload_model.dart';
 import 'package:visipay/data/model/transaction_method.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
-import 'package:visipay/pages/menu/topup/VA_BCA.dart';
-import 'package:visipay/pages/menu/topup/VA_BNI.dart';
-import 'package:visipay/pages/menu/topup/VA_BRI.dart';
+import 'package:visipay/pages/menu/topup/VA.dart';
 import 'package:visipay/widgets/card.dart';
 import 'package:visipay/widgets/cardTopUp.dart';
 import '../../../core/theme/palette.dart';
@@ -44,17 +40,14 @@ class _TopUpState extends State<TopUp> {
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Home()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
               },
             ),
           ),
           title: Text(
             "Top Up",
             style: GoogleFonts.nunito(
-                textStyle: Nunito_21px,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
+                textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         body: SingleChildScrollView(
@@ -71,8 +64,7 @@ class _TopUpState extends State<TopUp> {
                 child: Text(
                   "Jumlah Top Up",
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.nunito(
-                      textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.nunito(textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
@@ -164,18 +156,16 @@ class _TopUpState extends State<TopUp> {
                 child: Text(
                   "Pilih Bank",
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.nunito(
-                      textStyle: Nunito_21px, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.nunito(textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
                 height: 8,
               ),
               BlocProvider(
-                create: (context) => sl<TransactionMethodBloc>()
-                  ..add(TransactionMethodListInisiate()),
-                child:
-                    BlocBuilder<TransactionMethodBloc, TransactionMethodState>(
+                create: (context) =>
+                    sl<TransactionMethodBloc>()..add(TransactionMethodListInisiate()),
+                child: BlocBuilder<TransactionMethodBloc, TransactionMethodState>(
                   builder: (context, state) {
                     if (state is TransactionMethodLoading) {
                       return CircularProgressIndicator();
@@ -183,11 +173,25 @@ class _TopUpState extends State<TopUp> {
                       return BlocListener<TopupEWalletBloc, TopupEWalletState>(
                         listener: (topupcontext, topupstate) {
                           if (topupstate is TopupEWalletLoaded) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>VirtualAccount(data: topupstate.data, bank: transaction_method),),);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    VirtualAccount(data: topupstate.data, bank: transaction_method),
+                              ),
+                            );
                           } else if (topupstate is TopupEWalletLoading) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Memuat transaksi"),),);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Memuat transaksi"),
+                              ),
+                            );
                           } else if (topupstate is TopupEWalletError) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Gagal memuat transaksi"),),);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Gagal memuat transaksi"),
+                              ),
+                            );
                           }
                         },
                         child: Wrap(
@@ -197,18 +201,17 @@ class _TopUpState extends State<TopUp> {
                               onTap: () {
                                 if (nominalController.text.isEmpty) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              "Anda belum menginputkan nominal")));
+                                      SnackBar(content: Text("Anda belum menginputkan nominal")));
                                   return;
                                 }
                                 transaction_method = e;
-                                context.read<TopupEWalletBloc>().add(TopupEWalletInisiate(TopupPayloadModel(
-                                  bankTransfer: BankTransfer(bank: e.method_name),
-                                  notes: "Top Up E-Wallet",
-                                  paymentType: "bank_transfer",
-                                  transactionDetails: TransactionDetails(grossAmount: int.parse(nominalController.text))
-                                )));
+                                context.read<TopupEWalletBloc>().add(TopupEWalletInisiate(
+                                    TopupPayloadModel(
+                                        bankTransfer: BankTransfer(bank: e.method_name),
+                                        notes: "Top Up E-Wallet",
+                                        paymentType: "bank_transfer",
+                                        transactionDetails: TransactionDetails(
+                                            grossAmount: int.parse(nominalController.text)))));
                               },
                               text: e.method_name,
                               image: "assets/img/${e.method_name}.png",
