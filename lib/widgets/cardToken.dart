@@ -14,10 +14,11 @@ import 'package:visipay/widgets/button.dart';
 
 class CardToken extends StatefulWidget {
   final Produk produk;
-  final String name;
   final String idpelanggan;
   final String notes;
-  const CardToken({required this.name, required this.idpelanggan, required this.notes, required this.produk});
+  final String name;
+  const CardToken(
+      {required this.name, required this.idpelanggan, required this.notes, required this.produk});
 
   @override
   State<CardToken> createState() => _CardTokenState();
@@ -43,8 +44,7 @@ class _CardTokenState extends State<CardToken> {
                   return Container(
                     height: 430,
                     child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 32.0),
+                      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -170,7 +170,7 @@ class _CardTokenState extends State<CardToken> {
                                     fontWeight: FontWeight.w700,
                                     color: Text1,
                                   )),
-                              Text((widget.produk.price+ 2500).toRupiahWithSymbol,
+                              Text((widget.produk.price + 2500).toRupiahWithSymbol,
                                   style: GoogleFonts.nunito(
                                     textStyle: Nunito_15px,
                                     fontWeight: FontWeight.w700,
@@ -197,7 +197,10 @@ class _CardTokenState extends State<CardToken> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => KonfirPembayaran(harga: widget.produk.price + 2500, product_id: widget.produk.id, notes: widget.notes),
+                                        builder: (context) => KonfirPembayaran(
+                                            harga: widget.produk.price + 2500,
+                                            product_id: widget.produk.id,
+                                            notes: widget.notes),
                                       ));
                                 },
                                 "Konfirmasi",
@@ -217,11 +220,10 @@ class _CardTokenState extends State<CardToken> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.name,
+                widget.produk.name,
+                textAlign: TextAlign.center,
                 style: GoogleFonts.nunito(
-                    textStyle: Nunito_25px,
-                    fontWeight: FontWeight.w700,
-                    color: Text1),
+                    textStyle: Nunito_25px, fontWeight: FontWeight.w700, color: Text1),
               ),
               SizedBox(
                 height: 8,
