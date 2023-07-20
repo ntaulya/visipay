@@ -33,7 +33,7 @@ class Riwayat {
     required this.userTransaction,
     required this.walletTransaction,
     required this.transactionMethod,
-    required this.transactionProduct,
+    this.transactionProduct,
     this.transactionDiscount,
   });
 }
