@@ -3,28 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:visipay/Pages/onBoarding.dart';
 import 'package:visipay/bloc/page_navigation/page_navigation_bloc.dart';
 import 'package:visipay/core/constant/routes.dart';
-import 'package:visipay/core/helper/jwt.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/auth/login.dart';
-import 'package:visipay/pages/auth/otp.dart';
 import 'package:visipay/pages/auth/pin.dart';
 import 'package:visipay/pages/auth/register.dart';
 import 'package:visipay/pages/menu/pdam/pdam.dart';
 import 'package:visipay/pages/menu/profile/edit_profile.dart';
-// import 'package:visipay/pages/menu/profile.dart';
 import 'package:visipay/pages/menu/promo/DetailPromo.dart';
 import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pulsapaket.dart';
-import 'package:visipay/pages/menu/riwayat/DetailRiwayat.dart';
 import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/pages/splashScreen.dart';
-// import 'package:visipay/pages/menu/pulsa/pulsa.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
 import 'package:visipay/pages/status/StatusGagal.dart';
-import 'package:visipay/pages/menu/topup/VA_BNI.dart';
-import 'package:visipay/pages/menu/riwayat/DetailRiwayat.dart';
 import 'Pages/Home.dart';
-import 'injection_container/di.dart' as di;
 
 abstract class IRouter {
   String get initialRoute;
@@ -38,22 +30,22 @@ class VisiPayRouter implements IRouter {
 
   @override
   Route onGenerateRoute(RouteSettings settings) {
-    // print(settings.name);
     switch (settings.name) {
       case "/":
         return _buildRoute(
             builder: (_) => BlocProvider(
-              create: (context) => sl<PageNavigationBloc>()..add(PageNavigationAuthentication()),
-              child: BlocBuilder<PageNavigationBloc, PageNavigationState>(
-                builder: (context, state) {
-                  if (state is PageNavigationSuccess) {
-                    return Home();
-                  } else {
-                    return OnBoarding();
-                  }
-                },
-              ),
-            ),
+                  create: (context) =>
+                      sl<PageNavigationBloc>()..add(PageNavigationAuthentication()),
+                  child: BlocBuilder<PageNavigationBloc, PageNavigationState>(
+                    builder: (context, state) {
+                      if (state is PageNavigationSuccess) {
+                        return Home();
+                      } else {
+                        return OnBoarding();
+                      }
+                    },
+                  ),
+                ),
             settings: settings);
       case "/onboarding":
         return _buildRoute(builder: (_) => OnBoarding(), settings: settings);
@@ -83,12 +75,6 @@ class VisiPayRouter implements IRouter {
         return _buildRoute(builder: (_) => StatusBerhasil(), settings: settings);
       case "/gagal":
         return _buildRoute(builder: (_) => StatusGagal(), settings: settings);
-      // case "/profile":
-      //   return _buildRoute(builder: (_) => Profile(), settings: settings);
-      case "/vabni":
-        return _buildRoute(builder: (_) => VirtualAccountBNI(), settings: settings);
-      // case "/detailriwayat":
-      //   return _buildRoute(builder: (_) => DetailRiwayat(), settings: settings);
       case "/editprofile":
         return _buildRoute(builder: (_) => EditProfile(), settings: settings);
       default:
