@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
-import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/pages/onBoarding.dart';
-import 'package:visipay/widgets/SvgIcon.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 200,
               height: 200,
             ),
-            
           ],
         ),
       ),
