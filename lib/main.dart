@@ -35,15 +35,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<LoginBloc>()),
         BlocProvider(create: (context) => sl<GetProfileBloc>()),
         BlocProvider(create: (context) => sl<TopupEWalletBloc>()),
-        
       ],
       child: MaterialApp(
-        // home: SplashScreen(),
         debugShowCheckedModeBanner: false,
         initialRoute: _router.initialRoute,
         onGenerateRoute: _router.onGenerateRoute,
         onUnknownRoute: _router.onUnknownRoute,
       ),
-      );
+    );
   }
 }
