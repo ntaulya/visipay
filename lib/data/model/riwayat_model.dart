@@ -24,33 +24,30 @@ class RiwayatModel extends Riwayat {
     required super.userTransaction,
     required super.walletTransaction,
     required super.transactionMethod,
-    required super.transactionProduct,
+    super.transactionProduct,
   });
 
-  factory RiwayatModel.fromRawJson(String str) =>
-      RiwayatModel.fromJson(json.decode(str));
+  factory RiwayatModel.fromRawJson(String str) => RiwayatModel.fromJson(json.decode(str));
 
   factory RiwayatModel.fromJson(Map<String, dynamic> json) => RiwayatModel(
         id: json["id"],
         userId: json["user_id"],
         walletId: json["wallet_id"],
         transactionMethodId: json["transaction_method_id"],
-        productId: json["product_id"],
-        promoId: json["promo_id"],
+        productId: json["product_id"] ?? '',
+        promoId: json["promo_id"] ?? '',
         amount: json["amount"],
-        notes: json["notes"],
+        notes: json["notes"] ?? '',
         transactionType: json["transaction_type"],
         transactionStatus: json["transaction_status"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        userTransaction:
-            UserTransactionModel.fromJson(json["user_transaction"]),
-        walletTransaction:
-            WalletTransactionModel.fromJson(json["wallet_transaction"]),
-        transactionMethod:
-            TransactionMethodModel.fromJson(json["transaction_method"]),
-        transactionProduct:
-            TransactionProductModel.fromJson(json["transaction_product"]),
+        userTransaction: UserTransactionModel.fromJson(json["user_transaction"]),
+        walletTransaction: WalletTransactionModel.fromJson(json["wallet_transaction"]),
+        transactionMethod: TransactionMethodModel.fromJson(json["transaction_method"]),
+        transactionProduct: json['tansaction_product'] != null
+            ? TransactionProductModel.fromJson(json['transaction_product'])
+            : null,
         transactionDiscount: json["transaction_discount"],
       );
 }
@@ -66,8 +63,7 @@ class TransactionMethodModel extends TransactionMethod {
   factory TransactionMethodModel.fromRawJson(String str) =>
       TransactionMethodModel.fromJson(json.decode(str));
 
-  factory TransactionMethodModel.fromJson(Map<String, dynamic> json) =>
-      TransactionMethodModel(
+  factory TransactionMethodModel.fromJson(Map<String, dynamic> json) => TransactionMethodModel(
         id: json["id"],
         methodName: json["method_name"],
         instruction: json["instruction"],
@@ -87,8 +83,7 @@ class TransactionProductModel extends TransactionProduct {
   factory TransactionProductModel.fromRawJson(String str) =>
       TransactionProductModel.fromJson(json.decode(str));
 
-  factory TransactionProductModel.fromJson(Map<String, dynamic> json) =>
-      TransactionProductModel(
+  factory TransactionProductModel.fromJson(Map<String, dynamic> json) => TransactionProductModel(
         id: json["id"],
         name: json["name"],
         category: json["category"],
@@ -99,16 +94,12 @@ class TransactionProductModel extends TransactionProduct {
 
 class UserTransactionModel extends UserTransaction {
   UserTransactionModel(
-      {required super.id,
-      required super.name,
-      required super.phone,
-      required super.email});
+      {required super.id, required super.name, required super.phone, required super.email});
 
   factory UserTransactionModel.fromRawJson(String str) =>
       UserTransactionModel.fromJson(json.decode(str));
 
-  factory UserTransactionModel.fromJson(Map<String, dynamic> json) =>
-      UserTransactionModel(
+  factory UserTransactionModel.fromJson(Map<String, dynamic> json) => UserTransactionModel(
         id: json["id"],
         name: json["name"],
         phone: json["phone"],
@@ -117,14 +108,12 @@ class UserTransactionModel extends UserTransaction {
 }
 
 class WalletTransactionModel extends WalletTransaction {
-  WalletTransactionModel(
-      {required super.id, required super.userId, required super.balance});
+  WalletTransactionModel({required super.id, required super.userId, required super.balance});
 
   factory WalletTransactionModel.fromRawJson(String str) =>
       WalletTransactionModel.fromJson(json.decode(str));
 
-  factory WalletTransactionModel.fromJson(Map<String, dynamic> json) =>
-      WalletTransactionModel(
+  factory WalletTransactionModel.fromJson(Map<String, dynamic> json) => WalletTransactionModel(
         id: json["id"],
         userId: json["user_id"],
         balance: json["balance"],

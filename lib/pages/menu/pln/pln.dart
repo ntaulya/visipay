@@ -28,8 +28,9 @@ class _PlnState extends State<Pln> {
     setState(() {
       inputNumber = value;
     });
-    blocContext.read<ProdukBloc>().add(
-        GetProdukListInisiate(code: "", category: "PLN", idPelanggan: value));
+    blocContext
+        .read<ProdukBloc>()
+        .add(GetProdukListInisiate(code: "", category: "PLN", idPelanggan: value));
   }
 
   @override
@@ -45,17 +46,14 @@ class _PlnState extends State<Pln> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Home()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
                 },
               ),
             ),
             title: Text(
               "PLN",
               style: GoogleFonts.nunito(
-                  textStyle: Nunito_21px,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
           body: Padding(
@@ -85,8 +83,7 @@ class _PlnState extends State<Pln> {
                 ),
                 const SizedBox(height: 16),
                 BlocBuilder<RiwayatBloc, RiwayatState>(
-                  bloc: sl<RiwayatBloc>()
-                    ..add(RiwayatListInisiate(category: "PLN")),
+                  bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PLN")),
                   builder: (context, state) {
                     if (state is RiwayatLoaded) {
                       final data = state.riwayat.first;
@@ -98,8 +95,7 @@ class _PlnState extends State<Pln> {
                             "Transaksi Terakhir",
                             textAlign: TextAlign.left,
                             style: GoogleFonts.nunito(
-                                textStyle: Nunito_21px,
-                                fontWeight: FontWeight.bold),
+                                textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             // width: 380,
@@ -117,18 +113,16 @@ class _PlnState extends State<Pln> {
                                     MaterialPageRoute(
                                       builder: (context) => KonfirPembayaran(
                                         harga: data.amount + 2500,
-                                        product_id: data.transactionProduct.id,
+                                        product_id: data.transactionProduct?.id ?? '',
                                         notes: "PLN Listrik",
                                       ),
                                     ),
                                   );
                                 },
                                 child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -141,10 +135,8 @@ class _PlnState extends State<Pln> {
                                             width: 8,
                                           ),
                                           Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "PLN Listrik",
@@ -155,12 +147,10 @@ class _PlnState extends State<Pln> {
                                               ),
                                               Text(
                                                 DateFormat("dd MMM yyyy H:m")
-                                                    .format(data.createdAt
-                                                        .toLocal()),
+                                                    .format(data.createdAt.toLocal()),
                                                 style: GoogleFonts.nunito(
                                                     textStyle: Nunito_13px,
-                                                    fontWeight:
-                                                        FontWeight.normal),
+                                                    fontWeight: FontWeight.normal),
                                               )
                                             ],
                                           )
@@ -199,14 +189,11 @@ class _PlnState extends State<Pln> {
                                 padding: const EdgeInsets.all(16),
                                 backgroundColor: Primary50,
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Nama Pelanggan",
@@ -232,10 +219,8 @@ class _PlnState extends State<Pln> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "",
@@ -268,12 +253,11 @@ class _PlnState extends State<Pln> {
                                   );
                                 },
                                 itemCount: state.produk.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 8.0,
-                                        mainAxisSpacing: 8.0,
-                                        mainAxisExtent: 160),
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 8.0,
+                                    mainAxisSpacing: 8.0,
+                                    mainAxisExtent: 160),
                               ),
                             ],
                           ),

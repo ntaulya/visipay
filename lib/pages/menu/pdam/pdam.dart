@@ -31,8 +31,9 @@ class _PdamState extends State<Pdam> {
     setState(() {
       inputNumber = value;
     });
-    context.read<ProdukBloc>().add(
-        GetProdukListInisiate(code: "", category: "PDAM", idPelanggan: value));
+    context
+        .read<ProdukBloc>()
+        .add(GetProdukListInisiate(code: "", category: "PDAM", idPelanggan: value));
   }
 
   @override
@@ -48,17 +49,14 @@ class _PdamState extends State<Pdam> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Home()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
                 },
               ),
             ),
             title: Text(
               "PDAM",
               style: GoogleFonts.nunito(
-                  textStyle: Nunito_21px,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
           body: Column(
@@ -94,23 +92,20 @@ class _PdamState extends State<Pdam> {
                 height: 16,
               ),
               BlocBuilder<RiwayatBloc, RiwayatState>(
-                bloc: sl<RiwayatBloc>()
-                  ..add(RiwayatListInisiate(category: "PDAM")),
+                bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PDAM")),
                 builder: (context, state) {
                   if (state is RiwayatLoaded) {
                     final data = state.riwayat.first;
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
-                        
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "Transaksi Terakhir",
                             textAlign: TextAlign.left,
                             style: GoogleFonts.nunito(
-                                textStyle: Nunito_21px,
-                                fontWeight: FontWeight.bold),
+                                textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             // width: 380,
@@ -128,18 +123,16 @@ class _PdamState extends State<Pdam> {
                                     MaterialPageRoute(
                                       builder: (context) => KonfirPembayaran(
                                         harga: data.amount + 2500,
-                                        product_id: data.transactionProduct.id,
+                                        product_id: data.transactionProduct?.id ?? '',
                                         notes: "PDAM",
                                       ),
                                     ),
                                   );
                                 },
                                 child: Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -152,10 +145,8 @@ class _PdamState extends State<Pdam> {
                                             width: 8,
                                           ),
                                           Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "PDAM",
@@ -166,12 +157,10 @@ class _PdamState extends State<Pdam> {
                                               ),
                                               Text(
                                                 DateFormat("dd MMM yyyy H:m")
-                                                    .format(
-                                                        data.createdAt.toLocal()),
+                                                    .format(data.createdAt.toLocal()),
                                                 style: GoogleFonts.nunito(
                                                     textStyle: Nunito_13px,
-                                                    fontWeight:
-                                                        FontWeight.normal),
+                                                    fontWeight: FontWeight.normal),
                                               )
                                             ],
                                           )
@@ -211,8 +200,7 @@ class _PdamState extends State<Pdam> {
                             return Container(
                               height: 430,
                               child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 32.0),
+                                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -224,8 +212,7 @@ class _PdamState extends State<Pdam> {
                                         )),
                                     SizedBox(height: 18),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('ID Pelanggan',
                                             style: GoogleFonts.nunito(
@@ -243,8 +230,7 @@ class _PdamState extends State<Pdam> {
                                     ),
                                     SizedBox(height: 12),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Nama Pelanggan',
                                             style: GoogleFonts.nunito(
@@ -291,8 +277,7 @@ class _PdamState extends State<Pdam> {
                                     ),
                                     SizedBox(height: 18),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Harga Token',
                                             style: GoogleFonts.nunito(
@@ -300,9 +285,7 @@ class _PdamState extends State<Pdam> {
                                               fontWeight: FontWeight.w500,
                                               color: Text1,
                                             )),
-                                        Text(
-                                            state.produk[0].price
-                                                .toRupiahWithSymbol,
+                                        Text(state.produk[0].price.toRupiahWithSymbol,
                                             style: GoogleFonts.nunito(
                                               textStyle: Nunito_15px,
                                               fontWeight: FontWeight.w600,
@@ -312,8 +295,7 @@ class _PdamState extends State<Pdam> {
                                     ),
                                     SizedBox(height: 12),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Biaya Transaksi',
                                             style: GoogleFonts.nunito(
@@ -336,8 +318,7 @@ class _PdamState extends State<Pdam> {
                                     ),
                                     SizedBox(height: 14),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Total Pembayaran',
                                             style: GoogleFonts.nunito(
@@ -345,9 +326,7 @@ class _PdamState extends State<Pdam> {
                                               fontWeight: FontWeight.w700,
                                               color: Text1,
                                             )),
-                                        Text(
-                                            (state.produk[0].price + 2500)
-                                                .toRupiahWithSymbol,
+                                        Text((state.produk[0].price + 2500).toRupiahWithSymbol,
                                             style: GoogleFonts.nunito(
                                               textStyle: Nunito_15px,
                                               fontWeight: FontWeight.w700,
@@ -357,8 +336,7 @@ class _PdamState extends State<Pdam> {
                                     ),
                                     SizedBox(height: 14),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Button(
                                           onTap: () {
@@ -375,14 +353,10 @@ class _PdamState extends State<Pdam> {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      KonfirPembayaran(
-                                                          harga: state.produk[0]
-                                                                  .price +
-                                                              2500,
-                                                          product_id: state
-                                                              .produk[0].id,
-                                                          notes: ""),
+                                                  builder: (context) => KonfirPembayaran(
+                                                      harga: state.produk[0].price + 2500,
+                                                      product_id: state.produk[0].id,
+                                                      notes: ""),
                                                 ));
                                           },
                                           "Konfirmasi",

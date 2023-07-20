@@ -29,22 +29,18 @@ class _RiwayatState extends State<Riwayat> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Home()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
               },
             ),
             title: Text(
               "Riwayat",
               style: GoogleFonts.nunito(
-                  textStyle: Nunito_21px,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
           body: BlocProvider(
             create: (context) => sl<RiwayatBloc>()..add(RiwayatListInisiate()),
-            child: BlocBuilder<RiwayatBloc, RiwayatState>(
-                builder: (context, state) {
+            child: BlocBuilder<RiwayatBloc, RiwayatState>(builder: (context, state) {
               print(state);
               if (state is RiwayatLoaded) {
                 final historydate = state.riwayat
@@ -54,10 +50,8 @@ class _RiwayatState extends State<Riwayat> {
                 historydate.sort((a, b) => b.compareTo(a));
                 final data = historydate
                     .map((e) => {
-                          e: state.riwayat.where((element) =>
-                              DateFormat("dd/MM/yyyy")
-                                  .format(element.createdAt) ==
-                              e)
+                          e: state.riwayat.where(
+                              (element) => DateFormat("dd/MM/yyyy").format(element.createdAt) == e)
                         })
                     .toList();
                 return ListView.builder(
@@ -69,8 +63,7 @@ class _RiwayatState extends State<Riwayat> {
                             width: double.infinity,
                             height: 37,
                             color: Colors.black12,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 7),
+                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
                             child: Center(
                                 child: Text(
                               '${data[index].keys.first}',
@@ -87,8 +80,7 @@ class _RiwayatState extends State<Riwayat> {
                                       value.map(
                                         (e) => GestureDetector(
                                           onTap: () {
-                                            Navigator.of(context)
-                                                .push(MaterialPageRoute(
+                                            Navigator.of(context).push(MaterialPageRoute(
                                               builder: (_) => DetailRiwayat(
                                                 id: e.id,
                                               ),
@@ -102,9 +94,7 @@ class _RiwayatState extends State<Riwayat> {
                                               vertical: 16,
                                             ),
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Row(
                                                   children: [
@@ -112,55 +102,35 @@ class _RiwayatState extends State<Riwayat> {
                                                       width: 8,
                                                     ),
                                                     Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text(
-                                                          '${e.transactionProduct.name}',
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            textStyle:
-                                                                Nunito_17px,
-                                                            fontWeight:
-                                                                FontWeight.bold,
+                                                          '${e.transactionProduct?.name ?? e.notes}',
+                                                          style: GoogleFonts.nunito(
+                                                            textStyle: Nunito_17px,
+                                                            fontWeight: FontWeight.bold,
                                                           ),
                                                         ),
                                                         Text(
-                                                          e.amount
-                                                              .toRupiahWithSymbol,
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            textStyle:
-                                                                Nunito_15px,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                          e.amount.toRupiahWithSymbol,
+                                                          style: GoogleFonts.nunito(
+                                                            textStyle: Nunito_15px,
+                                                            fontWeight: FontWeight.normal,
                                                           ),
                                                         ),
                                                         Text(
                                                           e.transactionStatus,
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            textStyle:
-                                                                Nunito_15px,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                          style: GoogleFonts.nunito(
+                                                            textStyle: Nunito_15px,
+                                                            fontWeight: FontWeight.normal,
                                                           ),
                                                         ),
                                                         Text(
                                                           'Pukul ${DateFormat.Hms().format(e.createdAt.toLocal())}',
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            textStyle:
-                                                                Nunito_15px,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                          style: GoogleFonts.nunito(
+                                                            textStyle: Nunito_15px,
+                                                            fontWeight: FontWeight.normal,
                                                           ),
                                                         )
                                                       ],

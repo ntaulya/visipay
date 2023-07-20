@@ -14,7 +14,7 @@ class Riwayat {
   final UserTransaction userTransaction;
   final WalletTransaction walletTransaction;
   final TransactionMethod transactionMethod;
-  final TransactionProduct transactionProduct;
+  final TransactionProduct? transactionProduct;
   final dynamic transactionDiscount;
 
   Riwayat({
