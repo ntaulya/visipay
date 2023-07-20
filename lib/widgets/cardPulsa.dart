@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/data/model/produk.dart';
 import 'package:visipay/extention/currency_extention.dart';
-import 'package:visipay/pages/home.dart';
 import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
 import 'package:visipay/widgets/button.dart';
 
@@ -16,10 +13,7 @@ class CardPulsa extends StatefulWidget {
   final String no_hp;
   final String title;
   const CardPulsa(
-      {required this.notes,
-      required this.no_hp,
-      required this.title,
-      required this.produk});
+      {required this.notes, required this.no_hp, required this.title, required this.produk});
 
   @override
   State<CardPulsa> createState() => _CardPulsaState();
@@ -37,8 +31,7 @@ class _CardPulsaState extends State<CardPulsa> {
               return Container(
                 height: 400,
                 child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -146,8 +139,7 @@ class _CardPulsaState extends State<CardPulsa> {
                                 fontWeight: FontWeight.w700,
                                 color: Text1,
                               )),
-                          Text(
-                              ((widget.produk.price) + 1000).toRupiahWithSymbol,
+                          Text(((widget.produk.price) + 1000).toRupiahWithSymbol,
                               style: GoogleFonts.nunito(
                                 textStyle: Nunito_15px,
                                 fontWeight: FontWeight.w700,
@@ -170,6 +162,7 @@ class _CardPulsaState extends State<CardPulsa> {
                           ),
                           Button(
                             onTap: () {
+                              Navigator.pop(context);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -199,13 +192,12 @@ class _CardPulsaState extends State<CardPulsa> {
             fontWeight: FontWeight.w700,
             color: Text1,
           )),
-      subtitle:
-          Text("Harga " + ((widget.produk.price) + 1000).toRupiahWithSymbol,
-              style: GoogleFonts.nunito(
-                textStyle: Nunito_15px,
-                fontWeight: FontWeight.w500,
-                color: Text1,
-              )),
+      subtitle: Text("Harga " + ((widget.produk.price) + 1000).toRupiahWithSymbol,
+          style: GoogleFonts.nunito(
+            textStyle: Nunito_15px,
+            fontWeight: FontWeight.w500,
+            color: Text1,
+          )),
     ));
   }
 }
