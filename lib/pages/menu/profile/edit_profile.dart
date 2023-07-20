@@ -8,7 +8,6 @@ import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
-import 'package:visipay/pages/menu/profile/my_profile.dart';
 
 import '../../../widgets/button.dart';
 
@@ -36,24 +35,20 @@ class _EditProfileState extends State<EditProfile> {
                 child: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Home()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
                   },
                 ),
               ),
               title: Text(
                 "Edit Profile",
                 style: GoogleFonts.nunito(
-                    textStyle: Nunito_21px,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
             body: Container(
               padding: EdgeInsetsDirectional.symmetric(horizontal: 16),
               child: BlocProvider(
-                create: (context) =>
-                    sl<GetProfileBloc>()..add(GetProfileInisiate()),
+                create: (context) => sl<GetProfileBloc>()..add(GetProfileInisiate()),
                 child: BlocBuilder<GetProfileBloc, GetProfileState>(
                   builder: (context, state) {
                     blocContext = context;
@@ -137,19 +132,17 @@ class _EditProfileState extends State<EditProfile> {
                     BlocListener<EditProfileBloc, EditProfileState>(
                       listener: (context, state) {
                         if (state is EditProfileSuccess) {
-                         
                           Navigator.pop(context, true);
                         } else if (state is EditProfileError) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Gagal mengedit profile")));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text("Gagal mengedit profile")));
                         }
                       },
-                      child: Button("Save",
-                          backgroundColor: Secondary50,
-                          width: 286,
-                          height: 45, onTap: () {
-                        context.read<EditProfileBloc>().add(EditProfileInisiate(
-                            _nameController.text, _emailController.text));
+                      child: Button("Save", backgroundColor: Primary50, width: 286, height: 45,
+                          onTap: () {
+                        context
+                            .read<EditProfileBloc>()
+                            .add(EditProfileInisiate(_nameController.text, _emailController.text));
                       }),
                     ),
                     SizedBox(height: 8),
