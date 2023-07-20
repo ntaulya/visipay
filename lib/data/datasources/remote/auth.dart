@@ -69,33 +69,37 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
 
   @override
   Future<Either<String, User>> finduser(String phone) async {
-    var response = await ApiRequest(
-      method: API_METHODS.POST,
-      path: "/api/user",
-      payloadJson: {
-        "phone": phone,
-      },
-    );
-    print(response.asRight().body);
-    if (response.asRight().statusCode == 200) {
-      var body = json.decode(response.asRight().body);
-      var data = UserModel.fromJson(body['user']);
-      return Future.value(Right(data));
-    } else {
-      return Future.value(Left(''));
+    try {
+      var response = await ApiRequest(
+        method: API_METHODS.POST,
+        path: "/api/user",
+        payloadJson: {
+          "phone": phone,
+        },
+      );
+      print(response.asRight().body);
+      if (response.asRight().statusCode == 400) {
+        throw userNotFoundExceptions();
+      }
+
+      if (response.asRight().statusCode == 200) {
+        var body = json.decode(response.asRight().body);
+        var data = UserModel.fromJson(body['user']);
+        return Future.value(Right(data));
+      } else {
+        return Future.value(Left(''));
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 
   @override
   Future<Either<String, String>> sendOtp(String phone) async {
     var response = await ApiRequest(
-      apiUrl: "https://77abcafd-99e3-4064-8058-7f6ddd2fe4d4.mock.pstmn.io",
       method: API_METHODS.POST,
       path: "/user/otp",
-      payloadJson: {
-        "identifier": phone,
-        "otpChannel" : "sms"
-      },
+      payloadJson: {"identifier": phone, "otpChannel": "sms"},
     );
     print(response.asRight().body);
     if (response.asRight().statusCode == 200) {
@@ -108,11 +112,10 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
   @override
   Future<Either<String, String>> verifyOtp(String phone, String otp) async {
     var response = await ApiRequest(
-      apiUrl: "https://77abcafd-99e3-4064-8058-7f6ddd2fe4d4.mock.pstmn.io",
       method: API_METHODS.POST,
       path: "/user/verify",
       payloadJson: {
-        "identifier" : phone,
+        "identifier": phone,
         "otp": otp,
       },
     );
@@ -124,3 +127,5 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
     }
   }
 }
+
+class userNotFoundExceptions implements Exception {}
