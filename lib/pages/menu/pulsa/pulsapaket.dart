@@ -3,11 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visipay/bloc/get_profile/get_profile_bloc.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
 import 'package:visipay/pages/home.dart';
 import 'package:visipay/widgets/cardPulsa.dart';
+
+import '../../../injection_container/di.dart';
 
 class PulsaPaket extends StatefulWidget {
   // String? inputNumber;
@@ -19,25 +22,15 @@ class PulsaPaket extends StatefulWidget {
 
 class _PulsaPaketState extends State<PulsaPaket> {
   late BuildContext blocContext;
-  String inputNumber = "";
 
   void onFieldSubmitted(String value) {
-    setState(() {
-      inputNumber = value.replaceFirst("0", "62");
-    });
-    blocContext
-        .read<ProdukBloc>()
-        .add(GetProdukListInisiate(code: "", category: "Pulsa", phone_number: inputNumber));
+    _pulsaPaketController.text = value.replaceFirst("0", "62");
+
+    blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
+        code: "", category: "Pulsa", phone_number: _pulsaPaketController.text));
   }
 
-  final TextEditingController __PulsaPaketController = TextEditingController();
-  @override
-  void initState() {
-    context
-        .read<ProdukBloc>()
-        .add(GetProdukListInisiate(code: "", category: "Pulsa", phone_number: ""));
-    super.initState();
-  }
+  final TextEditingController _pulsaPaketController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,70 +62,90 @@ class _PulsaPaketState extends State<PulsaPaket> {
                       color: Colors.white,
                     )),
               ),
-              body: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    child: TextFormField(
-                      onFieldSubmitted: onFieldSubmitted,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        // prefixText: "Rp ",
-                        labelText: 'Nomor Telfon',
-                        hintText: 'Masukkan Nomor Telfon',
-                        // prefixIcon: Icon(Icons.person),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10.0),
+              body: BlocProvider(
+                create: (context) => sl<GetProfileBloc>()..add(GetProfileInisiate()),
+                child: BlocSelector<GetProfileBloc, GetProfileState, GetProfileState>(
+                  selector: (state) {
+                    if (state is GetProfileLoaded) {
+                      _pulsaPaketController.text = state.user.phone;
+                    }
+                    return state;
+                  },
+                  builder: (context, state) => BlocProvider(
+                    create: (context) => sl<ProdukBloc>()
+                      ..add(GetProdukListInisiate(code: "", category: "Pulsa", phone_number: "")),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          child: TextFormField(
+                            controller: _pulsaPaketController,
+                            onFieldSubmitted: onFieldSubmitted,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              // prefixText: "Rp ",
+                              labelText: 'Nomor Telfon',
+                              hintText: 'Masukkan Nomor Telfon',
+                              // prefixIcon: Icon(Icons.person),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Primary30),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Primary30),
-                          borderRadius: BorderRadius.circular(10.0),
+                        TabBar(
+                          padding: EdgeInsets.only(bottom: 8),
+                          indicatorColor: Primary50,
+                          tabs: [
+                            Tab(
+                              child: Text('PULSA', style: TextStyle(color: Primary50)),
+                            ),
+                            Tab(
+                              child: Text('PAKET DATA', style: TextStyle(color: Primary50)),
+                            ),
+                          ],
+                          onTap: (value) {
+                            if (value == 0) {
+                              blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
+                                  code: "",
+                                  category: "Pulsa",
+                                  phone_number: _pulsaPaketController.text));
+                            } else if (value == 1) {
+                              blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
+                                  code: "",
+                                  category: "Paket-Data",
+                                  phone_number: _pulsaPaketController.text));
+                            }
+                          },
                         ),
-                      ),
+                        Expanded(
+                          child: BlocBuilder<ProdukBloc, ProdukState>(builder: (context, state) {
+                            blocContext = context;
+                            if (state is ProdukListLoaded) {
+                              return ListView.builder(
+                                  itemCount: state.produk.length,
+                                  itemBuilder: (context, index) {
+                                    return CardPulsa(
+                                      notes: '',
+                                      no_hp: _pulsaPaketController.text,
+                                      title: state.produk[index].name,
+                                      produk: state.produk[index],
+                                    );
+                                  });
+                            } else {
+                              return Container();
+                            }
+                          }),
+                        )
+                      ],
                     ),
                   ),
-                  TabBar(
-                    padding: EdgeInsets.only(bottom: 8),
-                    indicatorColor: Primary50,
-                    tabs: [
-                      Tab(
-                        child: Text('PULSA', style: TextStyle(color: Primary50)),
-                      ),
-                      Tab(
-                        child: Text('PAKET DATA', style: TextStyle(color: Primary50)),
-                      ),
-                    ],
-                    onTap: (value) {
-                      if (value == 0) {
-                        blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
-                            code: "", category: "Pulsa", phone_number: inputNumber));
-                      } else if (value == 1) {
-                        blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
-                            code: "", category: "Paket-Data", phone_number: inputNumber));
-                      }
-                    },
-                  ),
-                  Expanded(
-                    child: BlocBuilder<ProdukBloc, ProdukState>(builder: (context, state) {
-                      blocContext = context;
-                      if (state is ProdukListLoaded) {
-                        return ListView.builder(
-                            itemCount: state.produk.length,
-                            itemBuilder: (context, index) {
-                              return CardPulsa(
-                                notes: '',
-                                no_hp: inputNumber,
-                                title: state.produk[index].name,
-                                produk: state.produk[index],
-                              );
-                            });
-                      } else {
-                        return Container();
-                      }
-                    }),
-                  )
-                ],
+                ),
               ),
             ),
           ),
