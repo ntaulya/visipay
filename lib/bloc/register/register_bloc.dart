@@ -21,8 +21,14 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
       if (event is finduser) {
         emit(RegisterLoading());
-        final failureOrUser = await data.finduser(event.phone);
-        emit(failureOrUser.fold((l) => RegisterError(l), (r) => userfound()));
+        try {
+          final failureOrUser = await data.finduser(event.phone);
+          emit(failureOrUser.fold((l) => RegisterError(l), (r) => userfound()));
+        } catch (e) {
+          if (e is userNotFoundExceptions) {
+            emit(userNotFound());
+          }
+        }
       }
     });
   }
