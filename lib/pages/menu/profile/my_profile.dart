@@ -155,7 +155,7 @@ class _MyProfileState extends State<MyProfile> {
                       "Log Out",
                       onTap: () async {
                         await saveJWT("");
-                        Navigator.of(context).pushReplacementNamed('/onboarding');
+                        Navigator.of(context).pushNamedAndRemoveUntil('/onboarding', (_) => false);
                       },
                       backgroundColor: Color(0xffD66161),
                       width: 286,
