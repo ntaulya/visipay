@@ -18,5 +18,7 @@ class RegisterError extends RegisterState {
 
 class userfound extends RegisterState {}
 
+class userNotFound extends RegisterState {}
+
 //kalau berhasil
 class RegisterSuccess extends RegisterState {}
