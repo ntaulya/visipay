@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
                     Text(
                       'Masuk',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.bold),
+                          GoogleFonts.nunito(textStyle: Nunito_21px, fontWeight: FontWeight.bold),
                     ),
 
                     //container
@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
                           GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
 
-                    SizedBox(height: 16),
+                    SizedBox(height: 32),
 
                     TextField(
                       keyboardType: TextInputType.phone,
