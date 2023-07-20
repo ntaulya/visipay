@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/riwayat/riwayat_bloc.dart';
-import 'package:visipay/data/model/riwayat.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/widgets/button.dart';
 import '../../../core/theme/palette.dart';
@@ -39,9 +37,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
               title: Text(
                 "Detail Riwayat Transaksi",
                 style: GoogleFonts.nunito(
-                    textStyle: Nunito_21px,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    textStyle: Nunito_21px, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
             body: Column(
@@ -57,14 +53,12 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                           children: [
                             Expanded(
                                 child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                   BlocProvider(
-                                      create: (context) => sl<RiwayatBloc>()
-                                        ..add(RiwayatDetailInisiate(widget.id)),
-                                      child: BlocBuilder<RiwayatBloc,
-                                              RiwayatState>(
+                                      create: (context) =>
+                                          sl<RiwayatBloc>()..add(RiwayatDetailInisiate(widget.id)),
+                                      child: BlocBuilder<RiwayatBloc, RiwayatState>(
                                           builder: (context, state) {
                                         print(state);
                                         if (state is RiwayatLoadedID) {
@@ -72,8 +66,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                             children: [
                                               Center(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
                                                     Image.asset(
                                                       "assets/icon/PLN Listrik.png",
@@ -82,21 +75,14 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                     ),
                                                     SizedBox(height: 12),
                                                     Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
                                                         Text(
-                                                          state.riwayat.notes ??
-                                                              "",
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            textStyle:
-                                                                TextStyle(
+                                                          state.riwayat.notes ?? "",
+                                                          style: GoogleFonts.nunito(
+                                                            textStyle: TextStyle(
                                                               fontSize: 17,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                              fontWeight: FontWeight.bold,
                                                             ),
                                                           ),
                                                         ),
@@ -107,57 +93,37 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                               ),
                                               SizedBox(height: 20),
                                               Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Expanded(
                                                     child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text("ID Transaksi",
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w500,
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
                                                         Text('Jumlah',
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w500,
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
                                                         Text('Total Transaksi',
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w500,
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
                                                         Text('Status',
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w500,
                                                               color: Text1,
                                                             )),
                                                       ],
@@ -165,61 +131,35 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                   ),
                                                   Expanded(
                                                     child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
+                                                      crossAxisAlignment: CrossAxisAlignment.end,
                                                       children: [
-                                                        Text(
-                                                            state.riwayat
-                                                                .transactionMethodId,
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
+                                                        Text(state.riwayat.transactionMethodId,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text(state.riwayat.amount.toString(),
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w600,
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
                                                         Text(
-                                                            state.riwayat.amount
+                                                            (state.riwayat.amount + 2500)
                                                                 .toString(),
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w600,
                                                               color: Text1,
                                                             )),
                                                         SizedBox(height: 20),
-                                                        Text(
-                                                            (state.riwayat
-                                                                        .amount +
-                                                                    2500)
-                                                                .toString(),
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
-                                                        Text(
-                                                            state.riwayat
-                                                                .transactionStatus,
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              textStyle:
-                                                                  Nunito_17px,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
+                                                        Text(state.riwayat.transactionStatus,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w600,
                                                               color: Text1,
                                                             )),
                                                       ],
@@ -243,8 +183,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
               ],
             ),
             bottomNavigationBar: BlocProvider(
-              create: (context) =>
-                  sl<RiwayatBloc>()..add(RiwayatDetailInisiate(widget.id)),
+              create: (context) => sl<RiwayatBloc>()..add(RiwayatDetailInisiate(widget.id)),
               child: BlocBuilder<RiwayatBloc, RiwayatState>(
                 builder: (context, state) {
                   return Padding(
