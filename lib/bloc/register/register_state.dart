@@ -16,5 +16,7 @@ class RegisterError extends RegisterState {
   RegisterError(this.error_message);
 }
 
+class userfound extends RegisterState {}
+
 //kalau berhasil
 class RegisterSuccess extends RegisterState {}
