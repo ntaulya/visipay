@@ -177,19 +177,25 @@ class _RegisterState extends State<Register> {
                       builder: (context) {
                         return AlertDialog(
                           title: const Text('Nomor sudah terdaftar, silahkan login'),
-                          actionsAlignment: MainAxisAlignment.center,
+                          actionsAlignment: MainAxisAlignment.spaceBetween,
                           actions: [
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/register');
+                                Navigator.pushReplacementNamed(context, '/login');
                               },
-                              child: const Text('Yes'),
-                            )
+                              child: const Text('Ke Halaman Login'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                              },
+                              child: const Text('Tutup'),
+                            ),
                           ],
                         );
                       },
                     );
-                  } else {
+                  } else if (state is userNotFound) {
                     context.read<RegisterBloc>().add(RegisterFormSubmit(_phoneController.text,
                         _nameController.text, _emailController.text, _pinController.text));
                   }
