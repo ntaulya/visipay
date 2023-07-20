@@ -26,6 +26,8 @@ class _PdamState extends State<Pdam> {
   String inputNumber = "";
   late BuildContext blocContext;
   final TextEditingController idpelangganController = TextEditingController();
+  final List<String> pdamList = ['PDAM JAKARTA', 'PDAM BANDUNG', 'PDAM SURABAYA', 'PDAM JOGJA'];
+  String? selectedPDAM;
 
   void onFieldSubmitted(String value) {
     setState(() {
@@ -65,6 +67,28 @@ class _PdamState extends State<Pdam> {
             children: [
               SizedBox(
                 height: 24,
+              ),
+              Container(
+                width: double.maxFinite,
+                height: 60,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: DropdownButton<String>(
+                  hint: Text('Pilih Lokasi PDAM'),
+                  isExpanded: true,
+                  value: selectedPDAM,
+                  items: List<DropdownMenuItem<String>>.from(pdamList.map((e) => DropdownMenuItem(
+                        child: Text(e),
+                        value: e,
+                      ))),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedPDAM = value;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 8,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
