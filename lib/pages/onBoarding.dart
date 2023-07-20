@@ -57,7 +57,7 @@ class OnBoarding extends StatelessWidget {
                 "Login",
                 backgroundColor: Primary50,
                 // width: 380,
-                height: 48,
+                height: 55,
 
                 onTap: () {
                   // Navigator.of(context).pushNamed('/login');
@@ -73,7 +73,7 @@ class OnBoarding extends StatelessWidget {
                   backgroundColor: Colors.white,
                   color: Primary50,
                   // width: 380,
-                  height: 48, onTap: () {
+                  height: 55, onTap: () {
                 // Navigator.of(context).pushNamed('/register');
                 Navigator.push(
                     context,
