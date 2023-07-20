@@ -50,16 +50,16 @@ class _RegisterState extends State<Register> {
                     Text(
                       'Lengkapi profile untuk melanjutkan',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.w500),
                     ),
 
-                    SizedBox(height: 8),
+                    SizedBox(height: 32),
 
                     //nama lengkap
                     Text(
                       'Nama Lengkap',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -76,7 +76,7 @@ class _RegisterState extends State<Register> {
                     Text(
                       'No Handphone',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -94,7 +94,7 @@ class _RegisterState extends State<Register> {
                     Text(
                       'E-Mail',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.w500),
                     ),
 
                     SizedBox(height: 8),
@@ -114,7 +114,7 @@ class _RegisterState extends State<Register> {
                     Text(
                       'Masukkan PIN',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 8),
                     TextField(
@@ -133,7 +133,7 @@ class _RegisterState extends State<Register> {
                     Text(
                       'Konfirmasi PIN',
                       style:
-                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 8),
                     TextField(
