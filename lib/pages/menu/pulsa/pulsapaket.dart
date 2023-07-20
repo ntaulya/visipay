@@ -6,10 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/produk/produk_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/pages/home.dart';
-import 'package:visipay/pages/menu/pulsa/konfirmasi_pembayaran.dart';
-import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/cardPulsa.dart';
 
 class PulsaPaket extends StatefulWidget {
@@ -28,15 +25,17 @@ class _PulsaPaketState extends State<PulsaPaket> {
     setState(() {
       inputNumber = value.replaceFirst("0", "62");
     });
-    blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
-        code: "", category: "Pulsa", phone_number: inputNumber));
+    blocContext
+        .read<ProdukBloc>()
+        .add(GetProdukListInisiate(code: "", category: "Pulsa", phone_number: inputNumber));
   }
 
   final TextEditingController __PulsaPaketController = TextEditingController();
   @override
   void initState() {
-     context.read<ProdukBloc>().add(GetProdukListInisiate(
-        code: "", category: "Pulsa", phone_number: ""));
+    context
+        .read<ProdukBloc>()
+        .add(GetProdukListInisiate(code: "", category: "Pulsa", phone_number: ""));
     super.initState();
   }
 
@@ -98,33 +97,24 @@ class _PulsaPaketState extends State<PulsaPaket> {
                     indicatorColor: Primary50,
                     tabs: [
                       Tab(
-                        child:
-                            Text('PULSA', style: TextStyle(color: Primary50)),
+                        child: Text('PULSA', style: TextStyle(color: Primary50)),
                       ),
                       Tab(
-                        child: Text('PAKET DATA',
-                            style: TextStyle(color: Primary50)),
+                        child: Text('PAKET DATA', style: TextStyle(color: Primary50)),
                       ),
                     ],
                     onTap: (value) {
                       if (value == 0) {
-                        blocContext.read<ProdukBloc>().add(
-                            GetProdukListInisiate(
-                                code: "",
-                                category: "Pulsa",
-                                phone_number: inputNumber));
+                        blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
+                            code: "", category: "Pulsa", phone_number: inputNumber));
                       } else if (value == 1) {
-                        blocContext.read<ProdukBloc>().add(
-                            GetProdukListInisiate(
-                                code: "",
-                                category: "Paket-Data",
-                                phone_number: inputNumber));
+                        blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
+                            code: "", category: "Paket-Data", phone_number: inputNumber));
                       }
                     },
                   ),
                   Expanded(
-                    child: BlocBuilder<ProdukBloc, ProdukState>(
-                        builder: (context, state) {
+                    child: BlocBuilder<ProdukBloc, ProdukState>(builder: (context, state) {
                       blocContext = context;
                       if (state is ProdukListLoaded) {
                         return ListView.builder(
