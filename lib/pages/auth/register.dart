@@ -118,6 +118,7 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 8),
                     TextField(
+                      obscureText: true,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -136,6 +137,7 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 8),
                     TextField(
+                      obscureText: true,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
