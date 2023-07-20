@@ -52,8 +52,8 @@ class _LoginState extends State<Login> {
                     //text 1
                     Text(
                       'Masuk',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px, fontWeight: FontWeight.bold),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.bold),
                     ),
 
                     //container
@@ -62,9 +62,8 @@ class _LoginState extends State<Login> {
                     //text 2
                     Text(
                       'Masuk cuma butuh nomor HP aja.',
-                      style: GoogleFonts.nunito(
-                          textStyle: Nunito_17px,
-                          fontWeight: FontWeight.normal),
+                      style:
+                          GoogleFonts.nunito(textStyle: Nunito_17px, fontWeight: FontWeight.normal),
                     ),
 
                     SizedBox(height: 16),
@@ -113,27 +112,48 @@ class _LoginState extends State<Login> {
           //bottom bar
           bottomNavigationBar: BlocProvider(
             create: (context) => sl<LoginBloc>(),
-            child:
-                BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
+            child: BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
               if (state is userfound) {
-                Navigator.of(context).pushNamed("/pin",
-                    arguments: {"phone": _phoneController.text});
+                Navigator.of(context)
+                    .pushNamed("/pin", arguments: {"phone": _phoneController.text});
+              } else if (state is userNotFound) {
+                showDialog<bool>(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text(
+                          'Nomor tidak ditemukan, apakah anda ingin mendaftar terlebih dahulu?'),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/register');
+                          },
+                          child: const Text('Yes'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: const Text('No'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               }
             }, builder: (context, state) {
               return Padding(
                 padding: const EdgeInsets.all(40.0),
                 child: Button(
                   "Lanjutkan",
-                  height: 50,
-                  backgroundColor:
-                      (state is LoginInitial || state is LoginError)
-                          ? Primary50
-                          : Primary50.withOpacity(0.5),
+                  height: 60,
+                  backgroundColor: (state is LoginInitial || state is LoginError)
+                      ? Primary50
+                      : Primary50.withOpacity(0.5),
                   onTap: () {
                     if (state is LoginInitial || state is LoginError) {
-                      context
-                          .read<LoginBloc>()
-                          .add(finduser(_phoneController.text));
+                      context.read<LoginBloc>().add(finduser(_phoneController.text));
                     }
                   },
                 ),
