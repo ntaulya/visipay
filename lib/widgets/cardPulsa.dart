@@ -156,7 +156,8 @@ class _CardPulsaState extends State<CardPulsa> {
                               Navigator.pop(context);
                             },
                             "Batal",
-                            backgroundColor: Primary50,
+                            backgroundColor: Colors.white,
+                            color: Primary50,
                             width: 151,
                             height: 48,
                           ),
@@ -174,7 +175,7 @@ class _CardPulsaState extends State<CardPulsa> {
                                   ));
                             },
                             "Konfirmasi",
-                            backgroundColor: Secondary50,
+                            backgroundColor: Primary50,
                             width: 151,
                             height: 48,
                           ),
