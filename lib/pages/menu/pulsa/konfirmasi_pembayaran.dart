@@ -5,12 +5,9 @@ import 'package:visipay/bloc/get_wallet/get_wallet_bloc.dart';
 import 'package:visipay/bloc/pembayaran/pembayaran_bloc.dart';
 import 'package:visipay/core/theme/palette.dart';
 import 'package:visipay/core/theme/textSize.dart';
-import 'package:visipay/data/model/produk.dart';
 import 'package:visipay/data/model/promo.dart';
 import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
-import 'package:visipay/pages/home.dart';
-import 'package:visipay/pages/menu/promo/DaftarPromo.dart';
 import 'package:visipay/pages/menu/pulsa/pilih_promo.dart';
 import 'package:visipay/pages/menu/topup/topup.dart';
 import 'package:visipay/pages/status/StatusBerhasil.dart';
@@ -33,8 +30,7 @@ class KonfirPembayaran extends StatefulWidget {
 }
 
 class _KonfirPembayaranState extends State<KonfirPembayaran> {
-  final TextEditingController __KonfirPembayaranController =
-      TextEditingController();
+  final TextEditingController __KonfirPembayaranController = TextEditingController();
   Promo? selectedPromo;
   double discount = 0;
 
@@ -47,7 +43,6 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context);
               Navigator.pop(context);
             },
           ),
@@ -72,8 +67,8 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                       .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
                   children: [
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment
-                          .start, // Mengatur child berada di sebelah kiri
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start, // Mengatur child berada di sebelah kiri
                       children: [
                         Text(
                           'Tagihan Pembayaran',
@@ -132,8 +127,8 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                       .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
                   children: [
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment
-                          .start, // Mengatur child berada di sebelah kiri
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start, // Mengatur child berada di sebelah kiri
                       children: [
                         Text(
                           'Visipay',
@@ -144,8 +139,7 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                           ),
                         ),
                         BlocProvider(
-                          create: (context) =>
-                              sl<GetWalletBloc>()..add(GetWalletInisiate()),
+                          create: (context) => sl<GetWalletBloc>()..add(GetWalletInisiate()),
                           child: BlocBuilder<GetWalletBloc, GetWalletState>(
                             builder: (context, state) {
                               print(state);
@@ -213,8 +207,7 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                       children: [
                         OutlinedBox(
                           child: Padding(
-                            padding: EdgeInsets.all(
-                                8.0), // Menambahkan padding horizontal
+                            padding: EdgeInsets.all(8.0), // Menambahkan padding horizontal
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment
                                   .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
@@ -257,8 +250,7 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                       children: [
                         OutlinedBox(
                           child: Padding(
-                            padding: EdgeInsets.all(
-                                8.0), // Menambahkan padding horizontal
+                            padding: EdgeInsets.all(8.0), // Menambahkan padding horizontal
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment
                                   .start, // Membuat child berada di ujung kiri dan ujung kanan
@@ -299,8 +291,8 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                       .spaceBetween, // Membuat child berada di ujung kiri dan ujung kanan
                   children: [
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment
-                          .start, // Mengatur child berada di sebelah kiri
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start, // Mengatur child berada di sebelah kiri
                       children: [
                         Text(
                           'Total Bayar',
@@ -330,8 +322,7 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                             listener: (context, state) {
                           if (state is PembayaranSuccess) {
                             Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (_) => StatusBerhasil()));
+                                MaterialPageRoute(builder: (_) => StatusBerhasil()));
                           }
                         }, builder: (context, state) {
                           print(state);
@@ -342,11 +333,10 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                               width: 123,
                               height: 48,
                               onTap: () {
-                                context.read<PembayaranBloc>().add(
-                                    PembayaranInisiate(
-                                        product_id: widget.product_id,
-                                        promo_id: selectedPromo?.id ?? '',
-                                        notes: widget.notes));
+                                context.read<PembayaranBloc>().add(PembayaranInisiate(
+                                    product_id: widget.product_id,
+                                    promo_id: selectedPromo?.id ?? '',
+                                    notes: widget.notes));
                               },
                             );
                           } else if (state is PembayaranError) {
@@ -356,13 +346,10 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                               width: 123,
                               height: 48,
                               onTap: () {
-                                context.read<PembayaranBloc>().add(
-                                    PembayaranInisiate(
-                                        product_id: widget.product_id,
-                                        promo_id: selectedPromo == null
-                                            ? ""
-                                            : selectedPromo!.id,
-                                        notes: widget.notes));
+                                context.read<PembayaranBloc>().add(PembayaranInisiate(
+                                    product_id: widget.product_id,
+                                    promo_id: selectedPromo == null ? "" : selectedPromo!.id,
+                                    notes: widget.notes));
                               },
                             );
                           } else {
