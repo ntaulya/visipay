@@ -127,15 +127,15 @@ class _LoginState extends State<Login> {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/register');
+                            Navigator.pushReplacementNamed(context, '/register');
                           },
-                          child: const Text('Yes'),
+                          child: const Text('Ke Halaman Register'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context, false);
                           },
-                          child: const Text('No'),
+                          child: const Text('Tutup'),
                         ),
                       ],
                     );
@@ -152,9 +152,7 @@ class _LoginState extends State<Login> {
                       ? Primary50
                       : Primary50.withOpacity(0.5),
                   onTap: () {
-                    if (state is LoginInitial || state is LoginError) {
-                      context.read<LoginBloc>().add(finduser(_phoneController.text));
-                    }
+                    context.read<LoginBloc>().add(finduser(_phoneController.text));
                   },
                 ),
               );
