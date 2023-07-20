@@ -20,3 +20,5 @@ class userfound extends LoginState {
   final String phone;
   userfound(this.phone);
 }
+
+class userNotFound extends LoginState {}
