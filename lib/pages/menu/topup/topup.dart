@@ -40,7 +40,7 @@ class _TopUpState extends State<TopUp> {
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                Navigator.pop(context);
               },
             ),
           ),
