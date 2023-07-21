@@ -98,7 +98,7 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
   Future<Either<String, String>> sendOtp(String phone) async {
     var response = await ApiRequest(
       method: API_METHODS.POST,
-      path: "/user/otp",
+      path: "api/user/otp",
       payloadJson: {"identifier": phone, "otpChannel": "sms"},
     );
     print(response.asRight().body);
@@ -113,7 +113,7 @@ class AuthRemoteDatasourcesImpl extends AuthRemoteDatasources {
   Future<Either<String, String>> verifyOtp(String phone, String otp) async {
     var response = await ApiRequest(
       method: API_METHODS.POST,
-      path: "/user/verify",
+      path: "api/user/verify",
       payloadJson: {
         "identifier": phone,
         "otp": otp,
