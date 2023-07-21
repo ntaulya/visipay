@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visipay/bloc/riwayat/riwayat_bloc.dart';
+import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
 import 'package:visipay/widgets/button.dart';
 import '../../../core/theme/palette.dart';
@@ -78,7 +79,8 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
                                                         Text(
-                                                          state.riwayat.notes ?? "",
+                                                          state.riwayat.transactionProduct?.name ??
+                                                              "Top-Up E-Wallet",
                                                           style: GoogleFonts.nunito(
                                                             textStyle: TextStyle(
                                                               fontSize: 17,
@@ -99,27 +101,38 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                     child: Column(
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
-                                                        Text("ID Transaksi",
-                                                            style: GoogleFonts.nunito(
-                                                              textStyle: Nunito_17px,
-                                                              fontWeight: FontWeight.w500,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
-                                                        Text('Jumlah',
-                                                            style: GoogleFonts.nunito(
-                                                              textStyle: Nunito_17px,
-                                                              fontWeight: FontWeight.w500,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
-                                                        Text('Total Transaksi',
-                                                            style: GoogleFonts.nunito(
-                                                              textStyle: Nunito_17px,
-                                                              fontWeight: FontWeight.w500,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
+                                                        if (state.riwayat.transactionProduct !=
+                                                            null) ...{
+                                                          Text("Nomor Pelanggan",
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w500,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                          Text('Harga Produk',
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w500,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                        } else ...{
+                                                          Text("Metode Top-Up",
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w500,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                          Text('Jumlah Top-Up',
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w500,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                        },
                                                         Text('Status',
                                                             style: GoogleFonts.nunito(
                                                               textStyle: Nunito_17px,
@@ -133,29 +146,46 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                     child: Column(
                                                       crossAxisAlignment: CrossAxisAlignment.end,
                                                       children: [
-                                                        Text(state.riwayat.transactionMethodId,
-                                                            style: GoogleFonts.nunito(
-                                                              textStyle: Nunito_17px,
-                                                              fontWeight: FontWeight.w600,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
-                                                        Text(state.riwayat.amount.toString(),
-                                                            style: GoogleFonts.nunito(
-                                                              textStyle: Nunito_17px,
-                                                              fontWeight: FontWeight.w600,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
-                                                        Text(
-                                                            (state.riwayat.amount + 2500)
-                                                                .toString(),
-                                                            style: GoogleFonts.nunito(
-                                                              textStyle: Nunito_17px,
-                                                              fontWeight: FontWeight.w600,
-                                                              color: Text1,
-                                                            )),
-                                                        SizedBox(height: 20),
+                                                        if (state.riwayat.transactionProduct !=
+                                                            null) ...{
+                                                          Text(
+                                                              state.riwayat.billing_number
+                                                                  .toString(),
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                          Text(
+                                                              state.riwayat.transactionProduct!
+                                                                  .price.toRupiahWithSymbol,
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                        } else ...{
+                                                          Text(
+                                                              state.riwayat.transactionMethod
+                                                                  .methodName,
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                          Text(
+                                                              state.riwayat.amount
+                                                                  .toRupiahWithSymbol,
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
+                                                        },
                                                         Text(state.riwayat.transactionStatus,
                                                             style: GoogleFonts.nunito(
                                                               textStyle: Nunito_17px,
@@ -193,14 +223,15 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           if (state is RiwayatLoadedID &&
-                              state.riwayat.transactionStatus == "done") ...[
+                              state.riwayat.transactionStatus == "done" &&
+                              state.riwayat.transactionProduct != null) ...[
                             Button(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => KonfirPembayaran(
-                                      harga: state.riwayat.amount + 2500,
+                                      harga: state.riwayat.transactionProduct!.price,
                                       product_id: state.riwayat.productId,
                                       notes: state.riwayat.notes ?? "Beli lagi produk",
                                     ),
