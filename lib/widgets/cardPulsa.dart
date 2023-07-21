@@ -107,24 +107,6 @@ class _CardPulsaState extends State<CardPulsa> {
                         ],
                       ),
                       SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Biaya Transaksi',
-                              style: GoogleFonts.nunito(
-                                textStyle: Nunito_15px,
-                                fontWeight: FontWeight.w500,
-                                color: Text1,
-                              )),
-                          Text(1000.toRupiahWithSymbol,
-                              style: GoogleFonts.nunito(
-                                textStyle: Nunito_15px,
-                                fontWeight: FontWeight.w600,
-                                color: Text1,
-                              )),
-                        ],
-                      ),
-                      SizedBox(height: 12),
                       Divider(
                         color: Color(0xff3A3541), // Warna garis
                         thickness: 1.0, // Ketebalan garis
@@ -148,6 +130,7 @@ class _CardPulsaState extends State<CardPulsa> {
                         ],
                       ),
                       SizedBox(height: 14),
+                      Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -169,7 +152,7 @@ class _CardPulsaState extends State<CardPulsa> {
                                   MaterialPageRoute(
                                     builder: (context) => KonfirPembayaran(
                                       notes: widget.notes,
-                                      harga: widget.produk.price + 1000,
+                                      harga: widget.produk.price,
                                       product_id: widget.produk.id,
                                       billing_number: widget.no_hp,
                                     ),
@@ -194,7 +177,7 @@ class _CardPulsaState extends State<CardPulsa> {
             fontWeight: FontWeight.w700,
             color: Text1,
           )),
-      subtitle: Text("Harga " + ((widget.produk.price) + 1000).toRupiahWithSymbol,
+      subtitle: Text("Harga " + ((widget.produk.price)).toRupiahWithSymbol,
           style: GoogleFonts.nunito(
             textStyle: Nunito_15px,
             fontWeight: FontWeight.w500,
