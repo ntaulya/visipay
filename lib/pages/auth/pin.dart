@@ -11,9 +11,9 @@ import 'package:visipay/pages/home.dart';
 import 'package:visipay/data/repositories/wallet.dart';
 
 class Pin extends StatefulWidget {
-  final String phone;
+  final String? phone;
 
-  const Pin({super.key, required this.phone});
+  const Pin({super.key, this.phone});
 
   @override
   State<Pin> createState() => _PinState();
@@ -40,18 +40,24 @@ class _PinState extends State<Pin> {
               child: BlocListener<LoginBloc, LoginState>(
                   listener: (context, state) async {
                     if (state is LoginSuccess) {
-                      sl<WalletRepositories>().createWallet();
+                      await sl<WalletRepositories>().createWallet();
 
-                      await Future.delayed(const Duration(seconds: 3)).whenComplete(
+                      await Future.delayed(const Duration(seconds: 0)).whenComplete(
                         () => Navigator.of(context).pushNamedAndRemoveUntil("/home", (_) => false),
                       );
                     }
                   },
                   child: PinCodeTextField(
                     onCompleted: (String pin) {
-                      context.read<LoginBloc>().add(
-                            LoginFormSubmit(widget.phone, pin),
-                          );
+                      if (widget.phone == null) {
+                        context.read<LoginBloc>().add(
+                              userPIN(pin),
+                            );
+                      } else {
+                        context.read<LoginBloc>().add(
+                              LoginFormSubmit(widget.phone ?? '', pin),
+                            );
+                      }
                     },
                     appContext: context,
                     length: 6,
