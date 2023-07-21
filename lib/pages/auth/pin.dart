@@ -39,14 +39,11 @@ class _PinState extends State<Pin> {
               padding: const EdgeInsets.all(32.0),
               child: BlocListener<LoginBloc, LoginState>(
                   listener: (context, state) async {
-                    
                     if (state is LoginSuccess) {
                       sl<WalletRepositories>().createWallet();
 
-                      await Future.delayed(const Duration(seconds: 3))
-                          .whenComplete(
-                        () =>
-                            Navigator.of(context).pushReplacementNamed("/home"),
+                      await Future.delayed(const Duration(seconds: 3)).whenComplete(
+                        () => Navigator.of(context).pushNamedAndRemoveUntil("/home", (_) => false),
                       );
                     }
                   },
