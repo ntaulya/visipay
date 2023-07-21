@@ -322,8 +322,8 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                         child: BlocConsumer<PembayaranBloc, PembayaranState>(
                             listener: (context, state) {
                           if (state is PembayaranSuccess) {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (_) => StatusBerhasil()));
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(builder: (_) => StatusBerhasil()), (_) => false);
                           } else if (state is BalanceInsufficent) {
                             showDialog<bool>(
                               context: context,
