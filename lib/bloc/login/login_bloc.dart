@@ -33,6 +33,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           }
         }
       }
+
+      if (event is userPIN) {
+        emit(LoginLoading());
+        try {
+          final failureOrUser = await data.verifyPIN(event.security_code);
+          emit(failureOrUser.fold((l) => LoginError(l), (r) => LoginSuccess()));
+        } catch (e) {
+          if (e is userNotFoundExceptions) {
+            emit(userNotFound());
+          }
+        }
+      }
     });
   }
 }
