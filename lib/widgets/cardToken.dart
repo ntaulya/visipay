@@ -198,9 +198,11 @@ class _CardTokenState extends State<CardToken> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => KonfirPembayaran(
-                                            harga: widget.produk.price + 2500,
-                                            product_id: widget.produk.id,
-                                            notes: widget.notes),
+                                          harga: widget.produk.price + 2500,
+                                          product_id: widget.produk.id,
+                                          notes: widget.notes,
+                                          billing_number: widget.idpelanggan,
+                                        ),
                                       ));
                                 },
                                 "Konfirmasi",
