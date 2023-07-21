@@ -22,18 +22,29 @@ class PembayaranRemoteDatasourcesImpl extends PembayaranRemoteDatasources {
     if (billing_number != null) {
       payloadJSON.addAll({'billing_number': billing_number});
     }
-    var response = await ApiRequest(
-      method: API_METHODS.POST,
-      path: "/api/transaction",
-      payloadJson: payloadJSON,
-    );
-    print(response.asRight().body);
-    if (response.asRight().statusCode == 200) {
-      var body = json.decode(response.asRight().body)['data'];
 
-      return Future.value(Right('berhasil horee'));
-    } else {
-      return Future.value(Left(''));
+    try {
+      var response = await ApiRequest(
+        method: API_METHODS.POST,
+        path: "/api/transaction",
+        payloadJson: payloadJSON,
+      );
+      print(response.asRight().body);
+      if (response.asRight().statusCode == 400) {
+        throw balanceInsufficentExceptions();
+      }
+
+      if (response.asRight().statusCode == 200) {
+        var body = json.decode(response.asRight().body)['data'];
+
+        return Future.value(Right('berhasil horee'));
+      } else {
+        return Future.value(Left(''));
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 }
+
+class balanceInsufficentExceptions implements Exception {}
