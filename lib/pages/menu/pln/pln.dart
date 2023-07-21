@@ -121,6 +121,7 @@ class _PlnState extends State<Pln> {
                                           harga: data.amount,
                                           product_id: data.transactionProduct?.id ?? '',
                                           notes: "PLN Listrik",
+                                          billing_number: data.billing_number,
                                         ),
                                       ),
                                     );
