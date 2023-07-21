@@ -24,7 +24,9 @@ class _PulsaPaketState extends State<PulsaPaket> {
   late BuildContext blocContext;
 
   void onFieldSubmitted(String value) {
-    _pulsaPaketController.text = value.replaceFirst("0", "62");
+    if (_pulsaPaketController.text.startsWith('0')) {
+      _pulsaPaketController.text = '62' + _pulsaPaketController.text.substring(1);
+    }
 
     blocContext.read<ProdukBloc>().add(GetProdukListInisiate(
         code: "", category: "Pulsa", phone_number: _pulsaPaketController.text));
