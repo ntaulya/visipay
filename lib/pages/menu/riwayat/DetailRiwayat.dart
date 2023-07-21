@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:visipay/bloc/riwayat/riwayat_bloc.dart';
 import 'package:visipay/extention/currency_extention.dart';
 import 'package:visipay/injection_container/di.dart';
@@ -93,7 +94,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                   ],
                                                 ),
                                               ),
-                                              SizedBox(height: 20),
+                                              SizedBox(height: 50),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -117,6 +118,23 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                                 color: Text1,
                                                               )),
                                                           SizedBox(height: 20),
+                                                          if (state.riwayat.transactionDiscount !=
+                                                              null) ...{
+                                                            Text('Diskon',
+                                                                style: GoogleFonts.nunito(
+                                                                  textStyle: Nunito_17px,
+                                                                  fontWeight: FontWeight.w500,
+                                                                  color: Text1,
+                                                                )),
+                                                            SizedBox(height: 20),
+                                                          },
+                                                          Text('Total Bayar',
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w500,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
                                                         } else ...{
                                                           Text("Metode Top-Up",
                                                               style: GoogleFonts.nunito(
@@ -134,6 +152,13 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                           SizedBox(height: 20),
                                                         },
                                                         Text('Status',
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w500,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text('Tanggal Pembelian',
                                                             style: GoogleFonts.nunito(
                                                               textStyle: Nunito_17px,
                                                               fontWeight: FontWeight.w500,
@@ -166,6 +191,27 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                                 color: Text1,
                                                               )),
                                                           SizedBox(height: 20),
+                                                          if (state.riwayat.transactionDiscount !=
+                                                              null) ...{
+                                                            Text(
+                                                                state.riwayat.transactionDiscount!
+                                                                    .name,
+                                                                style: GoogleFonts.nunito(
+                                                                  textStyle: Nunito_17px,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Text1,
+                                                                )),
+                                                            SizedBox(height: 20),
+                                                          },
+                                                          Text(
+                                                              state.riwayat.amount
+                                                                  .toRupiahWithSymbol,
+                                                              style: GoogleFonts.nunito(
+                                                                textStyle: Nunito_17px,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: Text1,
+                                                              )),
+                                                          SizedBox(height: 20),
                                                         } else ...{
                                                           Text(
                                                               state.riwayat.transactionMethod
@@ -187,6 +233,15 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                                           SizedBox(height: 20),
                                                         },
                                                         Text(state.riwayat.transactionStatus,
+                                                            style: GoogleFonts.nunito(
+                                                              textStyle: Nunito_17px,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: Text1,
+                                                            )),
+                                                        SizedBox(height: 20),
+                                                        Text(
+                                                            DateFormat('dd MMM yyyy').format(
+                                                                state.riwayat.createdAt.toLocal()),
                                                             style: GoogleFonts.nunito(
                                                               textStyle: Nunito_17px,
                                                               fontWeight: FontWeight.w600,
@@ -234,6 +289,7 @@ class _DetailRiwayatState extends State<DetailRiwayat> {
                                       harga: state.riwayat.transactionProduct!.price,
                                       product_id: state.riwayat.productId,
                                       notes: state.riwayat.notes ?? "Beli lagi produk",
+                                      billing_number: state.riwayat.billing_number,
                                     ),
                                   ),
                                 );
