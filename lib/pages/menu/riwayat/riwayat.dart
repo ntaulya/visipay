@@ -29,7 +29,7 @@ class _RiwayatState extends State<Riwayat> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                Navigator.pop(context);
               },
             ),
             title: Text(
@@ -43,6 +43,9 @@ class _RiwayatState extends State<Riwayat> {
             child: BlocBuilder<RiwayatBloc, RiwayatState>(builder: (context, state) {
               print(state);
               if (state is RiwayatLoaded) {
+                if (state.riwayat.isEmpty) {
+                  return Center(child: Text('Anda belum melakukan transaksi'));
+                }
                 final historydate = state.riwayat
                     .map((e) => DateFormat("dd/MM/yyyy").format(e.createdAt))
                     .toSet()
