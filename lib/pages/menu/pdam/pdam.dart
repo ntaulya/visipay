@@ -15,6 +15,8 @@ import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/cardToken.dart';
 import 'package:visipay/widgets/container.dart';
 
+import '../../../bloc/get_profile/get_profile_bloc.dart';
+
 class Pdam extends StatefulWidget {
   const Pdam({super.key});
 
@@ -39,7 +41,20 @@ class _PdamState extends State<Pdam> {
   }
 
   @override
+  void initState() {
+    context.read<GetProfileBloc>().add(GetProfileInisiate());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final name = context.select<GetProfileBloc, String>((value) {
+      if (value.state is GetProfileLoaded) {
+        return (value.state as GetProfileLoaded).user.name;
+      }
+
+      return '';
+    });
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SafeArea(
@@ -145,17 +160,159 @@ class _PdamState extends State<Pdam> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => KonfirPembayaran(
-                                        harga: data.transactionProduct!.price,
-                                        product_id: data.transactionProduct?.id ?? '',
-                                        notes: "PDAM",
-                                        billing_number: data.billing_number,
-                                      ),
-                                    ),
-                                  );
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          height: 430,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 16.0, vertical: 32.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Informasi Pelanggan',
+                                                    style: GoogleFonts.nunito(
+                                                      textStyle: Nunito_17px,
+                                                      fontWeight: FontWeight.w700,
+                                                      color: Text1,
+                                                    )),
+                                                SizedBox(height: 18),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text('ID Pelanggan',
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Text1,
+                                                        )),
+                                                    Text(data.billing_number.toString(),
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Text1,
+                                                        )),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 12),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text('Nama Pelanggan',
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Text1,
+                                                        )),
+                                                    Text(name,
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Text1,
+                                                        )),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 12),
+                                                SizedBox(height: 18),
+                                                Row(
+                                                  children: [
+                                                    Text('Detail Pembayaran',
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_17px,
+                                                          fontWeight: FontWeight.w700,
+                                                          color: Text1,
+                                                        )),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 18),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text('Harga Token',
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Text1,
+                                                        )),
+                                                    Text(
+                                                        data.transactionProduct!.price
+                                                            .toRupiahWithSymbol,
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Text1,
+                                                        )),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 12),
+                                                Divider(
+                                                  color: Color(0xff3A3541), // Warna garis
+                                                  thickness: 1.0, // Ketebalan garis
+                                                ),
+                                                SizedBox(height: 14),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text('Total Pembayaran',
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w700,
+                                                          color: Text1,
+                                                        )),
+                                                    Text(
+                                                        (data.transactionProduct!.price)
+                                                            .toRupiahWithSymbol,
+                                                        style: GoogleFonts.nunito(
+                                                          textStyle: Nunito_15px,
+                                                          fontWeight: FontWeight.w700,
+                                                          color: Text1,
+                                                        )),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 14),
+                                                Spacer(),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Button(
+                                                      onTap: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      "Batal",
+                                                      backgroundColor: Colors.white,
+                                                      color: Primary50,
+                                                      width: 151,
+                                                      height: 48,
+                                                    ),
+                                                    Button(
+                                                      onTap: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  KonfirPembayaran(
+                                                                harga:
+                                                                    data.transactionProduct!.price,
+                                                                product_id:
+                                                                    data.transactionProduct!.id,
+                                                                notes: data.notes,
+                                                                billing_number: data.billing_number,
+                                                              ),
+                                                            ));
+                                                      },
+                                                      "Konfirmasi",
+                                                      backgroundColor: Primary70,
+                                                      width: 151,
+                                                      height: 48,
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      });
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
