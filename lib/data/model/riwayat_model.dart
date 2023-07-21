@@ -7,49 +7,49 @@ import 'dart:convert';
 import 'package:visipay/data/model/riwayat.dart';
 
 class RiwayatModel extends Riwayat {
-  RiwayatModel({
-    super.promoId,
-    super.notes,
-    super.transactionDiscount,
-    required super.id,
-    required super.userId,
-    required super.walletId,
-    required super.transactionMethodId,
-    required super.productId,
-    required super.amount,
-    required super.transactionType,
-    required super.transactionStatus,
-    required super.createdAt,
-    required super.updatedAt,
-    required super.userTransaction,
-    required super.walletTransaction,
-    required super.transactionMethod,
-    super.transactionProduct,
-  });
+  RiwayatModel(
+      {super.promoId,
+      super.notes,
+      super.transactionDiscount,
+      required super.id,
+      required super.userId,
+      required super.walletId,
+      required super.transactionMethodId,
+      required super.productId,
+      required super.amount,
+      required super.transactionType,
+      required super.transactionStatus,
+      required super.createdAt,
+      required super.updatedAt,
+      required super.userTransaction,
+      required super.walletTransaction,
+      required super.transactionMethod,
+      super.transactionProduct,
+      super.billing_number});
 
   factory RiwayatModel.fromRawJson(String str) => RiwayatModel.fromJson(json.decode(str));
 
   factory RiwayatModel.fromJson(Map<String, dynamic> json) => RiwayatModel(
-        id: json["id"],
-        userId: json["user_id"],
-        walletId: json["wallet_id"],
-        transactionMethodId: json["transaction_method_id"],
-        productId: json["product_id"] ?? '',
-        promoId: json["promo_id"] ?? '',
-        amount: json["amount"],
-        notes: json["notes"] ?? '',
-        transactionType: json["transaction_type"],
-        transactionStatus: json["transaction_status"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        userTransaction: UserTransactionModel.fromJson(json["user_transaction"]),
-        walletTransaction: WalletTransactionModel.fromJson(json["wallet_transaction"]),
-        transactionMethod: TransactionMethodModel.fromJson(json["transaction_method"]),
-        transactionProduct: json['transaction_product'] != null
-            ? TransactionProductModel.fromJson(json['transaction_product'])
-            : null,
-        transactionDiscount: json["transaction_discount"],
-      );
+      id: json["id"],
+      userId: json["user_id"],
+      walletId: json["wallet_id"],
+      transactionMethodId: json["transaction_method_id"],
+      productId: json["product_id"] ?? '',
+      promoId: json["promo_id"] ?? '',
+      amount: json["amount"],
+      notes: json["notes"] ?? '',
+      transactionType: json["transaction_type"],
+      transactionStatus: json["transaction_status"],
+      createdAt: DateTime.parse(json["createdAt"]),
+      updatedAt: DateTime.parse(json["updatedAt"]),
+      userTransaction: UserTransactionModel.fromJson(json["user_transaction"]),
+      walletTransaction: WalletTransactionModel.fromJson(json["wallet_transaction"]),
+      transactionMethod: TransactionMethodModel.fromJson(json["transaction_method"]),
+      transactionProduct: json['transaction_product'] != null
+          ? TransactionProductModel.fromJson(json['transaction_product'])
+          : null,
+      transactionDiscount: json["transaction_discount"],
+      billing_number: json['billing_number']);
 }
 
 class TransactionMethodModel extends TransactionMethod {
