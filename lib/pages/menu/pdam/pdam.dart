@@ -149,10 +149,10 @@ class _PdamState extends State<Pdam> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => KonfirPembayaran(
-                                        harga: data.amount,
+                                        harga: data.transactionProduct!.price,
                                         product_id: data.transactionProduct?.id ?? '',
                                         notes: "PDAM",
-                                        billing_number: idpelangganController.text,
+                                        billing_number: data.billing_number,
                                       ),
                                     ),
                                   );
@@ -322,24 +322,6 @@ class _PdamState extends State<Pdam> {
                                       ],
                                     ),
                                     SizedBox(height: 12),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text('Biaya Transaksi',
-                                            style: GoogleFonts.nunito(
-                                              textStyle: Nunito_15px,
-                                              fontWeight: FontWeight.w500,
-                                              color: Text1,
-                                            )),
-                                        Text(2500.toRupiahWithSymbol,
-                                            style: GoogleFonts.nunito(
-                                              textStyle: Nunito_15px,
-                                              fontWeight: FontWeight.w600,
-                                              color: Text1,
-                                            )),
-                                      ],
-                                    ),
-                                    SizedBox(height: 12),
                                     Divider(
                                       color: Color(0xff3A3541), // Warna garis
                                       thickness: 1.0, // Ketebalan garis
@@ -354,7 +336,7 @@ class _PdamState extends State<Pdam> {
                                               fontWeight: FontWeight.w700,
                                               color: Text1,
                                             )),
-                                        Text((state.produk[0].price + 2500).toRupiahWithSymbol,
+                                        Text((state.produk[0].price).toRupiahWithSymbol,
                                             style: GoogleFonts.nunito(
                                               textStyle: Nunito_15px,
                                               fontWeight: FontWeight.w700,
@@ -363,6 +345,7 @@ class _PdamState extends State<Pdam> {
                                       ],
                                     ),
                                     SizedBox(height: 14),
+                                    Spacer(),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -382,9 +365,11 @@ class _PdamState extends State<Pdam> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) => KonfirPembayaran(
-                                                      harga: state.produk[0].price + 2500,
-                                                      product_id: state.produk[0].id,
-                                                      notes: ""),
+                                                    harga: state.produk[0].price,
+                                                    product_id: state.produk[0].id,
+                                                    notes: "",
+                                                    billing_number: idpelangganController.text,
+                                                  ),
                                                 ));
                                           },
                                           "Konfirmasi",
