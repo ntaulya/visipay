@@ -20,11 +20,12 @@ class _StatusBerhasilState extends State<StatusBerhasil> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       // Navigator.of(context).pushReplacementNamed('/onboarding');
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => Home(),
-          ));
+          ),
+          (route) => false);
     });
   }
 
