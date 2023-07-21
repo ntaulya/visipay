@@ -39,6 +39,12 @@ class _PlnState extends State<Pln> {
   }
 
   @override
+  void initState() {
+    context.read<GetProfileBloc>().add(GetProfileInisiate());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final name = context.select<GetProfileBloc, String>((value) {
       if (value.state is GetProfileLoaded) {
