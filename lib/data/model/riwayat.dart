@@ -15,7 +15,7 @@ class Riwayat {
   final WalletTransaction walletTransaction;
   final TransactionMethod transactionMethod;
   final TransactionProduct? transactionProduct;
-  final dynamic transactionDiscount;
+  final TransactionDiscount? transactionDiscount;
   final String? billing_number;
 
   Riwayat(
@@ -95,4 +95,10 @@ class WalletTransaction {
     required this.userId,
     required this.balance,
   });
+}
+
+class TransactionDiscount {
+  final String name;
+
+  TransactionDiscount({required this.name});
 }
