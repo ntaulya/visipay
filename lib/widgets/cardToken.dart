@@ -91,23 +91,6 @@ class _CardTokenState extends State<CardToken> {
                             ],
                           ),
                           SizedBox(height: 12),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Text('Tarif/Daya',
-                          //         style: GoogleFonts.nunito(
-                          //           textStyle: Nunito_15px,
-                          //           fontWeight: FontWeight.w500,
-                          //           color: Text1,
-                          //         )),
-                          //     Text('',
-                          //         style: GoogleFonts.nunito(
-                          //           textStyle: Nunito_15px,
-                          //           fontWeight: FontWeight.w600,
-                          //           color: Text1,
-                          //         )),
-                          //   ],
-                          // ),
                           SizedBox(height: 18),
                           Row(
                             children: [
