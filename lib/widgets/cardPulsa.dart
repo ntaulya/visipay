@@ -139,7 +139,7 @@ class _CardPulsaState extends State<CardPulsa> {
                                 fontWeight: FontWeight.w700,
                                 color: Text1,
                               )),
-                          Text(((widget.produk.price) + 1000).toRupiahWithSymbol,
+                          Text(((widget.produk.price)).toRupiahWithSymbol,
                               style: GoogleFonts.nunito(
                                 textStyle: Nunito_15px,
                                 fontWeight: FontWeight.w700,
@@ -171,6 +171,7 @@ class _CardPulsaState extends State<CardPulsa> {
                                       notes: widget.notes,
                                       harga: widget.produk.price + 1000,
                                       product_id: widget.produk.id,
+                                      billing_number: widget.no_hp,
                                     ),
                                   ));
                             },
