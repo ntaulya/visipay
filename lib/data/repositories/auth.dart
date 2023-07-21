@@ -7,13 +7,15 @@ import 'package:visipay/data/model/user.dart';
 
 abstract class AuthRepositories {
   Future<Either<String, User>> login(String phone, String security_code);
-  Future<Either<String, User>> register(String phone,String name, String email, String security_code);
+  Future<Either<String, User>> register(
+      String phone, String name, String email, String security_code);
   Future<Either<String, User>> finduser(String phone);
   Future<Either<String, String>> sendOtp(String phone);
   Future<Either<String, String>> verifyOtp(String phone, String otp);
+  Future<Either<String, String>> verifyPIN(String pin);
 }
 
-class AuthRepositoriesImpl extends AuthRepositories{
+class AuthRepositoriesImpl extends AuthRepositories {
   final AuthRemoteDatasources remoteDatasources;
 
   AuthRepositoriesImpl({required this.remoteDatasources});
@@ -22,6 +24,7 @@ class AuthRepositoriesImpl extends AuthRepositories{
   Future<Either<String, User>> login(String phone, String security_code) async {
     var remote = await remoteDatasources.login(phone, security_code);
     if (remote.isRight()) {
+      await savePIN(security_code);
       await saveJWT(remote.asRight().access_token);
       return Right(remote.asRight().user);
     } else {
@@ -30,8 +33,9 @@ class AuthRepositoriesImpl extends AuthRepositories{
   }
 
   @override
-  Future<Either<String, User>> register(String phone, String name, String email, String security_code) async {
-    var remote = await remoteDatasources.register(phone,name,email,security_code);
+  Future<Either<String, User>> register(
+      String phone, String name, String email, String security_code) async {
+    var remote = await remoteDatasources.register(phone, name, email, security_code);
     if (remote.isRight()) {
       await saveJWT(remote.asRight().access_token);
       return Right(remote.asRight().user);
@@ -39,21 +43,29 @@ class AuthRepositoriesImpl extends AuthRepositories{
       return Left(remote.asLeft());
     }
   }
-  
+
   @override
   Future<Either<String, User>> finduser(String phone) async {
     return remoteDatasources.finduser(phone);
   }
-  
+
   @override
   Future<Either<String, String>> sendOtp(String phone) {
     return remoteDatasources.sendOtp(phone);
   }
-  
+
   @override
   Future<Either<String, String>> verifyOtp(String phone, String otp) {
-    return remoteDatasources.verifyOtp(phone,otp);
+    return remoteDatasources.verifyOtp(phone, otp);
+  }
+
+  @override
+  Future<Either<String, String>> verifyPIN(String pin) async {
+    var pin_local = await getPIN();
+    if (pin_local == pin) {
+      return Right('Pin Benar');
+    } else {
+      return Right('Pin Salah');
+    }
   }
 }
-
-
