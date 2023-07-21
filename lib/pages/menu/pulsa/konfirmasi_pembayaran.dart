@@ -15,15 +15,16 @@ import 'package:visipay/widgets/button.dart';
 import 'package:visipay/widgets/container.dart';
 
 class KonfirPembayaran extends StatefulWidget {
-  const KonfirPembayaran({
-    super.key,
-    required this.harga,
-    required this.product_id,
-    required this.notes,
-  });
+  const KonfirPembayaran(
+      {super.key,
+      required this.harga,
+      required this.product_id,
+      required this.notes,
+      this.billing_number});
   final int harga;
   final String notes;
   final String product_id;
+  final String? billing_number;
 
   @override
   State<KonfirPembayaran> createState() => _KonfirPembayaranState();
@@ -336,7 +337,8 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                                 context.read<PembayaranBloc>().add(PembayaranInisiate(
                                     product_id: widget.product_id,
                                     promo_id: selectedPromo?.id ?? '',
-                                    notes: widget.notes));
+                                    notes: widget.notes,
+                                    billing_number: widget.billing_number));
                               },
                             );
                           } else if (state is PembayaranError) {
