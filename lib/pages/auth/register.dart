@@ -207,6 +207,7 @@ class _RegisterState extends State<Register> {
                     "Lanjutkan",
                     height: 60,
                     onTap: () {
+                      _phoneController.text = _phoneController.text.replaceFirst('0', '62');
                       context.read<RegisterBloc>().add(finduser(_phoneController.text));
                     },
                   ),
