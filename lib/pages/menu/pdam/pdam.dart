@@ -149,9 +149,10 @@ class _PdamState extends State<Pdam> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => KonfirPembayaran(
-                                        harga: data.amount + 2500,
+                                        harga: data.amount,
                                         product_id: data.transactionProduct?.id ?? '',
                                         notes: "PDAM",
+                                        billing_number: idpelangganController.text,
                                       ),
                                     ),
                                   );
