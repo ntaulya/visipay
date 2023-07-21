@@ -16,12 +16,11 @@ class PembayaranBloc extends Bloc<PembayaranEvent, PembayaranState> {
       if (event is PembayaranInisiate) {
         emit(PembayaranLoading());
         final failureOrUser = await data.insertPembayaran(
-            event.product_id, event.promo_id, event.notes);
-        
-        emit(failureOrUser.fold(
-            (l) => PembayaranError(l), (r) => PembayaranSuccess(r)));
+            event.product_id, event.promo_id, event.notes,
+            billing_number: event.billing_number);
+
+        emit(failureOrUser.fold((l) => PembayaranError(l), (r) => PembayaranSuccess(r)));
       }
-      
     });
   }
 }
