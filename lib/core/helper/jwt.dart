@@ -41,12 +41,17 @@ Future<void> saveJWT(String jwt) async {
   await prefs.setString('jwt', jwt);
 }
 
+Future<void> savePIN(String pin) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('pin', pin);
+}
+
 Future<String?> getJWT() async {
   final prefs = await SharedPreferences.getInstance();
-  var jwt = prefs.getString('jwt') ?? "";
-  if (jwt.isNotEmpty) {
-    return jwt;
-  } else {
-    return null;
-  }
+  return prefs.getString('jwt');
+}
+
+Future<String?> getPIN() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString('pin');
 }
