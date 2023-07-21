@@ -324,6 +324,31 @@ class _KonfirPembayaranState extends State<KonfirPembayaran> {
                           if (state is PembayaranSuccess) {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(builder: (_) => StatusBerhasil()));
+                          } else if (state is BalanceInsufficent) {
+                            showDialog<bool>(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text(
+                                      'Saldo anda tidak mencukupi, Silahkan Top-Up terlebih dahulu'),
+                                  actionsAlignment: MainAxisAlignment.spaceBetween,
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/topup');
+                                      },
+                                      child: const Text('Ke Halaman Top-Up'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, false);
+                                      },
+                                      child: const Text('Tutup'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           }
                         }, builder: (context, state) {
                           print(state);
