@@ -151,55 +151,60 @@ class _RegisterState extends State<Register> {
             ),
 
             // bottom bar dengan API
-            bottomNavigationBar: BlocListener<RegisterBloc, RegisterState>(
-                listener: (context, state) {
-                  if (state is RegisterInitial) {
-                    //registerinitial buat kalau event nya gak di trigger
-                  } else if (state is RegisterSuccess) {
-                    //jika sukses
-                    context.read<OtpBloc>().add(SendOtp(_phoneController.text));
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return VerifyOtpPage(phone: _phoneController.text);
-                      },
-                    ));
-                    //kalau register gagal
-                  } else if (state is RegisterError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Anda Gagal Registrasi'),
-                        duration: Duration(seconds: 5),
-                      ),
-                    );
-                  } else if (state is userfound) {
-                    showDialog<bool>(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Nomor sudah terdaftar, silahkan login'),
-                          actionsAlignment: MainAxisAlignment.spaceBetween,
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(context, '/login');
-                              },
-                              child: const Text('Ke Halaman Login'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, false);
-                              },
-                              child: const Text('Tutup'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } else if (state is userNotFound) {
-                    context.read<RegisterBloc>().add(RegisterFormSubmit(_phoneController.text,
-                        _nameController.text, _emailController.text, _pinController.text));
-                  }
-                },
+            bottomNavigationBar: MultiBlocListener(
+                listeners: [
+                  BlocListener<RegisterBloc, RegisterState>(listener: (contex, state) {
+                    if (state is RegisterSuccess) {
+                      //jika sukses
+                      context.read<OtpBloc>().add(SendOtp(_phoneController.text));
+
+                      //kalau register gagal
+                    } else if (state is RegisterError) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Anda Gagal Registrasi'),
+                          duration: Duration(seconds: 5),
+                        ),
+                      );
+                    } else if (state is userfound) {
+                      showDialog<bool>(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Nomor sudah terdaftar, silahkan login'),
+                            actionsAlignment: MainAxisAlignment.spaceBetween,
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(context, '/login');
+                                },
+                                child: const Text('Ke Halaman Login'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, false);
+                                },
+                                child: const Text('Tutup'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    } else if (state is userNotFound) {
+                      context.read<RegisterBloc>().add(RegisterFormSubmit(_phoneController.text,
+                          _nameController.text, _emailController.text, _pinController.text));
+                    }
+                  }),
+                  BlocListener<OtpBloc, OtpState>(listener: (contex, state) {
+                    if (state is SendOtpSuccess) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return VerifyOtpPage(phone: _phoneController.text);
+                        },
+                      ));
+                    }
+                  })
+                ],
                 //buat nampilin widget
                 child: Padding(
                   padding: const EdgeInsets.all(40.0),
@@ -207,7 +212,9 @@ class _RegisterState extends State<Register> {
                     "Lanjutkan",
                     height: 60,
                     onTap: () {
-                      _phoneController.text = _phoneController.text.replaceFirst('0', '62');
+                      if (_phoneController.text.startsWith('0')) {
+                        _phoneController.text = '62' + _phoneController.text.substring(1);
+                      }
                       context.read<RegisterBloc>().add(finduser(_phoneController.text));
                     },
                   ),
