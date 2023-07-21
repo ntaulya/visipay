@@ -51,7 +51,7 @@ class _PdamState extends State<Pdam> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                  Navigator.pop(context);
                 },
               ),
             ),
@@ -119,6 +119,9 @@ class _PdamState extends State<Pdam> {
                 bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PDAM")),
                 builder: (context, state) {
                   if (state is RiwayatLoaded) {
+                    if (state.riwayat.isEmpty) {
+                      return SizedBox();
+                    }
                     final data = state.riwayat.first;
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
