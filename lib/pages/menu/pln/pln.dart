@@ -118,7 +118,7 @@ class _PlnState extends State<Pln> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => KonfirPembayaran(
-                                          harga: data.amount + 2500,
+                                          harga: data.amount,
                                           product_id: data.transactionProduct?.id ?? '',
                                           notes: "PLN Listrik",
                                         ),
