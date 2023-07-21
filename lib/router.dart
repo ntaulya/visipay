@@ -39,7 +39,7 @@ class VisiPayRouter implements IRouter {
                   child: BlocBuilder<PageNavigationBloc, PageNavigationState>(
                     builder: (context, state) {
                       if (state is PageNavigationSuccess) {
-                        return Home();
+                        return Pin();
                       } else {
                         return OnBoarding();
                       }
