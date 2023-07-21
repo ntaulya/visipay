@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:visipay/core/helper/jwt.dart';
+import 'package:visipay/data/datasources/remote/pembayaran.dart';
 import 'package:visipay/data/model/produk.dart';
 import 'package:visipay/data/repositories/auth.dart';
 
@@ -15,11 +16,17 @@ class PembayaranBloc extends Bloc<PembayaranEvent, PembayaranState> {
     on<PembayaranEvent>((event, emit) async {
       if (event is PembayaranInisiate) {
         emit(PembayaranLoading());
-        final failureOrUser = await data.insertPembayaran(
-            event.product_id, event.promo_id, event.notes,
-            billing_number: event.billing_number);
+        try {
+          final failureOrUser = await data.insertPembayaran(
+              event.product_id, event.promo_id, event.notes,
+              billing_number: event.billing_number);
 
-        emit(failureOrUser.fold((l) => PembayaranError(l), (r) => PembayaranSuccess(r)));
+          emit(failureOrUser.fold((l) => PembayaranError(l), (r) => PembayaranSuccess(r)));
+        } catch (e) {
+          if (e is balanceInsufficentExceptions) {
+            emit(BalanceInsufficent());
+          }
+        }
       }
     });
   }
