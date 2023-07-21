@@ -152,6 +152,9 @@ class _LoginState extends State<Login> {
                       ? Primary50
                       : Primary50.withOpacity(0.5),
                   onTap: () {
+                    if (_phoneController.text.startsWith('0')) {
+                      _phoneController.text = '62' + _phoneController.text.substring(1);
+                    }
                     context.read<LoginBloc>().add(finduser(_phoneController.text));
                   },
                 ),
