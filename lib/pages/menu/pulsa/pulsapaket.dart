@@ -47,11 +47,7 @@ class _PulsaPaketState extends State<PulsaPaket> {
                   child: IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ));
+                      Navigator.pop(context);
                     },
                   ),
                 ),
