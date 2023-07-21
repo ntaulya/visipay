@@ -48,7 +48,9 @@ class RiwayatModel extends Riwayat {
       transactionProduct: json['transaction_product'] != null
           ? TransactionProductModel.fromJson(json['transaction_product'])
           : null,
-      transactionDiscount: json["transaction_discount"],
+      transactionDiscount: json["transaction_discount"] != null
+          ? TransactionDiscountModel.fromJson(json['transaction_discount'])
+          : null,
       billing_number: json['billing_number']);
 }
 
@@ -118,4 +120,11 @@ class WalletTransactionModel extends WalletTransaction {
         userId: json["user_id"],
         balance: json["balance"],
       );
+}
+
+class TransactionDiscountModel extends TransactionDiscount {
+  TransactionDiscountModel({required super.name});
+
+  factory TransactionDiscountModel.fromJson(Map<String, dynamic> json) =>
+      TransactionDiscountModel(name: json['name']);
 }
