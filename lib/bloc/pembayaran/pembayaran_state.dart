@@ -16,3 +16,5 @@ class PembayaranError extends PembayaranState {
 
   PembayaranError(this.error_message);
 }
+
+class BalanceInsufficent extends PembayaranState {}
