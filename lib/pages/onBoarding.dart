@@ -50,9 +50,7 @@ class OnBoarding extends StatelessWidget {
                 style: GoogleFonts.nunito(
                     textStyle: Nunito_15px, fontWeight: FontWeight.normal, color: Text1),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              Spacer(),
               Button(
                 "Login",
                 backgroundColor: Primary50,
@@ -81,6 +79,7 @@ class OnBoarding extends StatelessWidget {
                       builder: (context) => Register(),
                     ));
               }),
+              const SizedBox(height: 15),
             ],
           ),
         ),
