@@ -46,7 +46,7 @@ class _PlnState extends State<Pln> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                  Navigator.pop(context);
                 },
               ),
             ),
@@ -88,6 +88,10 @@ class _PlnState extends State<Pln> {
                     bloc: sl<RiwayatBloc>()..add(RiwayatListInisiate(category: "PLN")),
                     builder: (context, state) {
                       if (state is RiwayatLoaded) {
+                        if (state.riwayat.isEmpty) {
+                          return SizedBox();
+                        }
+
                         final data = state.riwayat.first;
 
                         return Column(
