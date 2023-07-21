@@ -16,26 +16,27 @@ class Riwayat {
   final TransactionMethod transactionMethod;
   final TransactionProduct? transactionProduct;
   final dynamic transactionDiscount;
+  final String? billing_number;
 
-  Riwayat({
-    required this.id,
-    required this.userId,
-    required this.walletId,
-    required this.transactionMethodId,
-    required this.productId,
-    this.promoId,
-    required this.amount,
-    this.notes,
-    required this.transactionType,
-    required this.transactionStatus,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.userTransaction,
-    required this.walletTransaction,
-    required this.transactionMethod,
-    this.transactionProduct,
-    this.transactionDiscount,
-  });
+  Riwayat(
+      {required this.id,
+      required this.userId,
+      required this.walletId,
+      required this.transactionMethodId,
+      required this.productId,
+      this.promoId,
+      required this.amount,
+      this.notes,
+      required this.transactionType,
+      required this.transactionStatus,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.userTransaction,
+      required this.walletTransaction,
+      required this.transactionMethod,
+      this.transactionProduct,
+      this.transactionDiscount,
+      this.billing_number});
 }
 
 class TransactionMethod {
